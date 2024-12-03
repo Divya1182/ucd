@@ -16,6 +16,44 @@ env.CX_CREDENTIAL = "bef_checkmarx"
 
 
 List phasesToRun = [
+        [
+        moduleType            : 'build',
+        moduleName            : 'build-artifact',
+        subCommand            : 'build',
+        branchPattern         : '.*',
+        sdlcEnvironment       : 'dev',
+        isProductionDeployment: false,
+        args                  : [
+            buildTool              : 'zip', // Set build tool to zip
+            buildCommand           : 'zip -r my-app.zip *', // Create ZIP file from project directory
+            artifactOutputDir      : '.', // Current directory (root of project)
+            artifactFileName       : 'my-app.zip', // The resulting ZIP file
+        ],
+        container             : [
+            memory: 2000,
+            cpu   : 1000,
+        ]
+    ],
+    [
+        moduleType            : 'artifact-push',
+        moduleName            : 'push-artifact',
+        subCommand            : 'push',
+        branchPattern         : '.*',
+        sdlcEnvironment       : 'dev',
+        isProductionDeployment: false,
+        args                  : [
+            jfrogUrl               : 'https://cigna.jfrog.io/artifactory', // JFrog Artifactory URL
+            jfrogRepo              : 'pypi-repos', // Repository to push the artifact
+            jfrogLANID             : 'jfrog_id', // LAN ID for JFrog authentication
+            artifactPath           : 'my-app.zip', // Full path to the ZIP artifact to push
+            targetRepoPath         : 'my-app/1.0.0/', // Target path in JFrog
+        ],
+        container             : [
+            memory: 2000,
+            cpu   : 1000,
+        ]
+    ]
+]
         [    
         moduleType: 'quality',
         moduleName: 'cnp-quality-profile-checkmarx',

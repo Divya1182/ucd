@@ -1,64 +1,32 @@
-library "epf"
-boolean isProductionDeployment = env.BRANCH_NAME ==~ /^(release|hotfix).*/
-
-env.CNP_IGNORE_CONFTEST_ANALYSIS_FAILURE=true
-env.CNP_AWS_IDP_PROVIDER='Okta'
-env.CNP_AWS_TF_CRED_DEV = 'DAWS-HS-UPSILONFRIES'
-env.CNP_AWS_TF_CRED_QA = 'TAWS-HS-UPSILONFRIES'
-env.CNP_AWS_TF_CRED_PROD = 'PAWS-HS-UPSILONFRIES'
-env.CNP_DEFAULT_TERRAFORM_IMAGE = 'cnp/cnp-docker-terraform:1.0.0-dev-ov2'
-def APPROVERS = 'accounts\\C8P8ZF,accounts\\P57026, accounts\\C7B8GS,accounts\\C7Q7RW,accounts\\C7R5TN,accounts\\C8C7GQ,accounts\\EI5194,accounts\\EJ6842,accounts\\C8Q9M3,accounts\\C8G2NZ'
-env.CX_CREDENTIAL = "bef_checkmarx"
-
-List phasesToRun = [
-    // Existing phases...
-
-    /* --------------- BUILD & PUSH ARTIFACT --------------- */
-    [
-        moduleType            : 'build',
-        moduleName            : 'build-artifact',
-        subCommand            : 'build',
-        branchPattern         : '.*',
-        sdlcEnvironment       : 'dev',
-        isProductionDeployment: false,
-        args                  : [
-            buildTool              : 'zip', // Set build tool to zip
-            buildCommand           : 'zip -r my-app.zip *', // Create ZIP file from project directory
-            artifactOutputDir      : '.', // Current directory (root of project)
-            artifactFileName       : 'my-app.zip', // The resulting ZIP file
-        ],
-        container             : [
-            memory: 2000,
-            cpu   : 1000,
-        ]
+/* JFrog Artifact Upload Phase */
+[
+    moduleType: 'artifact',
+    moduleName: 'cnp-upload-to-jfrog',
+    branchPattern: '.*',
+    subCommand: 'upload',
+    isProductionDeployment: false,
+    args: [
+        artifactPath: 'build/output/my-artifact-1.0.0.zip', // Replace with your actual ZIP file path
+        targetRepo: 'libs-release-local/my-project' // Replace with your target repository
     ],
-    [
-        moduleType            : 'artifact-push',
-        moduleName            : 'push-artifact',
-        subCommand            : 'push',
-        branchPattern         : '.*',
-        sdlcEnvironment       : 'dev',
-        isProductionDeployment: false,
-        args                  : [
-            jfrogUrl               : 'https://my-jfrog-instance.jfrog.io', // JFrog Artifactory URL
-            jfrogRepo              : 'my-maven-repo', // Repository to push the artifact
-            jfrogLANID             : 'my-lan-id', // LAN ID for JFrog authentication
-            jfrogPassword          : 'my-lan-password', // LAN ID password or token
-            artifactPath           : 'my-app.zip', // Full path to the ZIP artifact to push
-            targetRepoPath         : 'my-app/1.0.0/', // Target path in JFrog
-        ],
-        container             : [
-            memory: 2000,
-            cpu   : 1000,
-        ]
-    ]
-]
-
-// Adding phases to the build flow
-cignaBuildFlow {
-    githubConnectionName = 'github'
-    githubCredentialsId = 'GIT_TOKEN'
-    commitStatusName = ''
-    cloudName = 'pbbef-openshift-devops1'
-    phases = phasesToRun
-}
+    jfrogStep: {
+        script {
+            def uploadSpec = """{
+                "files": [
+                    {
+                        "pattern": "build/output/*.zip",
+                        "target": "libs-release-local/my-project/"
+                    }
+                ]
+            }"""
+            withCredentials([usernamePassword(credentialsId: 'JFROG_LANID_CRED', 
+                                              usernameVariable: 'JFROG_USERNAME', 
+                                              passwordVariable: 'JFROG_PASSWORD')]) {
+                def server = Artifactory.server('ARTIFACTORY_SERVER_ID')
+                server.username = env.JFROG_USERNAME
+                server.password = env.JFROG_PASSWORD
+                server.upload spec: uploadSpec
+            }
+        }
+    }
+],
