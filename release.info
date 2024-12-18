@@ -1,0 +1,15 @@
+{
+    "JiraProject": "PBBEF",
+    "Version": "1.0.0",
+    "FixVersion": "2024_BEF_AWS_S3_OCT",
+    "PrimaryContactName": "Ranjan, Rahul",
+    "PrimaryContactNumber": "9739051914",
+    "SecondaryContactName": "Lama, Surya",
+    "SecondaryContactNumber": "",
+    "ContactInformation": "",
+    "RITMNumber": "",
+    "NSWENumber": "",
+    "BuildDependencies": "No",
+    "BuildDeploymentOrder": "",
+    "EmergencyIncidentNumber": "INC"
+}
