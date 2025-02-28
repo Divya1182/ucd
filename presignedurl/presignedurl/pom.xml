@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <?m2e ignore?>
+    <?m2e ignore?>
+    <?m2e ignore?>
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.cigna.dasg.pdee.flyway.dbdeployments</groupId>
+  <artifactId>benefiteventflow-aws-service</artifactId>
+  <version>2024.9.12-SNAPSHOT</version>
+  <name>benefiteventflow-aws-service_build</name>
+  <!-- FIXME change it to the project's website -->
+  <url>http://www.example.com</url>
+
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.7</maven.compiler.source>
+    <maven.compiler.target>1.7</maven.compiler.target>
+    <!-- Repository Manager Environment  -->
+  <!-- Override on Command Line with "-Drepo.mgr.env=p-" to point to PVS environment -->
+    <repo.mgr.env></repo.mgr.env>
+  <!--  Distribution Management Properties  -->
+    <repo.id>releases</repo.id>
+    <repo.name>Cigna Release Repository</repo.name>
+    <repo.url>https://${repo.mgr.env}cigna.jfrog.io/artifactory/cigna-maven-releases</repo.url>
+    <snap.repo.id>snapshots</snap.repo.id>
+    <snap.repo.name>Cigna Snapshot Repository</snap.repo.name>
+    <snap.repo.url>https://${repo.mgr.env}cigna.jfrog.io/artifactory/cigna-maven-snapshots</snap.repo.url>
+  </properties>
+
+
+
+  <!--  Distribution Management Definition  -->
+
+<distributionManagement>
+  
+ <repository>
+    <uniqueVersion>false</uniqueVersion>
+    <id>${repo.id}</id>
+    <name>${repo.name}</name>
+    <url>${repo.url}</url>
+    <layout>default</layout>
+  </repository>
+<snapshotRepository>
+    <uniqueVersion>true</uniqueVersion>
+    <id>${snap.repo.id}</id>
+    <name>${snap.repo.name}</name>
+    <url>${snap.repo.url}</url>
+    <layout>default</layout>
+  </snapshotRepository>
+
+
+</distributionManagement>
+
+
+
+  <build> 
+  
+  <resources>
+  <resource>
+    <directory>benefiteventflow-aws-service</directory>
+  </resource>
+</resources>   
+  
+<plugins>
+<plugin>
+  <groupId>org.apache.maven.plugins</groupId>
+  <artifactId>maven-assembly-plugin</artifactId>
+  <configuration>
+    <baseDirectory>benefiteventflow-aws-service</baseDirectory>
+    <descriptor>descriptor.xml</descriptor>
+    <finalName>benefiteventflow-aws</finalName>
+     <appendAssemblyId>false</appendAssemblyId>
+  </configuration>
+  
+  <executions>
+    <execution>
+      <phase>package</phase>
+      <goals>
+        <goal>single</goal>
+      </goals>
+    </execution>
+  </executions>
+</plugin>
+</plugins>
+
+ 
+  </build>
+</project> 

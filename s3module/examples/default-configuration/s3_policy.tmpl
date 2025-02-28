@@ -1,0 +1,21 @@
+{
+    "Version": "2012-10-17",
+    "Id": "Policy1552080700294",
+    "Statement": [
+        {
+            "Sid": "Stmt1552079734001",
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": ${key_users}
+            },
+            "Action": [
+                "s3:Get*",
+                "s3:List*",
+                "s3:Put*",
+                "s3:Delete*",
+                "s3:GetObject*"
+            ],
+            "Resource": ${bucket_resources}
+        }
+    ]
+}

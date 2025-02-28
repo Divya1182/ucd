@@ -1,0 +1,5 @@
+kms_accounts           = ["arn:aws:iam::535306282211:root"]
+kms_key_administrators = ["arn:aws:iam::535306282211:role/ServiceCatalogTestManual"]
+kms_key_users          = ["arn:aws:iam::535306282211:role/ServiceCatalogTestManual"]
+s3_default_resources   = ["arn:aws:s3:::s3-default-example-bucket", "arn:aws:s3:::s3-default-example-bucket/*"]
+s3_default_users       = ["arn:aws:iam::535306282211:role/ServiceCatalogTestManual"]

@@ -1,0 +1,9 @@
+[local-deploy]
+  account = "535306282211"
+  profile = "saml"
+  role = "ACCOUNTADMIN"
+
+[ci-deploy]
+  account = "535306282211"
+  profile = "saml"
+  role = "JENKINSPIPELINESEEDER"
