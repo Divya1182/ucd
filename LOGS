@@ -1,0 +1,2513 @@
+Push event to branch feature-PBBEF-1571
+17:26:10 Connecting to https://git.express-scripts.com/api/v3 using This is the enterprise Health Services GitHub credentials for Jenkins
+Obtained Jenkinsfile from e8f295edb28327578b05f1f3b1ec976e6dbe0252
+[Pipeline] Start of Pipeline
+[Pipeline] library
+Loading library epf@main
+Examining cigna/enterprise-pipeline-framework
+Attempting to resolve main as a branch
+Resolved main as branch main at revision d1afb1bcf2f9a73305add2273906c4a3434f929b
+The recommended git tool is: NONE
+No credentials specified
+ > git rev-parse --resolve-git-dir /var/jenkins_home/jobs/orchestrators-folders/jobs/pbbef/jobs/Non-Production/jobs/TERRAFORMS/jobs/aws-terraform-hs-bef-intentapi/branches/feature-PBBEF-1571/workspace@libs/3c1ad5b67ee798f247d765c15302ae0bdd27719722cb644afcd8575eac3ef99a/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.sys.cigna.com/cigna/enterprise-pipeline-framework.git # timeout=10
+Pruning obsolete local branches
+Pruning obsolete local tags that do not exist on remotes
+ > git show-ref --tags -d # timeout=10
+ > git --version # timeout=10
+ > git --version # 'git version 2.43.5'
+ > git ls-remote -t -- https://github.sys.cigna.com/cigna/enterprise-pipeline-framework.git # timeout=10
+Using shallow fetch with depth 1
+Fetching upstream changes from https://github.sys.cigna.com/cigna/enterprise-pipeline-framework.git
+ > git fetch --tags --force --progress --prune --depth=1 -- https://github.sys.cigna.com/cigna/enterprise-pipeline-framework.git +refs/heads/main:refs/remotes/origin/main # timeout=10
+Checking out Revision d1afb1bcf2f9a73305add2273906c4a3434f929b (main)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f d1afb1bcf2f9a73305add2273906c4a3434f929b # timeout=10
+Commit message: "Merge pull request #443 from cigna/feature/json-stack-overflow"
+ > git rev-list --no-walk d1afb1bcf2f9a73305add2273906c4a3434f929b # timeout=10
+[Pipeline] sendSplunkConsoleLog
+[Pipeline] {
+[Pipeline] libraryResource
+[Pipeline] echo
+ .----------------. .----------------. .----------------. .----------------. .----------------. .----------------. .----------------.
+| .--------------. | .--------------. | .--------------. | .--------------. | .--------------. | .--------------. | .--------------. |
+| |              | | |              | | |  _________   | | |   ______     | | |  _________   | | |              | | |              | |
+| |              | | |              | | | |_   ___  |  | | |  |_   __ \   | | | |_   ___  |  | | |              | | |              | |
+| |    ______    | | |    ______    | | |   | |_  \_|  | | |    | |__) |  | | |   | |_  \_|  | | |    ______    | | |    ______    | |
+| |   |______|   | | |   |______|   | | |   |  _|  _   | | |    |  ___/   | | |   |  _|      | | |   |______|   | | |   |______|   | |
+| |              | | |              | | |  _| |___/ |  | | |   _| |_      | | |  _| |_       | | |              | | |              | |
+| |              | | |              | | | |_________|  | | |  |_____|     | | | |_____|      | | |              | | |              | |
+| |              | | |              | | |              | | |              | | |              | | |              | | |              | |
+| '--------------' | '--------------' | '--------------' | '--------------' | '--------------' | '--------------' | '--------------' |
+ '----------------' '----------------' '----------------' '----------------' '----------------' '----------------' '----------------'
+
+******************************************************************************************************************************************
+*                                                        *** COMPLIANCE NOTICE ***                                                       *
+*  Users to specify a Goals file if needed to check their current compliance posture. If not specified the pipeline will create a goals  *
+*  file automatically and add the Pipeline goal. This change will allow for the removal of Production deployment phases if a pipelines   *
+*  compliance posture is invalid. For more information on how to modify your pipeline to allow production deployments, please visit:     *
+*                                   https://github.sys.cigna.com/cigna/adjudicator/wiki/How-to-Use                                       *
+*                                                                                                                                        *
+*                                                         *** VERSION NOTICE ***                                                         *
+*  The EPF team supports the past three major and minor released versions of the shared pipeline. If teams are using an unsupported      *
+*  version it is the teams responsibility to resolve issues. For available supported versions please see:                                *                                                                                                                            *
+*                                    https://github.sys.cigna.com/cigna/enterprise-pipeline-framework/tags                               *
+*                                                                                                                                        *
+******************************************************************************************************************************************
+[Pipeline] echo
+Feature Flags: showStackTraces=false, nonProdComplianceChecks=true, debug=false, verbose=false, legacyCheckout=false, injectCheckpoints=false, podAutotuning=[enabled:false, dryRun:true]
+[Pipeline] echo
+Follow the below link to see resource metrics for this pipeline:
+https://o-grafana.apps.devops-1-prod.openshift.cignacloud.com/d/xnyVI_3Mk/namespace-container-metrics?orgId=1&refresh=10s&from=1742405169724&to=1742405183517&var-namespace=pbbef-openshift-devops1 
+[Pipeline] echo
+Using GitHubSCM provider for name: EPF, state: pending, phase: Status Check, as: null
+[Pipeline] timestamps
+[Pipeline] {
+[Pipeline] properties
+[Pipeline] parallel
+[Pipeline] { (Branch: sendEmail)
+[Pipeline] { (Branch: sendMattermost)
+[Pipeline] { (Branch: sendTeams)
+[Pipeline] { (Branch: sendWebex)
+[Pipeline] }
+[Pipeline] }
+[Pipeline] }
+[Pipeline] }
+[Pipeline] // parallel
+[Pipeline] echo
+13:26:23  {"scm":{"repo":null,"gitCommit":null},"orchestrator":{"jobName":"orchestrators-folders/pbbef/Non-Production/TERRAFORMS/aws-terraform-hs-bef-intentapi/feature-PBBEF-1571","buildNumber":"40","branchName":"feature-PBBEF-1571","node":null,"timeInPipeline":"13 sec and counting"},"epf":{"stage":"Pipeline Started","message":"Pipeline Started","userProvidedConfig":{"githubConnectionName":"github","githubCredentialsId":"GIT_TOKEN","commitStatusName":"","cloudName":"pbbef-openshift-devops1","adjudicatorEnvironment":"prod"}}}
+[Pipeline] withCredentials
+13:26:23  Masking supported pattern matches of $EPF_GITHUB_ACCESS_TOKEN
+[Pipeline] {
+[Pipeline] echo
+13:26:23  Assessing changed files...
+[Pipeline] httpRequest
+[Pipeline] }
+[Pipeline] // withCredentials
+[Pipeline] echo
+13:26:23  Changed files: [Jenkinsfile, envs/dev-candidate/backend.config]
+[Pipeline] echo
+13:26:23  checkoutConfiguration.repo.shallow: false
+[Pipeline] echo
+13:26:23  moduleToRun is obtained from default modules for 'common:cnp-preflight-check-git-settings:null'
+[Pipeline] echo
+13:26:23  ========== MODULE INFO ==========
+13:26:23  Name: cnp-preflight-check-git-settings
+13:26:23  Contract: PREFLIGHT_CHECK
+13:26:23  Command: cnp-preflight-check-git-settings.sh
+13:26:23  Subcommand: 
+13:26:23  Docker Image: registry-dev.cigna.com/cnp/cnp-docker-core:1.1.8
+13:26:23  Required Credentials:[{"type":"string", "id":"GIT_TOKEN"}]
+13:26:23  =======================================
+[Pipeline] echo
+13:26:23  Accumulating pod template requirements for Module(common: PREFLIGHT_CHECK dev) : registry-dev.cigna.com/cnp/cnp-docker-core:1.1.8(cnp-docker-corev118)
+[Pipeline] echo
+13:26:23  Accumulating pod template requirements for Linting([approvalrequest]) : :(jnlp)
+[Pipeline] echo
+13:26:23  moduleToRun is obtained from default modules for 'terraform:cnp-deploy-terraform-aws:apply'
+[Pipeline] echo
+13:26:23  ========== MODULE INFO ==========
+13:26:23  Name: cnp-deploy-terraform-aws
+13:26:23  Contract: DEPLOY
+13:26:23  Command: cnp-deploy-terraform-aws.sh
+13:26:23  Subcommand: apply
+13:26:23  Docker Image: registry-dev.cigna.com/cnp/cnp-docker-terraform:1.0.0-dev-ov2
+13:26:23  Required Credentials:[{"type":"string", "id":"DAWS-HS-UPSILONFRIES"}, {"type":"usernamePassword", "id":"81fbd2fe-c892-472c-9a20-6a327b2960d3"}, {"type":"usernamePassword", "id":"INTAKE-CONSUMER-DEV"}]
+13:26:23  =======================================
+[Pipeline] echo
+13:26:24  Accumulating pod template requirements for Module(terraform: apply dev) : registry-dev.cigna.com/cnp/cnp-docker-terraform:1.0.0-dev-ov2(cnp-docker-terraformv100-dev-ov2)
+[Pipeline] echo
+13:26:24  Accumulating pod template requirements for Linting([approvalrequest]) : :(jnlp)
+[Pipeline] echo
+13:26:24  moduleToRun is obtained from default modules for 'terraform:cnp-deploy-terraform-aws:apply'
+[Pipeline] echo
+13:26:24  ========== MODULE INFO ==========
+13:26:24  Name: cnp-deploy-terraform-aws
+13:26:24  Contract: DEPLOY
+13:26:24  Command: cnp-deploy-terraform-aws.sh
+13:26:24  Subcommand: apply
+13:26:24  Docker Image: registry-dev.cigna.com/cnp/cnp-docker-terraform:1.0.0-dev-ov2
+13:26:24  Required Credentials:[{"type":"string", "id":"DAWS-HS-UPSILONFRIES"}, {"type":"usernamePassword", "id":"81fbd2fe-c892-472c-9a20-6a327b2960d3"}, {"type":"usernamePassword", "id":"INTAKE-CONSUMER-DEV"}]
+13:26:24  =======================================
+[Pipeline] echo
+13:26:24  Accumulating pod template requirements for Module(terraform: apply dev-candidate) : registry-dev.cigna.com/cnp/cnp-docker-terraform:1.0.0-dev-ov2(cnp-docker-terraformv100-dev-ov2)
+[Pipeline] echo
+13:26:24  Pipeline starting with 5 phases, running in 1 cloud
+[Pipeline] echo
+13:26:24  ================================================== EXECUTION PLAN ==================================================
+13:26:24  Processing pod groups in this order: [pbbef-openshift-devops1]
+13:26:24      PHASE GROUP 0: pbbef-openshift-devops1 # PHASES 5
+13:26:24        PHASE 0 [Module(common: PREFLIGHT_CHECK dev)](pbbef-openshift-devops1):
+13:26:24          -> container jnlp, cpu: 500m, memory: 600Mi
+13:26:24          -> container cnp-docker-corev118, cpu: 500m, memory: 1000Mi
+13:26:24        PHASE 1 [Linting([approvalrequest])](pbbef-openshift-devops1):
+13:26:24          -> container jnlp, cpu: 500m, memory: 600Mi
+13:26:24        PHASE 2 [Module(terraform: apply dev)](pbbef-openshift-devops1):
+13:26:24          -> container jnlp, cpu: 500m, memory: 600Mi
+13:26:24          -> container cnp-docker-terraformv100-dev-ov2, cpu: 500m, memory: 2000Mi
+13:26:24        PHASE 3 [Linting([approvalrequest])](pbbef-openshift-devops1):
+13:26:24          -> container jnlp, cpu: 500m, memory: 600Mi
+13:26:24        PHASE 4 [Module(terraform: apply dev-candidate)](pbbef-openshift-devops1):
+13:26:24          -> container jnlp, cpu: 500m, memory: 600Mi
+13:26:24          -> container cnp-docker-terraformv100-dev-ov2, cpu: 500m, memory: 2000Mi
+13:26:24  ====================================================================================================================
+[Pipeline] echo
+13:26:24  Creating base pod 'epf-orchestrators-folders-aws-terraform-hs-bef-inten-9458b' for pod group 'pbbef-openshift-devops1' on cloud 'pbbef-openshift-devops1'
+[Pipeline] ansiColor
+[Pipeline] {
+13:26:24  
+[Pipeline] echo
+13:26:24  
+13:26:24  		******************************************************
+13:26:24  		               Pod's Resource Utilization
+13:26:24  
+13:26:24  		     Total CPU Request:		751m (millicores)
+13:26:24  		     Total CPU Limit:		1600m (millicores)
+13:26:24  		     Total Memory Request:	1351Mi (Mebibytes)
+13:26:24  		     Total Memory Limit:	3850Mi (Mebibytes)
+13:26:24  
+13:26:24  		******************************************************
+13:26:24          
+[Pipeline] }
+13:26:24  
+[Pipeline] // ansiColor
+[Pipeline] podTemplate
+[Pipeline] {
+[Pipeline] node
+13:26:30  Created Pod: pbbef-openshift-devops1 pbbef-openshift-devops1/epf-orchestrators-folders-aws-terraform-hs-bef-inten-9458-b4p92
+13:26:39  Agent epf-orchestrators-folders-aws-terraform-hs-bef-inten-9458-b4p92 is provisioned from template epf-orchestrators-folders-aws-terraform-hs-bef-inten-9458b-gkxpk
+13:26:39  ---
+13:26:39  apiVersion: "v1"
+13:26:39  kind: "Pod"
+13:26:39  metadata:
+13:26:39    annotations:
+13:26:39      epf_branch: "feature-PBBEF-1571"
+13:26:39      kubernetes.jenkins.io/last-refresh: "1742405189953"
+13:26:39      buildUrl: "https://orchestrator24.orchestrator-v2.sys.cigna.com/job/orchestrators-folders/job/pbbef/job/Non-Production/job/TERRAFORMS/job/aws-terraform-hs-bef-intentapi/job/feature-PBBEF-1571/40/"
+13:26:39      runUrl: "job/orchestrators-folders/job/pbbef/job/Non-Production/job/TERRAFORMS/job/aws-terraform-hs-bef-intentapi/job/feature-PBBEF-1571/40/"
+13:26:39    labels:
+13:26:39      kind: "jenkins"
+13:26:39      source: "epf"
+13:26:39      epf_pod_group: "aws-terraform-hs-bef-intentapi.pbbef-openshift-devops1"
+13:26:39      jenkins: "slave"
+13:26:39      jenkins/label-digest: "2171816bb9c3df0181fd13d644672f3cc1d85f1f"
+13:26:39      jenkins/label: "pf-orchestrators-folders-aws-terraform-hs-bef-inten-9458b"
+13:26:39      kubernetes.jenkins.io/controller: "https___orchestrator24_orchestrator-v2_sys_cigna_comx"
+13:26:39      cloudbees.com/master: "orchestrator24"
+13:26:39    name: "epf-orchestrators-folders-aws-terraform-hs-bef-inten-9458-b4p92"
+13:26:39    namespace: "pbbef-openshift-devops1"
+13:26:39  spec:
+13:26:39    affinity:
+13:26:39      podAntiAffinity:
+13:26:39        preferredDuringSchedulingIgnoredDuringExecution:
+13:26:39        - podAffinityTerm:
+13:26:39            labelSelector:
+13:26:39              matchExpressions:
+13:26:39              - key: "com.cloudbees.cje.type"
+13:26:39                operator: "In"
+13:26:39                values:
+13:26:39                - "master"
+13:26:39                - "cjoc"
+13:26:39            topologyKey: "kubernetes.io/hostname"
+13:26:39          weight: 1
+13:26:39    containers:
+13:26:39    - command:
+13:26:39      - "/bin/sh"
+13:26:39      - "-c"
+13:26:39      - "umask 0000; jenkins-agent"
+13:26:39      env:
+13:26:39      - name: "JENKINS_SECRET"
+13:26:39        value: "********"
+13:26:39      - name: "JENKINS_AGENT_NAME"
+13:26:39        value: "epf-orchestrators-folders-aws-terraform-hs-bef-inten-9458-b4p92"
+13:26:39      - name: "JENKINS_WEB_SOCKET"
+13:26:39        value: "true"
+13:26:39      - name: "REMOTING_OPTS"
+13:26:39        value: "-noReconnectAfter 1d"
+13:26:39      - name: "JENKINS_NAME"
+13:26:39        value: "epf-orchestrators-folders-aws-terraform-hs-bef-inten-9458-b4p92"
+13:26:39      - name: "JENKINS_AGENT_WORKDIR"
+13:26:39        value: "/home/jenkins/agent -internalDir remoting-3ba34f"
+13:26:39      - name: "JENKINS_URL"
+13:26:39        value: "https://orchestrator24.orchestrator-v2.sys.cigna.com/"
+13:26:39      image: "registry.cigna.com/enterprise-devops/conduit-jnlp:cloudbees-2.462.1.3"
+13:26:39      imagePullPolicy: "Always"
+13:26:39      name: "jnlp"
+13:26:39      resources:
+13:26:39        limits:
+13:26:39          cpu: "500m"
+13:26:39          memory: "600Mi"
+13:26:39        requests:
+13:26:39          cpu: "500m"
+13:26:39          memory: "600Mi"
+13:26:39      tty: true
+13:26:39      volumeMounts:
+13:26:39      - mountPath: "/home/jenkins/agent/sonar"
+13:26:39        name: "sonar-workspace"
+13:26:39      - mountPath: "/home/jenkins/agent/setup-sonar"
+13:26:39        name: "setup-sonar"
+13:26:39      - mountPath: "/home/jenkins/agent"
+13:26:39        name: "workspace-volume"
+13:26:39        readOnly: false
+13:26:39      workingDir: "/home/jenkins/agent"
+13:26:39    - command:
+13:26:39      - "sh"
+13:26:39      - "-c"
+13:26:39      - "trap \"exit\" TERM; while [ 1 ]; do sleep 60 & wait $!; done;"
+13:26:39      image: "registry-dev.cigna.com/cnp/cnp-docker-core:1.1.8"
+13:26:39      imagePullPolicy: "Always"
+13:26:39      name: "cnp-docker-corev118"
+13:26:39      resources:
+13:26:39        limits:
+13:26:39          cpu: "500m"
+13:26:39          memory: "1000Mi"
+13:26:39        requests:
+13:26:39          cpu: "125m"
+13:26:39          memory: "250Mi"
+13:26:39      tty: true
+13:26:39      volumeMounts:
+13:26:39      - mountPath: "/home/jenkins/agent"
+13:26:39        name: "workspace-volume"
+13:26:39        readOnly: false
+13:26:39      workingDir: "/home/jenkins/agent"
+13:26:39    - command:
+13:26:39      - "sh"
+13:26:39      - "-c"
+13:26:39      - "trap \"exit\" TERM; while [ 1 ]; do sleep 60 & wait $!; done;"
+13:26:39      image: "registry-dev.cigna.com/cnp/cnp-docker-terraform:1.0.0-dev-ov2"
+13:26:39      imagePullPolicy: "Always"
+13:26:39      name: "cnp-docker-terraformv100-dev-ov2"
+13:26:39      resources:
+13:26:39        limits:
+13:26:39          cpu: "500m"
+13:26:39          memory: "2000Mi"
+13:26:39        requests:
+13:26:39          cpu: "125m"
+13:26:39          memory: "500Mi"
+13:26:39      tty: true
+13:26:39      volumeMounts:
+13:26:39      - mountPath: "/home/jenkins/agent"
+13:26:39        name: "workspace-volume"
+13:26:39        readOnly: false
+13:26:39      workingDir: "/home/jenkins/agent"
+13:26:39    - command:
+13:26:39      - "sh"
+13:26:39      - "-c"
+13:26:39      - "trap \"exit\" TERM; while [ 1 ]; do sleep 60 & wait $!; done;"
+13:26:39      image: "registry.cigna.com/enterprise-devops/epf-curl:latest"
+13:26:39      imagePullPolicy: "Always"
+13:26:39      name: "epf-curlvlatest"
+13:26:39      resources:
+13:26:39        limits:
+13:26:39          cpu: "100m"
+13:26:39          memory: "250Mi"
+13:26:39        requests:
+13:26:39          cpu: "1m"
+13:26:39          memory: "1Mi"
+13:26:39      tty: true
+13:26:39      volumeMounts:
+13:26:39      - mountPath: "/home/jenkins/agent"
+13:26:39        name: "workspace-volume"
+13:26:39        readOnly: false
+13:26:39      workingDir: "/home/jenkins/agent"
+13:26:39    enableServiceLinks: false
+13:26:39    nodeSelector:
+13:26:39      beta.kubernetes.io/os: "linux"
+13:26:39    restartPolicy: "Never"
+13:26:39    securityContext: {}
+13:26:39    serviceAccountName: ""
+13:26:39    volumes:
+13:26:39    - emptyDir:
+13:26:39        medium: ""
+13:26:39      name: "ecr-creds"
+13:26:39    - emptyDir:
+13:26:39        medium: ""
+13:26:39      name: "sonar-workspace"
+13:26:39    - emptyDir:
+13:26:39        medium: "Memory"
+13:26:39      name: "workspace-volume"
+13:26:39    - emptyDir:
+13:26:39        medium: ""
+13:26:39      name: "aws-creds"
+13:26:39    - emptyDir:
+13:26:39        medium: ""
+13:26:39      name: "setup-sonar"
+13:26:39  
+13:26:42  Running on epf-orchestrators-folders-aws-terraform-hs-bef-inten-9458-b4p92 in /home/jenkins/agent/workspace/bef-intentapi_feature-PBBEF-1571
+[Pipeline] {
+[Pipeline] dir
+13:26:42  Running in /home/jenkins/agent/workspace/bef-intentapi_feature-PBBEF-1571
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (SCM Checkout)
+[Pipeline] container
+[Pipeline] {
+[Pipeline] fileExists
+[Pipeline] dir
+13:26:42  Running in /home/jenkins/agent/workspace/bef-intentapi_feature-PBBEF-1571
+[Pipeline] {
+[Pipeline] echo
+13:26:42  Branch going to checkout: [feature-PBBEF-1571] : [[$class:CloneOption, shallow:false, noTags:true], GitSCMSourceDefaults{includeTags=false}, hudson.plugins.git.extensions.impl.BuildChooserSetting@120bddd]
+[Pipeline] checkout
+13:26:42  The recommended git tool is: NONE
+13:26:49  using credential SVPDEVOP-CIG-CLONEB_UserPw
+13:26:49  Warning: JENKINS-30600: special launcher org.csanchez.jenkins.plugins.kubernetes.pipeline.ContainerExecDecorator$1@22b5aa5a; decorates RemoteLauncher[hudson.remoting.Channel@222cf68c:epf-orchestrators-folders-aws-terraform-hs-bef-inten-9458-b4p92] will be ignored (a typical symptom is the Git executable not being run inside a designated container)
+13:26:49  Cloning the remote Git repository
+13:26:49  Avoid fetching tags
+13:26:49  Cloning with configured refspecs honoured and without tags
+13:26:53  Cloning repository https://git.express-scripts.com/ExpressScripts/aws-terraform-hs-bef-intentapi.git
+13:26:53   > git init /home/jenkins/agent/workspace/bef-intentapi_feature-PBBEF-1571 # timeout=10
+13:26:53  Fetching upstream changes from https://git.express-scripts.com/ExpressScripts/aws-terraform-hs-bef-intentapi.git
+13:26:53   > git --version # timeout=10
+13:26:53   > git --version # 'git version 2.43.5'
+13:26:53  using GIT_ASKPASS to set credentials This is the enterprise Health Services GitHub credentials for Jenkins
+13:26:53   > git fetch --no-tags --force --progress -- https://git.express-scripts.com/ExpressScripts/aws-terraform-hs-bef-intentapi.git +refs/heads/feature-PBBEF-1571:refs/remotes/origin/feature-PBBEF-1571 # timeout=10
+13:26:54   > git config remote.origin.url https://git.express-scripts.com/ExpressScripts/aws-terraform-hs-bef-intentapi.git # timeout=10
+13:26:54   > git config --add remote.origin.fetch +refs/heads/feature-PBBEF-1571:refs/remotes/origin/feature-PBBEF-1571 # timeout=10
+13:26:55  Avoid second fetch
+13:26:55  Checking out Revision e8f295edb28327578b05f1f3b1ec976e6dbe0252 (feature-PBBEF-1571)
+13:26:55   > git config core.sparsecheckout # timeout=10
+13:26:55   > git checkout -f e8f295edb28327578b05f1f3b1ec976e6dbe0252 # timeout=10
+13:26:56  Commit message: "Updating jenkin's with candidate"
+13:26:56   > git rev-list --no-walk 468b5d0bad7f68b9458514b518274f063f52b098 # timeout=10
+[Pipeline] echo
+13:26:57  Branch checked out: feature-PBBEF-1571
+[Pipeline] }
+[Pipeline] // dir
+[Pipeline] }
+[Pipeline] // container
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] echo
+13:26:57  Starting pod group 'pbbef-openshift-devops1' with 5 phases
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] ansiColor
+[Pipeline] {
+13:26:57  
+[Pipeline] echo
+13:26:57  ---> START PHASE 'Module'
+[Pipeline] echo
+13:26:57  Switching to container 'cnp-docker-corev118'
+[Pipeline] container
+[Pipeline] {
+[Pipeline] echo
+13:26:57  Credential : [@string(credentialsId=GIT_TOKEN,variable=CNP_PREFLIGHT_CHECK_GIT_SETTINGS_MODULE_TOKEN), @string(credentialsId=GIT_TOKEN,variable=CNP_PREFLIGHT_CHECK_GIT_SETTINGS_TOKEN)]
+[Pipeline] echo
+13:26:57  Jira Scanning - DISABLED
+[Pipeline] echo
+13:26:57  CNP_XLR_TEMPLATE_URL is configured to https://xlrelease.express-scripts.com/api/v1/templates/Applications/templates/Folder2a9c42e13b784e8fbb57c559852b807c/Release47c3527db6944b918488c5c90166c4b0/start
+[Pipeline] echo
+13:26:57  setting CNP_CALLBACK_JOB to https://orchestrator24.orchestrator-v2.sys.cigna.com/job/orchestrators-folders/job/pbbef/job/Production/job/DevOps/job/EPF/job/XLRCallbackHandler/
+[Pipeline] echo
+13:26:57  setting CNP_CANDIDATE_JOB to orchestrators-folders/job/pbbef/job/Production/job/DevOps/job/EPF/job/CandidateDeployer
+[Pipeline] stage
+[Pipeline] { (common: PREFLIGHT_CHECK dev)
+[Pipeline] echo
+13:26:57  Switching to container 'cnp-docker-corev118'
+[Pipeline] container
+[Pipeline] {
+[Pipeline] withCredentials
+13:26:57  Masking supported pattern matches of $CNP_PREFLIGHT_CHECK_GIT_SETTINGS_MODULE_TOKEN or $CNP_PREFLIGHT_CHECK_GIT_SETTINGS_TOKEN
+[Pipeline] {
+[Pipeline] configFileProvider
+13:26:57  provisioning config files...
+[Pipeline] {
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] echo
+13:26:57  Phase caching is disabled, not stashing files.
+[Pipeline] dir
+13:26:57  Running in /home/jenkins/agent/workspace/bef-intentapi_feature-PBBEF-1571
+[Pipeline] {
+[Pipeline] echo
+13:26:57  ---> START MODULE (PREFLIGHT_CHECK:cnp-preflight-check-git-settings)
+[Pipeline] sh
+13:26:58  + cnp-preflight-check-git-settings.sh {"Release_JenkinsMaster":"orchestrator24.orchestrator-v2.sys.cigna.com","Release_BuildUri":"https://orchestrator24.orchestrator-v2.sys.cigna.com/job/orchestrators-folders/job/pbbef/job/Non-Production/job/TERRAFORMS/job/aws-terraform-hs-bef-intentapi/job/feature-PBBEF-1571/40/","Release_rollbackDeploymentPackagePath":"","branchName":"feature-PBBEF-1571","repoUrl":"https://git.express-scripts.com/ExpressScripts/aws-terraform-hs-bef-intentapi.git","commitId":"e8f295edb28327578b05f1f3b1ec976e6dbe0252"}
+13:26:58  
+13:26:58  WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+13:26:58  
+13:26:58  Package: cnp-preflight-check-git-settings
+13:26:58  Version: 0.4.1
+13:26:58  Status: install ok installed
+13:26:58  Priority: optional
+13:26:58  Maintainer: Software Engineering Excellence
+13:26:58  Installed-Size: unknown
+13:26:58  Depends: cnp-util-core, git
+13:26:58  Download-Size: unknown
+13:26:58  APT-Manual-Installed: yes
+13:26:58  APT-Sources: /var/lib/dpkg/status
+13:26:58  Description: Verifies that branch protection rules have been set on Git Repo.
+13:26:58  
+13:26:58  cnp-preflight-check-git-settings checking config of remote Url: https://git.express-scripts.com/ExpressScripts/aws-terraform-hs-bef-intentapi.git
+13:26:58  2025/03/19 17:26:58 CNP_PREFLIGHT_CHECK_GIT_SETTINGS version 0.0.6
+13:26:58  2025/03/19 17:26:58 ****
+13:26:58  2025/03/19 17:26:58 Parsing URL
+13:26:58  2025/03/19 17:26:58 https://git.express-scripts.com, ExpressScripts
+13:26:58  2025/03/19 17:26:58 {"query":"{ repository(owner: \"ExpressScripts\", name: \"aws-terraform-hs-bef-intentapi\") { defaultBranchRef { name } branchProtectionRules(first: 100) {nodes {pattern isAdminEnforced dismissesStaleReviews requiresApprovingReviews restrictsPushes}}}}","variables":{}}
+13:26:58  2025/03/19 17:26:58 https://git.express-scripts.com/api/graphql
+13:26:58  2025/03/19 17:26:58 200
+13:26:58  2025/03/19 17:26:58 Logging HTTP Response:
+13:26:58  2025/03/19 17:26:58 {"data":{"repository":{"defaultBranchRef":{"name":"develop"},"branchProtectionRules":{"nodes":[{"pattern":"master","isAdminEnforced":false,"dismissesStaleReviews":false,"requiresApprovingReviews":false,"restrictsPushes":true},{"pattern":"develop","isAdminEnforced":false,"dismissesStaleReviews":true,"requiresApprovingReviews":true,"restrictsPushes":true}]}}}}
+13:26:58  2025/03/19 17:26:58 Validating git repository:
+13:26:58  2025/03/19 17:26:58 Default branch is set to: develop
+13:26:58  master
+13:26:58  Verifying Master/Main Branch
+13:26:58  2025/03/19 17:26:58 Master/Main branch is valid
+13:26:58  develop
+13:26:58  Verifying Develop Branch
+13:26:58  2025/03/19 17:26:58 Develop branch is valid.
+13:26:58  2025/03/19 17:26:58 master/main valid: true, develop valid: true
+13:26:58  
+13:26:58  Preflight check git settings successful
+[Pipeline] fileExists
+[Pipeline] echo
+13:26:58  File cnp-preflight-check-git-settings-results.json not found
+[Pipeline] echo
+13:26:58  ---> END MODULE (PREFLIGHT_CHECK:cnp-preflight-check-git-settings)
+[Pipeline] }
+[Pipeline] // dir
+[Pipeline] echo
+13:26:58  Phase caching is disabled, not stashing files.
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // configFileProvider
+[Pipeline] }
+[Pipeline] // withCredentials
+[Pipeline] }
+[Pipeline] // container
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // container
+[Pipeline] echo
+13:26:58  <--- END PHASE 'Module'
+[Pipeline] }
+13:26:58  
+[Pipeline] // ansiColor
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] ansiColor
+[Pipeline] {
+13:26:58  
+[Pipeline] echo
+13:26:58  ---> START PHASE 'Linting'
+[Pipeline] echo
+13:26:58  Switching to container ''
+[Pipeline] container
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Linting)
+[Pipeline] withCredentials
+[Pipeline] {
+[Pipeline] configFileProvider
+13:26:58  provisioning config files...
+[Pipeline] {
+[Pipeline] dir
+13:26:58  Running in /home/jenkins/agent/workspace/bef-intentapi_feature-PBBEF-1571
+[Pipeline] {
+[Pipeline] echo
+13:26:58  Phase caching is disabled, not stashing files.
+[Pipeline] parallel
+[Pipeline] { (Branch: approvalrequest)
+[Pipeline] echo
+13:26:58  Switching to container 'jnlp'
+[Pipeline] container
+[Pipeline] {
+[Pipeline] parallel
+[Pipeline] { (Branch: sendEmail)
+[Pipeline] { (Branch: sendMattermost)
+[Pipeline] { (Branch: sendTeams)
+[Pipeline] { (Branch: sendWebex)
+[Pipeline] }
+[Pipeline] }
+[Pipeline] }
+[Pipeline] }
+[Pipeline] // parallel
+[Pipeline] echo
+13:26:59  Give input to Jenkins request
+[Pipeline] echo
+13:26:59  Submitter: accounts\C8P8ZF,accounts\P57026, accounts\EI5194, accounts\C8Q9M3, accounts\C8G2NZ
+[Pipeline] timeout
+13:26:59  Timeout set to expire in 2 hr 0 min
+[Pipeline] {
+[Pipeline] input
+13:26:59  Do you want to execute terraform apply to DEV ?
+13:26:59  Proceed or Abort
+13:27:13  Approved by accounts\C8P8ZF
+[Pipeline] }
+[Pipeline] // timeout
+[Pipeline] }
+[Pipeline] // container
+[Pipeline] }
+[Pipeline] // parallel
+[Pipeline] echo
+13:27:13  Phase caching is disabled, not stashing files.
+[Pipeline] }
+[Pipeline] // dir
+[Pipeline] }
+[Pipeline] // configFileProvider
+[Pipeline] }
+[Pipeline] // withCredentials
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // container
+[Pipeline] echo
+13:27:13  <--- END PHASE 'Linting'
+[Pipeline] }
+13:27:13  
+[Pipeline] // ansiColor
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] ansiColor
+[Pipeline] {
+13:27:14  
+[Pipeline] echo
+13:27:14  ---> START PHASE 'Module'
+[Pipeline] echo
+13:27:14  Switching to container 'cnp-docker-terraformv100-dev-ov2'
+[Pipeline] container
+[Pipeline] {
+[Pipeline] echo
+13:27:14  Credential : [@string(credentialsId=DAWS-HS-UPSILONFRIES,variable=CNP_DEPLOY_TERRAFORM_AWS_MODULE_TOKEN), @string(credentialsId=DAWS-HS-UPSILONFRIES,variable=CNP_DEPLOY_TERRAFORM_AWS_TOKEN)]
+[Pipeline] echo
+13:27:14  Credential : [@usernamePassword(credentialsId=81fbd2fe-c892-472c-9a20-6a327b2960d3,passwordVariable=CNP_DEPLOY_TERRAFORM_AWS_MODULE_PASSWORD,usernameVariable=CNP_DEPLOY_TERRAFORM_AWS_MODULE_USER), @usernamePassword(credentialsId=81fbd2fe-c892-472c-9a20-6a327b2960d3,passwordVariable=CNP_DEPLOY_TERRAFORM_AWS_CRED,usernameVariable=CNP_DEPLOY_TERRAFORM_AWS_USER)]
+[Pipeline] echo
+13:27:14  Credential : [@usernamePassword(credentialsId=INTAKE-CONSUMER-DEV,passwordVariable=TF_VAR_intent_consumer_secret,usernameVariable=TF_VAR_intent_consumer_key), @usernamePassword(credentialsId=INTAKE-CONSUMER-DEV,passwordVariable=TF_VAR_intent_consumer_secret,usernameVariable=TF_VAR_intent_consumer_key)]
+[Pipeline] echo
+13:27:14  Jira Scanning - DISABLED
+[Pipeline] echo
+13:27:14  CNP_XLR_TEMPLATE_URL is configured to https://xlrelease.express-scripts.com/api/v1/templates/Applications/templates/Folder2a9c42e13b784e8fbb57c559852b807c/Release47c3527db6944b918488c5c90166c4b0/start
+[Pipeline] echo
+13:27:14  setting CNP_CALLBACK_JOB to https://orchestrator24.orchestrator-v2.sys.cigna.com/job/orchestrators-folders/job/pbbef/job/Production/job/DevOps/job/EPF/job/XLRCallbackHandler/
+[Pipeline] echo
+13:27:14  setting CNP_CANDIDATE_JOB to orchestrators-folders/job/pbbef/job/Production/job/DevOps/job/EPF/job/CandidateDeployer
+[Pipeline] stage
+[Pipeline] { (terraform: apply dev)
+[Pipeline] echo
+13:27:14  Switching to container 'cnp-docker-terraformv100-dev-ov2'
+[Pipeline] container
+[Pipeline] {
+[Pipeline] withCredentials
+13:27:14  Masking supported pattern matches of $TF_VAR_intent_consumer_key or $TF_VAR_intent_consumer_secret or $CNP_DEPLOY_TERRAFORM_AWS_MODULE_TOKEN or $CNP_DEPLOY_TERRAFORM_AWS_TOKEN or $CNP_DEPLOY_TERRAFORM_AWS_MODULE_USER or $CNP_DEPLOY_TERRAFORM_AWS_MODULE_PASSWORD or $CNP_DEPLOY_TERRAFORM_AWS_USER or $CNP_DEPLOY_TERRAFORM_AWS_CRED
+[Pipeline] {
+[Pipeline] configFileProvider
+13:27:14  provisioning config files...
+[Pipeline] {
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] echo
+13:27:14  Phase caching is disabled, not stashing files.
+[Pipeline] dir
+13:27:14  Running in /home/jenkins/agent/workspace/bef-intentapi_feature-PBBEF-1571
+[Pipeline] {
+[Pipeline] echo
+13:27:14  ---> START MODULE (DEPLOY:cnp-deploy-terraform-aws)
+[Pipeline] sh
+13:27:15  + cnp-deploy-terraform-aws.sh apply {"credentials":[{"id":"DAWS-HS-UPSILONFRIES","type":"string"},{"id":"81fbd2fe-c892-472c-9a20-6a327b2960d3"},{"id":"INTAKE-CONSUMER-DEV","usernameVariable":"TF_VAR_intent_consumer_key","passwordVariable":"TF_VAR_intent_consumer_secret"}],"configDir":"envs/dev","env":"dev","awsAccountId":"364685145795","awsUsername":"DAWS-HS-UPSILONFRIES","awsRoleName":"DEPLOYER","tfVersion":"1.4.6","tfDir":"","Release_JenkinsMaster":"orchestrator24.orchestrator-v2.sys.cigna.com","Release_BuildUri":"https://orchestrator24.orchestrator-v2.sys.cigna.com/job/orchestrators-folders/job/pbbef/job/Non-Production/job/TERRAFORMS/job/aws-terraform-hs-bef-intentapi/job/feature-PBBEF-1571/40/","Release_rollbackDeploymentPackagePath":"","branchName":"feature-PBBEF-1571","repoUrl":"https://git.express-scripts.com/ExpressScripts/aws-terraform-hs-bef-intentapi.git","commitId":"e8f295edb28327578b05f1f3b1ec976e6dbe0252"}
+13:27:15  
+13:27:15  WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+13:27:15  
+13:27:15  Package: cnp-deploy-terraform-aws
+13:27:15  Version: 0.3.4
+13:27:15  Status: install ok installed
+13:27:15  Priority: optional
+13:27:15  Maintainer: Evernorth Software Engineering Excellence
+13:27:15  Installed-Size: unknown
+13:27:15  Depends: cnp-util-core, cnp-login-aws
+13:27:15  Download-Size: unknown
+13:27:15  APT-Manual-Installed: yes
+13:27:15  APT-Sources: /var/lib/dpkg/status
+13:27:15  Description: This has terraform scripts for AWS deployment.
+13:27:15  
+13:27:15  Setting variable repoUrl with value 'https://git.express-scripts.com/ExpressScripts/aws-terraform-hs-bef-intentapi.git'
+13:27:15  Setting variable configDir with value 'envs/dev'
+13:27:15  Setting variable awsAccountId with value '364685145795'
+13:27:15  Setting variable awsRoleName with value 'DEPLOYER'
+13:27:15  Setting variable awsUsername with value 'DAWS-HS-UPSILONFRIES'
+13:27:15  Setting variable tfVersion with value '1.4.6'
+13:27:15  Missing tfDir and defaulting to repository root
+13:27:15  awsUsername: DAWS-HS-UPSILONFRIES
+13:27:15  loginParams: {"awsAccountId":"364685145795","awsRoleName":"DEPLOYER","awsUsername":"DAWS-HS-UPSILONFRIES"}
+13:27:15  
+13:27:15  WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+13:27:15  
+13:27:15  Package: cnp-login-aws
+13:27:15  Version: 1.0.2-dev-ov2
+13:27:15  Status: install ok installed
+13:27:15  Priority: optional
+13:27:15  Maintainer: Evernorth Software Engineering Excellence
+13:27:15  Installed-Size: unknown
+13:27:15  Depends: python3, python3-pip, apt-transport-https, unzip, curl, cnp-util-core
+13:27:15  Download-Size: unknown
+13:27:15  APT-Manual-Installed: no
+13:27:15  APT-Sources: /var/lib/dpkg/status
+13:27:15  Description: This module logs into AWS using saml2aws.
+13:27:15  
+13:27:15  Setting variable awsAccountId with value '364685145795'
+13:27:15  Setting variable awsRoleName with value 'DEPLOYER'
+13:27:15  Setting variable awsUsername with value 'DAWS-HS-UPSILONFRIES'
+13:27:15  awsAccountId: 364685145795
+13:27:15  awsRoleName: DEPLOYER
+13:27:15  awsUsername: DAWS-HS-UPSILONFRIES
+13:27:15  CNP_AWS_IDP_PROVIDER is configured to Okta.
+13:27:15  For your accounts to work with Okta, DAWS-HS-UPSILONFRIES should be configured with the following
+13:27:15    1. givenName=DAWS-HS-UPSILONFRIES,
+13:27:15    2. sn=DAWS-HS-UPSILONFRIES,
+13:27:15    3. mail=DAWS-HS-UPSILONFRIES@express-scripts.com,
+13:27:15    4. employeeNumber
+13:27:15  
+13:27:15  Logging into AWS...
+13:27:15  Using IDP Account default to access Okta https://cigna.okta.com/home/cigna_awsaccountfederation_1/0oa73k6r3qgarO3uY4x7/aln73kc6ziVIaLcRj4x7
+13:27:15  Authenticating as accounts\DAWS-HS-UPSILONFRIES ...
+13:27:17  Selected role: arn:aws:iam::364685145795:role/DEPLOYER
+13:27:17  Requesting AWS credentials using SAML assertion
+13:27:17  Logged in as: arn:aws:sts::364685145795:assumed-role/DEPLOYER/421131-S
+13:27:17  
+13:27:17  Your new access key pair has been stored in the AWS configuration
+13:27:17  Note that it will expire at 2025-03-19 18:27:17 +0000 UTC
+13:27:17  
+13:27:17  saml2aws login successful
+13:27:17  
+13:27:17  WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+13:27:17  
+13:27:17  Package: cnp-util-core
+13:27:17  Version: 1.0.2-dev-ov2
+13:27:17  Status: install ok installed
+13:27:17  Priority: optional
+13:27:17  Maintainer: Evernorth Software Engineering Excellence
+13:27:17  Installed-Size: unknown
+13:27:17  Depends: jq
+13:27:17  Download-Size: unknown
+13:27:17  APT-Manual-Installed: no
+13:27:17  APT-Sources: /var/lib/dpkg/status
+13:27:17  Description: Scripts and utilities for use with your cnp modules
+13:27:17  
+13:27:17  
+13:27:17  cnp-login-aws.sh saml2aws successful
+13:27:17  Setup git config & install Terraform...
+13:27:17  core.repositoryformatversion=0
+13:27:17  core.filemode=true
+13:27:17  core.bare=false
+13:27:17  core.logallrefupdates=true
+13:27:17  core.hookspath=/dev/null
+13:27:17  remote.origin.url=https://git.express-scripts.com/ExpressScripts/aws-terraform-hs-bef-intentapi.git
+13:27:17  remote.origin.fetch=+refs/heads/feature-PBBEF-1571:refs/remotes/origin/feature-PBBEF-1571
+13:27:17  url.https://****:****@git.express-scripts.com/.insteadof=git@git.express-scripts.com:
+13:27:17  url.https://****:****@git.express-scripts.com.insteadof=https://git.express-scripts.com
+13:27:17  http.sslverify=false
+13:27:17  Installing Terraform v1.4.6
+13:27:17  Downloading release tarball from https://releases.hashicorp.com/terraform/1.4.6/terraform_1.4.6_linux_amd64.zip
+13:27:18  Downloading SHA hash file from https://releases.hashicorp.com/terraform/1.4.6/terraform_1.4.6_SHA256SUMS
+13:27:18  Not instructed to use Local PGP (/opt/.tfenv/use-{gpgv,gnupg}) & No keybase install found, skipping OpenPGP signature verification
+13:27:19  Archive:  /tmp/tfenv_download.s8QlLg/terraform_1.4.6_linux_amd64.zip
+13:27:19    inflating: /opt/.tfenv/versions/1.4.6/terraform  
+13:27:19  Installation of terraform v1.4.6 successful. To make this your default version, run 'tfenv use 1.4.6'
+13:27:19  Switching default version to v1.4.6
+13:27:19  Default version (when not overridden by .terraform-version or TFENV_TERRAFORM_VERSION) is now: 1.4.6
+13:27:19  Initializing Terraform...
+13:27:19  - Terraform Working Directory: /home/jenkins/agent/workspace/bef-intentapi_feature-PBBEF-1571
+13:27:19  - backend config: envs/dev/backend.config
+13:27:19  
+13:27:19  Initializing the backend...
+13:27:20  
+13:27:20  Successfully configured the backend "s3"! Terraform will automatically
+13:27:20  use this backend unless the backend configuration changes.
+13:27:20  Initializing modules...
+13:27:20  Downloading git::https://github.sys.cigna.com/cigna/thub-gov-terraform-kms.git for bef-presigned-url-crr-s3-kms...
+13:27:23  - bef-presigned-url-crr-s3-kms in .terraform/modules/bef-presigned-url-crr-s3-kms
+13:27:23  Downloading git::https://github.sys.cigna.com/cigna/thub-gov-terraform-kms.git for bef-presigned-url-kms...
+13:27:23  - bef-presigned-url-kms in .terraform/modules/bef-presigned-url-kms
+13:27:23  Downloading git::https://github.sys.cigna.com/cigna/terraform-aws-s3 for bef-storage-s3...
+13:27:26  - bef-storage-s3 in .terraform/modules/bef-storage-s3
+13:27:26  Downloading git::https://github.sys.cigna.com/cigna/lambda.git?ref=1.4.0 for callback-lambda...
+13:27:28  - callback-lambda in .terraform/modules/callback-lambda
+13:27:28  Downloading git::https://github.sys.cigna.com/cigna/lambda.git?ref=1.4.0 for presigned-url-lambda...
+13:27:28  - presigned-url-lambda in .terraform/modules/presigned-url-lambda
+13:27:28  Downloading git::https://github.sys.cigna.com/cigna/AWS-GoldenVPC.git?ref=0.7.5 for presigned-url-vpc...
+13:27:46  - presigned-url-vpc in .terraform/modules/presigned-url-vpc
+13:27:46  - presigned-url-vpc.nat_gateway in .terraform/modules/presigned-url-vpc/submodules/nat_gateway
+13:27:46  - presigned-url-vpc.subnets_non_routable in .terraform/modules/presigned-url-vpc/submodules/subnets
+13:27:46  - presigned-url-vpc.subnets_routable in .terraform/modules/presigned-url-vpc/submodules/subnets
+13:27:46  
+13:27:46  Initializing provider plugins...
+13:27:46  - terraform.io/builtin/terraform is built in to Terraform
+13:27:46  - Finding hashicorp/aws versions matching ">= 3.43.0, >= 3.45.0, >= 4.0.0, >= 4.35.0, ~> 5.0"...
+13:27:46  - Finding latest version of hashicorp/archive...
+13:27:46  - Installing hashicorp/aws v5.91.0...
+13:28:33  - Installed hashicorp/aws v5.91.0 (signed by HashiCorp)
+13:28:33  - Installing hashicorp/archive v2.7.0...
+13:28:33  - Installed hashicorp/archive v2.7.0 (signed by HashiCorp)
+13:28:33  
+13:28:33  Terraform has created a lock file .terraform.lock.hcl to record the provider
+13:28:33  selections it made above. Include this file in your version control repository
+13:28:33  so that Terraform can guarantee to make the same selections by default when
+13:28:33  you run "terraform init" in the future.
+13:28:33  
+13:28:33  ╷
+13:28:33  │ Warning: Reference to undefined provider
+13:28:33  │ 
+13:28:33  │   on bef-presigned-url-kms.tf line 15, in module "bef-presigned-url-crr-s3-kms":
+13:28:33  │   15:     aws = aws.crr
+13:28:33  │ 
+13:28:33  │ There is no explicit declaration for local provider name "aws" in
+13:28:33  │ module.bef-presigned-url-crr-s3-kms, so Terraform is assuming you mean to
+13:28:33  │ pass a configuration for "hashicorp/aws".
+13:28:33  │ 
+13:28:33  │ If you also control the child module, add a required_providers entry named
+13:28:33  │ "aws" with the source address "hashicorp/aws".
+13:28:33  ╵
+13:28:33  
+13:28:33  Terraform has been successfully initialized!
+13:28:33  
+13:28:33  You may now begin working with Terraform. Try running "terraform plan" to see
+13:28:33  any changes that are required for your infrastructure. All Terraform commands
+13:28:33  should now work.
+13:28:33  
+13:28:33  If you ever set or change modules or backend configuration for Terraform,
+13:28:33  rerun this command to reinitialize your working directory. If you forget, other
+13:28:33  commands will detect it and remind you to do so if necessary.
+13:28:33  
+13:28:33  terraform init successful
+13:28:33  - Using Var File: envs/dev/dev.tfvars
+13:28:33  
+13:28:33  Planning...
+13:28:33  - Terraform Working Directory: /home/jenkins/agent/workspace/bef-intentapi_feature-PBBEF-1571
+13:28:33  - Terraform Config Directory: envs/dev
+13:28:33  terraform plan -no-color -input=false -var-file=envs/dev/dev.tfvars  
+13:28:51  module.presigned-url-vpc.terraform_data.subnet_validation: Refreshing state... [id=491a163b-c404-d60f-fd47-ca6cbcaafbd7]
+13:28:51  data.archive_file.presigned-url-code: Reading...
+13:28:51  data.archive_file.callback-lambda-code: Reading...
+13:28:51  data.archive_file.callback-lambda-code: Read complete after 0s [id=30798eb40a637f755ba50c35e416f9203bf1a416]
+13:28:51  data.archive_file.presigned-url-code: Read complete after 0s [id=4e1b3bbeea6e0c8e7281964da11adc6e7d50cc6e]
+13:28:57  module.bef-presigned-url-crr-s3-kms[0].data.aws_caller_identity.current: Reading...
+13:28:57  module.bef-presigned-url-crr-s3-kms[0].data.aws_caller_identity.current: Read complete after 0s [id=364685145795]
+13:28:57  data.aws_ssm_parameter.org_logging_role: Reading...
+13:28:57  module.presigned-url-vpc.data.aws_default_tags.provider_tags: Reading...
+13:28:57  module.bef-storage-s3.data.aws_iam_account_alias.current: Reading...
+13:28:57  module.presigned-url-vpc.data.aws_vpc_endpoint_service.interfaces["secretsmanager"]: Reading...
+13:28:57  data.aws_ssm_parameter.org_logging_arn: Reading...
+13:28:57  data.aws_caller_identity.current: Reading...
+13:28:57  data.aws_iam_role.bef_lambda_role: Reading...
+13:28:57  data.aws_iam_policy_document.presigned-url-s3-endpoint-policy: Reading...
+13:28:57  module.presigned-url-vpc.data.aws_default_tags.provider_tags: Read complete after 0s [id=aws]
+13:28:57  module.presigned-url-lambda.aws_cloudwatch_log_group.log_group: Refreshing state... [id=/aws/lambda/bef-presigned-url]
+13:28:57  data.aws_iam_policy_document.crr_s3_assume_role[0]: Reading...
+13:28:57  data.aws_iam_policy_document.presigned-url-s3-endpoint-policy: Read complete after 0s [id=2750445730]
+13:28:57  data.aws_iam_policy_document.crr_s3_assume_role[0]: Read complete after 0s [id=1765856792]
+13:28:57  aws_lambda_layer_version.bef-lambda-layer-requests: Refreshing state... [id=arn:aws:lambda:us-east-1:364685145795:layer:bef-presigned-url-request-layer:1]
+13:28:57  module.presigned-url-vpc.data.aws_availability_zones.available_zones: Reading...
+13:28:57  module.bef-presigned-url-kms[0].data.aws_caller_identity.current: Reading...
+13:28:57  data.aws_caller_identity.current: Read complete after 0s [id=364685145795]
+13:28:57  module.presigned-url-lambda.aws_cloudwatch_metric_alarm.info_error_rate[0]: Refreshing state... [id=bef-presigned-url-INFO-Lambda-Errors]
+13:28:57  module.bef-presigned-url-kms[0].data.aws_caller_identity.current: Read complete after 0s [id=364685145795]
+13:28:57  module.presigned-url-vpc.data.aws_vpc_endpoint_service.gateways["s3"]: Reading...
+13:28:57  module.bef-storage-s3.data.aws_iam_account_alias.current: Read complete after 1s [id=hs-upsilon-fries-dev]
+13:28:57  module.presigned-url-vpc.data.aws_ec2_managed_prefix_list.prefix_list_health_services: Reading...
+13:28:57  data.aws_iam_role.bef_lambda_role: Read complete after 1s [id=BEFStorageSolution]
+13:28:57  module.presigned-url-vpc.data.aws_region.current: Reading...
+13:28:57  module.presigned-url-vpc.data.aws_region.current: Read complete after 0s [id=us-east-1]
+13:28:57  module.presigned-url-vpc.data.aws_ssm_parameters_by_path.route53_as_a_service_zones_by_path: Reading...
+13:28:57  data.aws_ssm_parameter.org_logging_role: Read complete after 1s [id=/Enterprise/OrgCentralLoggingRole]
+13:28:57  module.presigned-url-vpc.data.aws_ssm_parameter.org_centralized_logging_arn: Reading...
+13:28:57  module.presigned-url-vpc.data.aws_availability_zones.available_zones: Read complete after 1s [id=us-east-1]
+13:28:57  module.presigned-url-lambda.aws_cloudwatch_metric_alarm.warn_throttles[0]: Refreshing state... [id=bef-presigned-url-WARN-Lambda-Throttles]
+13:28:57  module.presigned-url-vpc.data.aws_vpc_endpoint_service.interfaces["secretsmanager"]: Read complete after 1s [id=2799604443]
+13:28:57  data.aws_ssm_parameter.org_logging_arn: Read complete after 1s [id=/Enterprise/OrgCentralLoggingDestinationArn]
+13:28:57  module.presigned-url-vpc.data.aws_ssm_parameters_by_path.route53_as_a_service_zones_by_path: Read complete after 0s [id=/HermesManaged/Route53AsAService/PrivateHostedZoneId/]
+13:28:57  module.presigned-url-vpc.data.aws_vpc_endpoint_service.gateways["s3"]: Read complete after 1s [id=195798706]
+13:28:57  module.presigned-url-vpc.data.aws_ssm_parameter.org_centralized_logging_role: Reading...
+13:28:57  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_query_log_config_id: Reading...
+13:28:57  data.aws_iam_policy_document.source_crr_s3_assume_role[0]: Reading...
+13:28:57  module.presigned-url-lambda.aws_cloudwatch_metric_alarm.critical_throttles[0]: Refreshing state... [id=bef-presigned-url-CRITICAL-Lambda-Throttles]
+13:28:57  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["OpenshiftCignacloudCom"]: Reading...
+13:28:57  data.aws_iam_policy_document.source_crr_s3_assume_role[0]: Read complete after 0s [id=1765856792]
+13:28:57  module.presigned-url-vpc.data.aws_caller_identity.current: Reading...
+13:28:57  module.presigned-url-lambda.aws_cloudwatch_metric_alarm.critical_error_rate[0]: Refreshing state... [id=bef-presigned-url-CRITICAL-Lambda-Errors]
+13:28:57  module.presigned-url-vpc.data.aws_ssm_parameter.org_centralized_logging_arn: Read complete after 0s [id=/Enterprise/OrgCentralLoggingDestinationArn]
+13:28:57  module.presigned-url-vpc.data.aws_ssm_parameter.org_centralized_logging_role: Read complete after 0s [id=/Enterprise/OrgCentralLoggingRole]
+13:28:57  module.presigned-url-vpc.data.aws_caller_identity.current: Read complete after 0s [id=364685145795]
+13:28:57  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_query_log_config_id: Read complete after 0s [id=/Enterprise/Route53QueryLoggingConfigId]
+13:28:57  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["OpenshiftCignacloudCom"]: Read complete after 0s [id=/Enterprise/Route53ResolverRuleIdOpenshiftCignacloudCom]
+13:28:57  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["GlbcoreCom"]: Reading...
+13:28:57  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["AwsCignacloudCom"]: Reading...
+13:28:57  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["AccountsRootCorp"]: Reading...
+13:28:57  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["OpenshiftEvernorthcloudCom"]: Reading...
+13:28:57  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["GlobalcoredevCom"]: Reading...
+13:28:57  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["ExpressScriptsIo"]: Reading...
+13:28:57  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["AccountsRootCorp"]: Read complete after 0s [id=/Enterprise/Route53ResolverRuleIdAccountsRootCorp]
+13:28:57  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["OpenshiftEvernorthcloudCom"]: Read complete after 0s [id=/Enterprise/Route53ResolverRuleIdOpenshiftEvernorthcloudCom]
+13:28:57  module.presigned-url-vpc.data.aws_ssm_parameter.route53_default_zone_ids["Cigna"]: Reading...
+13:28:57  module.presigned-url-vpc.data.aws_ssm_parameter.route53_default_zone_ids["Evernorthcloud"]: Reading...
+13:28:57  data.aws_region.current_region: Reading...
+13:28:57  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["GlbcoreCom"]: Read complete after 0s [id=/Enterprise/Route53ResolverRuleIdGlbcoreCom]
+13:28:57  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["GlobalcoredevCom"]: Read complete after 0s [id=/Enterprise/Route53ResolverRuleIdGlobalcoredevCom]
+13:28:57  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["AwsCignacloudCom"]: Read complete after 0s [id=/Enterprise/Route53ResolverRuleIdAwsCignacloudCom]
+13:28:57  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["ExpressScriptsIo"]: Read complete after 0s [id=/Enterprise/Route53ResolverRuleIdExpressScriptsIo]
+13:28:57  data.aws_region.current_region: Read complete after 0s [id=us-east-1]
+13:28:57  data.aws_iam_role.bef_lambda_callback_role: Reading...
+13:28:57  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["ExpressScriptsCom"]: Reading...
+13:28:57  module.presigned-url-lambda.aws_cloudwatch_metric_alarm.info_throttles[0]: Refreshing state... [id=bef-presigned-url-INFO-Lambda-Throttles]
+13:28:57  data.aws_iam_role.bef_lambda_callback_role: Read complete after 0s [id=BEFStorageSolutionLambdaCallback]
+13:28:57  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["UsEast1ConfluentCloud"]: Reading...
+13:28:57  module.presigned-url-vpc.data.aws_ssm_parameter.route53_default_zone_ids["Evernorthcloud"]: Read complete after 0s [id=/Enterprise/EvernorthcloudPrivateHostedZoneId]
+13:28:57  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["CignaCom"]: Reading...
+13:28:57  module.presigned-url-vpc.data.aws_ssm_parameter.route53_default_zone_ids["Cigna"]: Read complete after 0s [id=/Enterprise/PrivateHostedZoneId]
+13:28:58  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["UsEast1ConfluentCloud"]: Read complete after 0s [id=/Enterprise/Route53ResolverRuleIdUsEast1ConfluentCloud]
+13:28:58  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["PrivatelinkSnowflakecomputingCom"]: Reading...
+13:28:58  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["PrivatelinkSnowflakecomputingComRegionless"]: Reading...
+13:28:58  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["ExpressScriptsCom"]: Read complete after 0s [id=/Enterprise/Route53ResolverRuleIdExpressScriptsCom]
+13:28:58  module.presigned-url-vpc.data.aws_ec2_managed_prefix_list.prefix_list_health_services: Read complete after 0s [id=pl-061f9f5f3a6e26f49]
+13:28:58  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["AwsEvernorthcloudCom"]: Reading...
+13:28:58  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["CignatestCom"]: Reading...
+13:28:58  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["MedcoCom"]: Reading...
+13:28:58  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["CignaCom"]: Read complete after 0s [id=/Enterprise/Route53ResolverRuleIdCignaCom]
+13:28:58  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["PrivatelinkSnowflakecomputingCom"]: Read complete after 0s [id=/Enterprise/Route53ResolverRuleIdPrivatelinkSnowflakecomputingCom]
+13:28:58  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["PrivatelinkSnowflakecomputingComRegionless"]: Read complete after 0s [id=/Enterprise/Route53ResolverRuleIdPrivatelinkSnowflakecomputingComRegionless]
+13:28:58  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["GlobalcoreCom"]: Reading...
+13:28:58  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["GlbcoredevCom"]: Reading...
+13:28:58  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["CignaEnvoy"]: Reading...
+13:28:58  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["HealthspringInside"]: Reading...
+13:28:58  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["SilverCom"]: Reading...
+13:28:58  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["GlobalcoreCom"]: Read complete after 0s [id=/Enterprise/Route53ResolverRuleIdGlobalcoreCom]
+13:28:58  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["CignatestCom"]: Read complete after 0s [id=/Enterprise/Route53ResolverRuleIdCignatestCom]
+13:28:58  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["MedcoCom"]: Read complete after 0s [id=/Enterprise/Route53ResolverRuleIdMedcoCom]
+13:28:58  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["CignaEnvoy"]: Read complete after 0s [id=/Enterprise/Route53ResolverRuleIdCignaEnvoy]
+13:28:58  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["GlbcoredevCom"]: Read complete after 0s [id=/Enterprise/Route53ResolverRuleIdGlbcoredevCom]
+13:28:58  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["AwsEvernorthcloudCom"]: Read complete after 0s [id=/Enterprise/Route53ResolverRuleIdAwsEvernorthcloudCom]
+13:28:58  module.presigned-url-vpc.data.aws_iam_account_alias.current: Reading...
+13:28:58  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["SilverCom"]: Read complete after 0s [id=/Enterprise/Route53ResolverRuleIdSilverCom]
+13:28:58  module.presigned-url-vpc.data.aws_ssm_parameter.transit_gateway_id: Reading...
+13:28:58  aws_iam_role.crr_s3_replication_role[0]: Refreshing state... [id=bef_s3_crr_replication_dev]
+13:28:58  module.presigned-url-lambda.aws_cloudwatch_metric_alarm.warn_error_rate[0]: Refreshing state... [id=bef-presigned-url-WARN-Lambda-Errors]
+13:28:58  module.presigned-url-vpc.data.aws_iam_policy_document.centralized_logging_role_policy: Reading...
+13:28:58  module.presigned-url-vpc.data.aws_iam_account_alias.current: Read complete after 0s [id=hs-upsilon-fries-dev]
+13:28:58  module.presigned-url-vpc.data.aws_ssm_parameter.transit_gateway_id: Read complete after 0s [id=/Enterprise/TgwId]
+13:28:58  module.presigned-url-vpc.terraform_data.tag_validation: Refreshing state... [id=471acd65-c394-6dcb-767d-4340d17add26]
+13:28:58  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["HealthspringInside"]: Read complete after 0s [id=/Enterprise/Route53ResolverRuleIdHealthspringInside]
+13:28:58  aws_iam_role.source_crr_s3_replication_role[0]: Refreshing state... [id=bef_s3_source_crr_replication_dev]
+13:28:58  module.presigned-url-vpc.terraform_data.availability_zone_validation: Refreshing state... [id=177cd4a3-88f5-84fd-6641-475224402a4e]
+13:28:58  data.aws_iam_policy_document.presigned-url-kms-iam-policy[0]: Reading...
+13:28:58  module.presigned-url-vpc.data.aws_iam_policy_document.centralized_logging_role_policy: Read complete after 1s [id=568466368]
+13:28:58  module.presigned-url-vpc.terraform_data.endpoint_validation: Refreshing state... [id=639babd3-e4b2-9dad-d272-0dd1e7ba8cea]
+13:28:58  module.presigned-url-vpc.data.aws_iam_policy_document.endpoint_gateway_policy_s3: Reading...
+13:28:58  data.aws_iam_policy_document.presigned-url-crr-s3-kms-iam-policy[0]: Reading...
+13:28:58  aws_s3_access_point.s3_access_point: Refreshing state... [id=364685145795:bef-storage-364685145795-ap]
+13:28:58  data.aws_iam_policy_document.presigned-url-s3-policy[0]: Reading...
+13:28:58  aws_cloudwatch_event_rule.bef-file-create-rule: Refreshing state... [id=bef_storage_file_creation_notification]
+13:28:58  module.presigned-url-vpc.data.aws_iam_policy_document.endpoint_gateway_policy_s3: Read complete after 0s [id=1812401021]
+13:28:58  aws_s3_bucket_notification.enable-eventbridge-notification: Refreshing state... [id=bef-storage-364685145795]
+13:28:58  data.aws_iam_policy_document.presigned-url-kms-iam-policy[0]: Read complete after 0s [id=30542649]
+13:28:58  data.aws_iam_policy_document.presigned-url-crr-s3-policy[0]: Reading...
+13:28:58  data.aws_iam_policy_document.presigned-url-s3-policy[0]: Read complete after 0s [id=3077286588]
+13:28:58  data.aws_iam_policy_document.presigned-url-crr-s3-policy[0]: Read complete after 0s [id=281761858]
+13:28:58  data.aws_iam_policy_document.presigned-url-crr-s3-kms-iam-policy[0]: Read complete after 0s [id=342372856]
+13:28:58  module.presigned-url-vpc.terraform_data.environment_validation: Refreshing state... [id=0a8730ca-e4b9-db54-0ded-02e76dbcc164]
+13:28:59  module.bef-storage-s3.aws_s3_bucket.this: Refreshing state... [id=bef-storage-364685145795]
+13:28:59  module.presigned-url-vpc.aws_vpc_dhcp_options.dhcp_options[0]: Refreshing state... [id=dopt-08a1edcd1ff7e1abd]
+13:28:59  module.presigned-url-vpc.aws_vpc.vpc: Refreshing state... [id=vpc-032202ba219c2af5f]
+13:28:59  module.bef-storage-s3.aws_s3_bucket.replicated_bucket[0]: Refreshing state... [id=bef-storage-364685145795-copy]
+13:28:59  module.presigned-url-vpc.data.aws_iam_policy_document.endpoint_interface_policy["secretsmanager"]: Reading...
+13:28:59  module.presigned-url-vpc.data.aws_iam_policy_document.endpoint_interface_policy["secretsmanager"]: Read complete after 0s [id=431242839]
+13:28:59  module.presigned-url-vpc.data.aws_iam_policy_document.endpoint_gateway_policy["s3"]: Reading...
+13:28:59  module.presigned-url-vpc.data.aws_iam_policy_document.endpoint_gateway_policy["s3"]: Read complete after 0s [id=4146900922]
+13:28:59  module.bef-presigned-url-kms[0].aws_kms_key.key: Refreshing state... [id=31092565-4bb3-4886-b734-b694fa6801d0]
+13:28:59  module.bef-presigned-url-crr-s3-kms[0].aws_kms_key.key: Refreshing state... [id=4aa7cc87-af39-4bd4-b4ca-e2dbc5a1c8de]
+13:28:59  aws_s3control_access_point_policy.s3_access_point_policy: Refreshing state... [id=364685145795:bef-storage-364685145795-ap]
+13:28:59  module.bef-presigned-url-kms[0].aws_kms_alias.key: Refreshing state... [id=alias/bef-presigned-url-kms]
+13:28:59  aws_secretsmanager_secret.intent_consumer: Refreshing state... [id=arn:aws:secretsmanager:us-east-1:364685145795:secret:intentapi/intake_services_callback_consumer-pE2Yvv]
+13:28:59  aws_secretsmanager_secret_version.intent_consumer_version: Refreshing state... [id=arn:aws:secretsmanager:us-east-1:364685145795:secret:intentapi/intake_services_callback_consumer-pE2Yvv|terraform-20250211165927521500000001]
+13:28:59  module.callback-lambda.aws_cloudwatch_log_group.log_group: Refreshing state... [id=/aws/lambda/bef-intent-upload-callback]
+13:28:59  module.callback-lambda.aws_cloudwatch_metric_alarm.warn_throttles[0]: Refreshing state... [id=bef-intent-upload-callback-WARN-Lambda-Throttles]
+13:28:59  module.callback-lambda.aws_cloudwatch_metric_alarm.info_throttles[0]: Refreshing state... [id=bef-intent-upload-callback-INFO-Lambda-Throttles]
+13:28:59  module.callback-lambda.aws_cloudwatch_metric_alarm.info_error_rate[0]: Refreshing state... [id=bef-intent-upload-callback-INFO-Lambda-Errors]
+13:28:59  module.callback-lambda.aws_cloudwatch_metric_alarm.critical_throttles[0]: Refreshing state... [id=bef-intent-upload-callback-CRITICAL-Lambda-Throttles]
+13:28:59  module.callback-lambda.aws_cloudwatch_metric_alarm.critical_error_rate[0]: Refreshing state... [id=bef-intent-upload-callback-CRITICAL-Lambda-Errors]
+13:28:59  module.callback-lambda.aws_cloudwatch_metric_alarm.warn_error_rate[0]: Refreshing state... [id=bef-intent-upload-callback-WARN-Lambda-Errors]
+13:28:59  module.bef-storage-s3.aws_s3_bucket_versioning.s3_bucket_versioning_this: Refreshing state... [id=bef-storage-364685145795]
+13:28:59  module.bef-storage-s3.aws_s3_bucket_metric.s3_bucket_metric: Refreshing state... [id=bef-storage-364685145795:EntireBucket]
+13:28:59  module.bef-storage-s3.aws_cloudwatch_metric_alarm.s3_alarm_5xx[0]: Refreshing state... [id=bef-storage-364685145795-500-errors]
+13:28:59  module.bef-storage-s3.aws_s3_bucket_policy.s3_bucket_policy: Refreshing state... [id=bef-storage-364685145795]
+13:28:59  module.bef-presigned-url-crr-s3-kms[0].aws_kms_alias.key: Refreshing state... [id=alias/bef-presigned-url-crr-s3-kms]
+13:28:59  module.bef-storage-s3.aws_cloudwatch_metric_alarm.s3_alarm_4xx[0]: Refreshing state... [id=bef-storage-364685145795-400-errors]
+13:28:59  module.bef-storage-s3.aws_s3_bucket_cors_configuration.bucket_cors_configuration_this[0]: Refreshing state... [id=bef-storage-364685145795]
+13:28:59  module.bef-storage-s3.aws_s3_bucket_ownership_controls.s3_bucket_ownership: Refreshing state... [id=bef-storage-364685145795]
+13:28:59  module.bef-storage-s3.aws_s3_bucket_server_side_encryption_configuration.server_side_encryption_configuration_this: Refreshing state... [id=bef-storage-364685145795]
+13:28:59  module.presigned-url-vpc.aws_kms_key.flow_log_key: Refreshing state... [id=19924702-720d-4635-9778-ff5590af1f64]
+13:28:59  module.presigned-url-vpc.aws_route53_zone_association.route53_as_a_service_associations["bef-frontend-ui-dev.aws.evernorthcloud.com"]: Refreshing state... [id=Z0593329306J91VLAME1S:vpc-032202ba219c2af5f:us-east-1]
+13:28:59  module.presigned-url-vpc.aws_vpc_ipv4_cidr_block_association.secondaries_non_routable["100.127.0.0/16"]: Refreshing state... [id=vpc-cidr-assoc-09e0dfc8ed8d2b79a]
+13:28:59  module.presigned-url-vpc.aws_default_route_table.default: Refreshing state... [id=rtb-044a8af4b591a3994]
+13:28:59  module.presigned-url-vpc.aws_route53_resolver_rule_association.rule_associations["GlbcoreCom"]: Refreshing state... [id=rslvr-rrassoc-67eca7988d874c339]
+13:28:59  module.presigned-url-vpc.aws_route53_resolver_rule_association.rule_associations["PrivatelinkSnowflakecomputingCom"]: Refreshing state... [id=rslvr-rrassoc-38b167a3ce0b4db8b]
+13:28:59  module.presigned-url-vpc.aws_route53_resolver_rule_association.rule_associations["CignaEnvoy"]: Refreshing state... [id=rslvr-rrassoc-3c73216eb786493d8]
+13:28:59  module.presigned-url-vpc.aws_route53_resolver_rule_association.rule_associations["PrivatelinkSnowflakecomputingComRegionless"]: Refreshing state... [id=rslvr-rrassoc-11d0832d08ae47678]
+13:28:59  module.presigned-url-vpc.aws_route53_resolver_rule_association.rule_associations["GlobalcoredevCom"]: Refreshing state... [id=rslvr-rrassoc-993cbdaa77a14d84a]
+13:28:59  module.presigned-url-vpc.aws_route53_resolver_rule_association.rule_associations["CignatestCom"]: Refreshing state... [id=rslvr-rrassoc-ec38d31b3054433ad]
+13:29:00  module.presigned-url-vpc.aws_route53_resolver_rule_association.rule_associations["AwsEvernorthcloudCom"]: Refreshing state... [id=rslvr-rrassoc-d90bf649bf6943ffb]
+13:29:00  module.presigned-url-vpc.aws_route53_resolver_rule_association.rule_associations["OpenshiftCignacloudCom"]: Refreshing state... [id=rslvr-rrassoc-fd7b77ed057f4e2fa]
+13:29:00  module.presigned-url-vpc.aws_route53_resolver_rule_association.rule_associations["SilverCom"]: Refreshing state... [id=rslvr-rrassoc-415af8e1bcf24e8ba]
+13:29:00  module.presigned-url-vpc.aws_route53_resolver_rule_association.rule_associations["MedcoCom"]: Refreshing state... [id=rslvr-rrassoc-28003d9b76d24566b]
+13:29:00  module.presigned-url-vpc.aws_route53_resolver_rule_association.rule_associations["GlobalcoreCom"]: Refreshing state... [id=rslvr-rrassoc-e2710a0b3cd94219b]
+13:29:00  module.presigned-url-vpc.aws_route53_resolver_rule_association.rule_associations["AccountsRootCorp"]: Refreshing state... [id=rslvr-rrassoc-a5c487fda79048df8]
+13:29:00  module.presigned-url-vpc.aws_route53_resolver_rule_association.rule_associations["GlbcoredevCom"]: Refreshing state... [id=rslvr-rrassoc-105105cc31e34c4fb]
+13:29:00  module.presigned-url-vpc.aws_route53_resolver_rule_association.rule_associations["ExpressScriptsCom"]: Refreshing state... [id=rslvr-rrassoc-8e73b02a1c3f4706b]
+13:29:00  module.presigned-url-vpc.aws_route53_resolver_rule_association.rule_associations["OpenshiftEvernorthcloudCom"]: Refreshing state... [id=rslvr-rrassoc-2f881bf6cd744d89a]
+13:29:00  module.presigned-url-vpc.aws_route53_resolver_rule_association.rule_associations["CignaCom"]: Refreshing state... [id=rslvr-rrassoc-4e932b946d8f4c00b]
+13:29:00  module.presigned-url-vpc.aws_route53_resolver_rule_association.rule_associations["HealthspringInside"]: Refreshing state... [id=rslvr-rrassoc-35c168dba4ed49dd8]
+13:29:00  module.presigned-url-vpc.aws_route53_resolver_rule_association.rule_associations["UsEast1ConfluentCloud"]: Refreshing state... [id=rslvr-rrassoc-c4e9b8e3dab14d03b]
+13:29:00  module.presigned-url-vpc.aws_route53_resolver_rule_association.rule_associations["ExpressScriptsIo"]: Refreshing state... [id=rslvr-rrassoc-5890d19cd98847d18]
+13:29:00  module.presigned-url-vpc.aws_route53_resolver_rule_association.rule_associations["AwsCignacloudCom"]: Refreshing state... [id=rslvr-rrassoc-3a9c8ba79fe3479f8]
+13:29:00  module.presigned-url-vpc.aws_default_security_group.default: Refreshing state... [id=sg-092e53ff0dd336a15]
+13:29:00  module.presigned-url-vpc.data.aws_iam_policy_document.flow_log_key_resource_policy: Reading...
+13:29:00  module.presigned-url-vpc.data.aws_iam_policy_document.flow_log_key_resource_policy: Read complete after 0s [id=261065444]
+13:29:00  module.presigned-url-vpc.aws_route53_resolver_query_log_config_association.query_log_config_association[0]: Refreshing state... [id=rqlca-98ba2108d380495f]
+13:29:00  module.presigned-url-vpc.aws_vpc_dhcp_options_association.dhcp_association[0]: Refreshing state... [id=dopt-08a1edcd1ff7e1abd-vpc-032202ba219c2af5f]
+13:29:00  module.presigned-url-vpc.aws_route53_zone_association.default_associations["Evernorthcloud"]: Refreshing state... [id=Z09861373L6XGPTENPZK7:vpc-032202ba219c2af5f:us-east-1]
+13:29:00  module.presigned-url-vpc.aws_route53_zone_association.default_associations["Cigna"]: Refreshing state... [id=Z0503924248Z5Y01NGHT0:vpc-032202ba219c2af5f:us-east-1]
+13:29:00  data.aws_iam_policy_document.crr_s3_replication_policy[0]: Reading...
+13:29:00  module.presigned-url-vpc.aws_security_group.interface_endpoints[0]: Refreshing state... [id=sg-042cc6f6327bb638e]
+13:29:00  data.aws_iam_policy_document.crr_s3_replication_policy[0]: Read complete after 0s [id=3426910545]
+13:29:00  data.aws_iam_policy_document.source_crr_s3_replication_policy[0]: Reading...
+13:29:00  module.bef-storage-s3.aws_s3_bucket_public_access_block.public_access_block: Refreshing state... [id=bef-storage-364685145795]
+13:29:00  data.aws_iam_policy_document.source_crr_s3_replication_policy[0]: Read complete after 0s [id=4222547344]
+13:29:00  module.presigned-url-vpc.data.aws_iam_policy_document.flow_log_key_role_policy: Reading...
+13:29:00  module.presigned-url-vpc.module.subnets_routable["10.190.250.0/27"].data.aws_default_tags.provider_tags: Reading...
+13:29:00  module.presigned-url-vpc.aws_kms_alias.flow_log_key_alias: Refreshing state... [id=alias/presigned-url-flow-logs-key]
+13:29:00  module.presigned-url-vpc.data.aws_iam_policy_document.flow_log_key_role_policy: Read complete after 1s [id=1284316875]
+13:29:00  aws_iam_policy.crr_s3_replication_iam_policy[0]: Refreshing state... [id=arn:aws:iam::364685145795:policy/bef_s3_crr_replication_iam_policy_dev]
+13:29:00  module.presigned-url-vpc.module.subnets_routable["10.190.250.0/27"].data.aws_default_tags.provider_tags: Read complete after 0s [id=aws]
+13:29:00  module.presigned-url-vpc.module.subnets_routable["10.190.250.0/27"].data.aws_availability_zones.available_zones: Reading...
+13:29:00  module.presigned-url-vpc.module.subnets_non_routable["100.127.0.0/16"].data.aws_default_tags.provider_tags: Reading...
+13:29:00  aws_iam_policy.source_crr_s3_replication_iam_policy[0]: Refreshing state... [id=arn:aws:iam::364685145795:policy/bef_s3_source_crr_replication_iam_policy_dev]
+13:29:00  module.presigned-url-vpc.module.subnets_non_routable["100.127.0.0/16"].data.aws_availability_zones.available_zones: Reading...
+13:29:00  module.presigned-url-vpc.module.subnets_non_routable["100.127.0.0/16"].data.aws_default_tags.provider_tags: Read complete after 0s [id=aws]
+13:29:00  module.presigned-url-vpc.module.subnets_routable["10.190.250.0/27"].terraform_data.tag_validation: Refreshing state... [id=cba2b58d-384d-cbc4-9d87-a90810ca7fc7]
+13:29:00  module.presigned-url-vpc.module.subnets_non_routable["100.127.0.0/16"].terraform_data.tag_validation: Refreshing state... [id=bbf26a78-91e3-5b8f-aa83-457bc0755305]
+13:29:00  module.presigned-url-vpc.aws_iam_role.flow_logs_role: Refreshing state... [id=golden-vpc-flow-logs-vpc-032202ba219c2af5f]
+13:29:00  module.presigned-url-vpc.aws_kms_key_policy.flow_log_key_policy: Refreshing state... [id=19924702-720d-4635-9778-ff5590af1f64]
+13:29:01  module.presigned-url-vpc.module.subnets_non_routable["100.127.0.0/16"].data.aws_availability_zones.available_zones: Read complete after 0s [id=us-east-1]
+13:29:01  module.presigned-url-vpc.module.subnets_routable["10.190.250.0/27"].data.aws_availability_zones.available_zones: Read complete after 0s [id=us-east-1]
+13:29:01  module.bef-storage-s3.aws_s3_bucket_policy.crr_bucket_policy[0]: Refreshing state... [id=bef-storage-364685145795-copy]
+13:29:01  module.bef-storage-s3.aws_s3_bucket_versioning.s3_bucket_versioning_replicated_bucket[0]: Refreshing state... [id=bef-storage-364685145795-copy]
+13:29:01  module.bef-storage-s3.aws_s3_bucket_metric.crr_bucket_metric[0]: Refreshing state... [id=bef-storage-364685145795-copy:EntireBucket]
+13:29:01  module.presigned-url-vpc.module.subnets_routable["10.190.250.0/27"].terraform_data.availability_zone_validation: Refreshing state... [id=f3b7018c-5121-887c-3f40-d15e5d882a1b]
+13:29:01  module.bef-storage-s3.aws_s3_bucket_lifecycle_configuration.s3_bucket_lifecycle_replicated_bucket[0]: Refreshing state... [id=bef-storage-364685145795-copy]
+13:29:01  module.bef-storage-s3.aws_s3_bucket_server_side_encryption_configuration.server_side_encryption_configuration_replicated_bucket[0]: Refreshing state... [id=bef-storage-364685145795-copy]
+13:29:01  module.bef-storage-s3.aws_s3_bucket_ownership_controls.s3_bucket_ownership_replicated[0]: Refreshing state... [id=bef-storage-364685145795-copy]
+13:29:01  module.presigned-url-vpc.module.subnets_non_routable["100.127.0.0/16"].terraform_data.availability_zone_validation: Refreshing state... [id=10cf1dc8-7968-99ab-2ada-61ab4ca5086b]
+13:29:01  aws_iam_role_policy_attachment.crr_s3_replication_iam_policy_attachment[0]: Refreshing state... [id=bef_s3_crr_replication_dev-20250319165339503300000001]
+13:29:01  module.presigned-url-vpc.module.subnets_routable["10.190.250.0/27"].aws_subnet.subnets[0]: Refreshing state... [id=subnet-0f1e081dc4dd61f86]
+13:29:01  module.presigned-url-vpc.module.subnets_routable["10.190.250.0/27"].aws_subnet.subnets[1]: Refreshing state... [id=subnet-0c93345bced9818c0]
+13:29:01  module.bef-storage-s3.aws_s3_bucket_public_access_block.crr_public_access_block[0]: Refreshing state... [id=bef-storage-364685145795-copy]
+13:29:01  aws_iam_role_policy_attachment.source_crr_s3_replication_iam_policy_attachment[0]: Refreshing state... [id=bef_s3_source_crr_replication_dev-20250319165339542800000002]
+13:29:01  module.presigned-url-vpc.module.subnets_non_routable["100.127.0.0/16"].aws_subnet.subnets[0]: Refreshing state... [id=subnet-0bbdaf0833f599fe5]
+13:29:01  module.presigned-url-vpc.module.subnets_non_routable["100.127.0.0/16"].aws_subnet.subnets[1]: Refreshing state... [id=subnet-041086eb9105b4aab]
+13:29:01  module.presigned-url-vpc.aws_cloudwatch_log_group.flow_log_group: Refreshing state... [id=presigned-url-golden-vpc-flow-log-vpc-032202ba219c2af5f20240815150738549600000001]
+13:29:01  module.bef-storage-s3.aws_s3_bucket_replication_configuration.replication_configuration_this[0]: Refreshing state... [id=bef-storage-364685145795]
+13:29:01  module.presigned-url-vpc.terraform_data.nat_gateway_validation: Refreshing state... [id=c1fdc0c4-716f-28a3-fe3c-31fa45166b00]
+13:29:01  module.presigned-url-vpc.aws_cloudwatch_log_subscription_filter.splunk: Refreshing state... [id=cwlsf-1171907921]
+13:29:01  module.presigned-url-vpc.aws_flow_log.flow_log: Refreshing state... [id=fl-076ea20a986ac584f]
+13:29:01  module.presigned-url-vpc.aws_ec2_transit_gateway_vpc_attachment.tgw_attachment[0]: Refreshing state... [id=tgw-attach-0ee9c238daea0f920]
+13:29:01  module.presigned-url-vpc.aws_vpc_endpoint.gateways["s3"]: Refreshing state... [id=vpce-0c5bc6d8a737a4f60]
+13:29:01  module.presigned-url-vpc.aws_default_network_acl.default: Refreshing state... [id=acl-0b6810d3bb0785e5d]
+13:29:01  module.presigned-url-vpc.aws_vpc_endpoint.interfaces_routable["secretsmanager"]: Refreshing state... [id=vpce-0779fc9f3e93b45ac]
+13:29:01  module.presigned-url-vpc.aws_vpc_endpoint_policy.gateway_policies["s3"]: Refreshing state... [id=vpce-0c5bc6d8a737a4f60]
+13:29:01  aws_security_group.presigned-url-sg: Refreshing state... [id=sg-03c2a1bf76bc9d509]
+13:29:01  module.presigned-url-lambda.aws_lambda_function.lambda: Refreshing state... [id=bef-presigned-url]
+13:29:01  module.callback-lambda.aws_lambda_function.lambda: Refreshing state... [id=bef-intent-upload-callback]
+13:29:02  aws_cloudwatch_log_subscription_filter.example: Refreshing state... [id=cwlsf-2303122405]
+13:29:02  aws_lambda_permission.authinator_permission: Refreshing state... [id=GATEWAY]
+13:29:02  aws_cloudwatch_log_subscription_filter.callback-subscription: Refreshing state... [id=cwlsf-758705008]
+13:29:02  aws_cloudwatch_event_target.callback-lambda-target: Refreshing state... [id=bef_storage_file_creation_notification-terraform-20250206195015036400000002]
+13:29:02  aws_lambda_permission.eventbridge-rule-execution-permission: Refreshing state... [id=AllowExecutionFromCloudWatch]
+13:29:02  aws_s3_bucket_replication_configuration.crr_bucket_replication_configuration[0]: Refreshing state... [id=bef-storage-364685145795-copy]
+13:29:02  module.presigned-url-vpc.aws_vpc_endpoint_policy.interface_policies["secretsmanager"]: Refreshing state... [id=vpce-0779fc9f3e93b45ac]
+13:29:03  
+13:29:03  No changes. Your infrastructure matches the configuration.
+13:29:03  
+13:29:03  Terraform has compared your real infrastructure against your configuration
+13:29:03  and found no differences, so no changes are needed.
+13:29:03  
+13:29:03  Warning: Reference to undefined provider
+13:29:03  
+13:29:03    on bef-presigned-url-kms.tf line 15, in module "bef-presigned-url-crr-s3-kms":
+13:29:03    15:     aws = aws.crr
+13:29:03  
+13:29:03  There is no explicit declaration for local provider name "aws" in
+13:29:03  module.bef-presigned-url-crr-s3-kms, so Terraform is assuming you mean to
+13:29:03  pass a configuration for "hashicorp/aws".
+13:29:03  
+13:29:03  If you also control the child module, add a required_providers entry named
+13:29:03  "aws" with the source address "hashicorp/aws".
+13:29:03  
+13:29:03  Warning: Argument is deprecated
+13:29:03  
+13:29:03    with module.presigned-url-vpc.aws_iam_role.flow_logs_role,
+13:29:03    on .terraform/modules/presigned-url-vpc/iam.tf line 1, in resource "aws_iam_role" "flow_logs_role":
+13:29:03     1: resource "aws_iam_role" "flow_logs_role" {
+13:29:03  
+13:29:03  inline_policy is deprecated. Use the aws_iam_role_policy resource instead. If
+13:29:03  Terraform should exclusively manage all inline policy associations (the
+13:29:03  current behavior of this argument), use the aws_iam_role_policies_exclusive
+13:29:03  resource as well.
+13:29:03  
+13:29:03  (and 2 more similar warnings elsewhere)
+13:29:03  
+13:29:03  terraform plan successful
+13:29:13  
+13:29:13  terraform convert plan to json successful
+13:29:13  
+13:29:13  Analyzing...
+13:29:13  - Terraform Working Directory: /home/jenkins/agent/workspace/bef-intentapi_feature-PBBEF-1571
+13:29:13  - Terraform plan file: tf_plan.json
+13:29:13  Latest https://github.sys.cigna.com/cigna/conftest.git release: v0.58
+13:29:16  
+13:29:16  1 test, 1 passed, 0 warnings, 0 failures, 0 exceptions
+13:29:16  
+13:29:16  conftest analysis successful
+13:29:16  
+13:29:16  Applying...
+13:29:16  - Terraform Working Directory: /home/jenkins/agent/workspace/bef-intentapi_feature-PBBEF-1571
+13:29:16  - Terraform Config Directory: envs/dev
+13:29:16  terraform apply -no-color -auto-approve=true -input=false -var-file=envs/dev/dev.tfvars  
+13:29:38  module.presigned-url-vpc.terraform_data.subnet_validation: Refreshing state... [id=491a163b-c404-d60f-fd47-ca6cbcaafbd7]
+13:29:38  data.archive_file.presigned-url-code: Reading...
+13:29:38  data.archive_file.callback-lambda-code: Reading...
+13:29:38  data.archive_file.presigned-url-code: Read complete after 0s [id=4e1b3bbeea6e0c8e7281964da11adc6e7d50cc6e]
+13:29:38  data.archive_file.callback-lambda-code: Read complete after 0s [id=30798eb40a637f755ba50c35e416f9203bf1a416]
+13:29:44  module.bef-presigned-url-crr-s3-kms[0].data.aws_caller_identity.current: Reading...
+13:29:44  module.bef-presigned-url-crr-s3-kms[0].data.aws_caller_identity.current: Read complete after 0s [id=364685145795]
+13:29:44  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["MedcoCom"]: Reading...
+13:29:44  module.presigned-url-vpc.data.aws_iam_account_alias.current: Reading...
+13:29:44  data.aws_ssm_parameter.org_logging_arn: Reading...
+13:29:44  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_query_log_config_id: Reading...
+13:29:44  module.presigned-url-vpc.data.aws_vpc_endpoint_service.interfaces["secretsmanager"]: Reading...
+13:29:44  module.presigned-url-vpc.data.aws_availability_zones.available_zones: Reading...
+13:29:44  module.presigned-url-vpc.data.aws_default_tags.provider_tags: Reading...
+13:29:44  module.presigned-url-vpc.data.aws_default_tags.provider_tags: Read complete after 0s [id=aws]
+13:29:44  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["AccountsRootCorp"]: Reading...
+13:29:44  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["OpenshiftCignacloudCom"]: Reading...
+13:29:44  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["AwsCignacloudCom"]: Reading...
+13:29:44  data.aws_iam_policy_document.presigned-url-s3-endpoint-policy: Reading...
+13:29:44  data.aws_iam_policy_document.presigned-url-s3-endpoint-policy: Read complete after 0s [id=2750445730]
+13:29:44  module.presigned-url-vpc.data.aws_ssm_parameter.org_centralized_logging_arn: Reading...
+13:29:44  module.presigned-url-vpc.data.aws_iam_account_alias.current: Read complete after 0s [id=hs-upsilon-fries-dev]
+13:29:44  module.presigned-url-vpc.data.aws_ec2_managed_prefix_list.prefix_list_health_services: Reading...
+13:29:44  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["MedcoCom"]: Read complete after 0s [id=/Enterprise/Route53ResolverRuleIdMedcoCom]
+13:29:44  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["PrivatelinkSnowflakecomputingComRegionless"]: Reading...
+13:29:44  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["OpenshiftCignacloudCom"]: Read complete after 0s [id=/Enterprise/Route53ResolverRuleIdOpenshiftCignacloudCom]
+13:29:44  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_query_log_config_id: Read complete after 0s [id=/Enterprise/Route53QueryLoggingConfigId]
+13:29:44  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["AwsEvernorthcloudCom"]: Reading...
+13:29:44  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["CignaCom"]: Reading...
+13:29:44  module.presigned-url-vpc.data.aws_ssm_parameter.org_centralized_logging_arn: Read complete after 0s [id=/Enterprise/OrgCentralLoggingDestinationArn]
+13:29:44  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["AccountsRootCorp"]: Read complete after 0s [id=/Enterprise/Route53ResolverRuleIdAccountsRootCorp]
+13:29:44  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["AwsCignacloudCom"]: Read complete after 0s [id=/Enterprise/Route53ResolverRuleIdAwsCignacloudCom]
+13:29:44  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["GlobalcoreCom"]: Reading...
+13:29:44  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["ExpressScriptsCom"]: Reading...
+13:29:44  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["SilverCom"]: Reading...
+13:29:44  data.aws_ssm_parameter.org_logging_arn: Read complete after 0s [id=/Enterprise/OrgCentralLoggingDestinationArn]
+13:29:44  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["PrivatelinkSnowflakecomputingComRegionless"]: Read complete after 0s [id=/Enterprise/Route53ResolverRuleIdPrivatelinkSnowflakecomputingComRegionless]
+13:29:44  module.presigned-url-lambda.aws_cloudwatch_metric_alarm.warn_throttles[0]: Refreshing state... [id=bef-presigned-url-WARN-Lambda-Throttles]
+13:29:44  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["HealthspringInside"]: Reading...
+13:29:44  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["CignaCom"]: Read complete after 0s [id=/Enterprise/Route53ResolverRuleIdCignaCom]
+13:29:44  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["CignaEnvoy"]: Reading...
+13:29:44  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["AwsEvernorthcloudCom"]: Read complete after 0s [id=/Enterprise/Route53ResolverRuleIdAwsEvernorthcloudCom]
+13:29:44  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["GlobalcoredevCom"]: Reading...
+13:29:44  module.presigned-url-vpc.data.aws_availability_zones.available_zones: Read complete after 0s [id=us-east-1]
+13:29:44  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["GlobalcoreCom"]: Read complete after 0s [id=/Enterprise/Route53ResolverRuleIdGlobalcoreCom]
+13:29:44  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["SilverCom"]: Read complete after 0s [id=/Enterprise/Route53ResolverRuleIdSilverCom]
+13:29:44  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["CignaEnvoy"]: Read complete after 0s [id=/Enterprise/Route53ResolverRuleIdCignaEnvoy]
+13:29:44  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["ExpressScriptsCom"]: Read complete after 0s [id=/Enterprise/Route53ResolverRuleIdExpressScriptsCom]
+13:29:44  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["CignatestCom"]: Reading...
+13:29:44  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["HealthspringInside"]: Read complete after 0s [id=/Enterprise/Route53ResolverRuleIdHealthspringInside]
+13:29:44  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["OpenshiftEvernorthcloudCom"]: Reading...
+13:29:44  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["PrivatelinkSnowflakecomputingCom"]: Reading...
+13:29:44  module.bef-storage-s3.data.aws_iam_account_alias.current: Reading...
+13:29:44  module.presigned-url-lambda.aws_cloudwatch_log_group.log_group: Refreshing state... [id=/aws/lambda/bef-presigned-url]
+13:29:44  module.presigned-url-lambda.aws_cloudwatch_metric_alarm.info_throttles[0]: Refreshing state... [id=bef-presigned-url-INFO-Lambda-Throttles]
+13:29:44  module.presigned-url-vpc.data.aws_vpc_endpoint_service.interfaces["secretsmanager"]: Read complete after 0s [id=2799604443]
+13:29:44  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["GlbcoreCom"]: Reading...
+13:29:44  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["OpenshiftEvernorthcloudCom"]: Read complete after 0s [id=/Enterprise/Route53ResolverRuleIdOpenshiftEvernorthcloudCom]
+13:29:44  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["CignatestCom"]: Read complete after 0s [id=/Enterprise/Route53ResolverRuleIdCignatestCom]
+13:29:44  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["ExpressScriptsIo"]: Reading...
+13:29:44  module.presigned-url-lambda.aws_cloudwatch_metric_alarm.info_error_rate[0]: Refreshing state... [id=bef-presigned-url-INFO-Lambda-Errors]
+13:29:44  module.bef-storage-s3.data.aws_iam_account_alias.current: Read complete after 0s [id=hs-upsilon-fries-dev]
+13:29:44  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["PrivatelinkSnowflakecomputingCom"]: Read complete after 0s [id=/Enterprise/Route53ResolverRuleIdPrivatelinkSnowflakecomputingCom]
+13:29:44  module.presigned-url-lambda.aws_cloudwatch_metric_alarm.critical_error_rate[0]: Refreshing state... [id=bef-presigned-url-CRITICAL-Lambda-Errors]
+13:29:44  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["ExpressScriptsIo"]: Read complete after 0s [id=/Enterprise/Route53ResolverRuleIdExpressScriptsIo]
+13:29:44  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["GlbcoreCom"]: Read complete after 0s [id=/Enterprise/Route53ResolverRuleIdGlbcoreCom]
+13:29:44  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["GlobalcoredevCom"]: Read complete after 0s [id=/Enterprise/Route53ResolverRuleIdGlobalcoredevCom]
+13:29:44  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["GlbcoredevCom"]: Reading...
+13:29:44  module.presigned-url-vpc.data.aws_ssm_parameter.org_centralized_logging_role: Reading...
+13:29:44  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["UsEast1ConfluentCloud"]: Reading...
+13:29:44  module.presigned-url-lambda.aws_cloudwatch_metric_alarm.warn_error_rate[0]: Refreshing state... [id=bef-presigned-url-WARN-Lambda-Errors]
+13:29:44  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["GlbcoredevCom"]: Read complete after 1s [id=/Enterprise/Route53ResolverRuleIdGlbcoredevCom]
+13:29:44  module.presigned-url-vpc.data.aws_ssm_parameter.org_centralized_logging_role: Read complete after 1s [id=/Enterprise/OrgCentralLoggingRole]
+13:29:44  module.presigned-url-vpc.data.aws_vpc_endpoint_service.gateways["s3"]: Reading...
+13:29:44  data.aws_iam_policy_document.source_crr_s3_assume_role[0]: Reading...
+13:29:44  data.aws_iam_policy_document.source_crr_s3_assume_role[0]: Read complete after 0s [id=1765856792]
+13:29:44  module.presigned-url-vpc.data.aws_ssm_parameter.route53_default_zone_ids["Cigna"]: Reading...
+13:29:44  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["UsEast1ConfluentCloud"]: Read complete after 1s [id=/Enterprise/Route53ResolverRuleIdUsEast1ConfluentCloud]
+13:29:44  module.presigned-url-vpc.data.aws_ssm_parameter.route53_default_zone_ids["Evernorthcloud"]: Reading...
+13:29:44  module.presigned-url-vpc.data.aws_ssm_parameter.route53_default_zone_ids["Evernorthcloud"]: Read complete after 0s [id=/Enterprise/EvernorthcloudPrivateHostedZoneId]
+13:29:44  module.presigned-url-vpc.data.aws_ssm_parameter.route53_default_zone_ids["Cigna"]: Read complete after 0s [id=/Enterprise/PrivateHostedZoneId]
+13:29:44  data.aws_iam_role.bef_lambda_role: Reading...
+13:29:44  aws_lambda_layer_version.bef-lambda-layer-requests: Refreshing state... [id=arn:aws:lambda:us-east-1:364685145795:layer:bef-presigned-url-request-layer:1]
+13:29:44  module.presigned-url-vpc.data.aws_region.current: Reading...
+13:29:44  module.presigned-url-vpc.data.aws_region.current: Read complete after 0s [id=us-east-1]
+13:29:44  data.aws_ssm_parameter.org_logging_role: Reading...
+13:29:44  data.aws_iam_role.bef_lambda_role: Read complete after 0s [id=BEFStorageSolution]
+13:29:44  module.presigned-url-vpc.data.aws_vpc_endpoint_service.gateways["s3"]: Read complete after 0s [id=195798706]
+13:29:44  module.presigned-url-vpc.data.aws_ec2_managed_prefix_list.prefix_list_health_services: Read complete after 1s [id=pl-061f9f5f3a6e26f49]
+13:29:44  data.aws_iam_role.bef_lambda_callback_role: Reading...
+13:29:44  data.aws_iam_policy_document.crr_s3_assume_role[0]: Reading...
+13:29:44  module.bef-presigned-url-kms[0].data.aws_caller_identity.current: Reading...
+13:29:44  data.aws_caller_identity.current: Reading...
+13:29:44  data.aws_iam_policy_document.crr_s3_assume_role[0]: Read complete after 0s [id=1765856792]
+13:29:44  module.bef-presigned-url-kms[0].data.aws_caller_identity.current: Read complete after 0s [id=364685145795]
+13:29:44  data.aws_ssm_parameter.org_logging_role: Read complete after 0s [id=/Enterprise/OrgCentralLoggingRole]
+13:29:44  data.aws_iam_role.bef_lambda_callback_role: Read complete after 0s [id=BEFStorageSolutionLambdaCallback]
+13:29:44  data.aws_region.current_region: Reading...
+13:29:44  module.presigned-url-vpc.data.aws_caller_identity.current: Reading...
+13:29:44  module.presigned-url-vpc.data.aws_ssm_parameter.transit_gateway_id: Reading...
+13:29:44  module.presigned-url-vpc.data.aws_ssm_parameters_by_path.route53_as_a_service_zones_by_path: Reading...
+13:29:44  module.presigned-url-lambda.aws_cloudwatch_metric_alarm.critical_throttles[0]: Refreshing state... [id=bef-presigned-url-CRITICAL-Lambda-Throttles]
+13:29:44  data.aws_region.current_region: Read complete after 0s [id=us-east-1]
+13:29:44  module.presigned-url-vpc.data.aws_iam_policy_document.centralized_logging_role_policy: Reading...
+13:29:44  data.aws_caller_identity.current: Read complete after 0s [id=364685145795]
+13:29:44  aws_iam_role.source_crr_s3_replication_role[0]: Refreshing state... [id=bef_s3_source_crr_replication_dev]
+13:29:44  module.presigned-url-vpc.data.aws_iam_policy_document.centralized_logging_role_policy: Read complete after 0s [id=568466368]
+13:29:44  module.presigned-url-vpc.terraform_data.tag_validation: Refreshing state... [id=471acd65-c394-6dcb-767d-4340d17add26]
+13:29:44  aws_iam_role.crr_s3_replication_role[0]: Refreshing state... [id=bef_s3_crr_replication_dev]
+13:29:44  module.presigned-url-vpc.terraform_data.endpoint_validation: Refreshing state... [id=639babd3-e4b2-9dad-d272-0dd1e7ba8cea]
+13:29:44  module.presigned-url-vpc.terraform_data.environment_validation: Refreshing state... [id=0a8730ca-e4b9-db54-0ded-02e76dbcc164]
+13:29:45  module.presigned-url-vpc.data.aws_iam_policy_document.endpoint_gateway_policy_s3: Reading...
+13:29:45  module.presigned-url-vpc.data.aws_ssm_parameters_by_path.route53_as_a_service_zones_by_path: Read complete after 0s [id=/HermesManaged/Route53AsAService/PrivateHostedZoneId/]
+13:29:45  module.presigned-url-vpc.data.aws_caller_identity.current: Read complete after 0s [id=364685145795]
+13:29:45  module.presigned-url-vpc.data.aws_ssm_parameter.transit_gateway_id: Read complete after 0s [id=/Enterprise/TgwId]
+13:29:45  module.presigned-url-vpc.terraform_data.availability_zone_validation: Refreshing state... [id=177cd4a3-88f5-84fd-6641-475224402a4e]
+13:29:45  data.aws_iam_policy_document.presigned-url-crr-s3-kms-iam-policy[0]: Reading...
+13:29:45  data.aws_iam_policy_document.presigned-url-kms-iam-policy[0]: Reading...
+13:29:45  module.presigned-url-vpc.data.aws_iam_policy_document.endpoint_gateway_policy_s3: Read complete after 0s [id=1812401021]
+13:29:45  module.presigned-url-vpc.aws_vpc_dhcp_options.dhcp_options[0]: Refreshing state... [id=dopt-08a1edcd1ff7e1abd]
+13:29:45  module.presigned-url-vpc.aws_vpc.vpc: Refreshing state... [id=vpc-032202ba219c2af5f]
+13:29:45  data.aws_iam_policy_document.presigned-url-kms-iam-policy[0]: Read complete after 0s [id=30542649]
+13:29:45  data.aws_iam_policy_document.presigned-url-s3-policy[0]: Reading...
+13:29:45  data.aws_iam_policy_document.presigned-url-crr-s3-kms-iam-policy[0]: Read complete after 0s [id=342372856]
+13:29:45  data.aws_iam_policy_document.presigned-url-crr-s3-policy[0]: Reading...
+13:29:45  aws_cloudwatch_event_rule.bef-file-create-rule: Refreshing state... [id=bef_storage_file_creation_notification]
+13:29:45  data.aws_iam_policy_document.presigned-url-s3-policy[0]: Read complete after 0s [id=3077286588]
+13:29:45  module.bef-storage-s3.aws_s3_bucket.this: Refreshing state... [id=bef-storage-364685145795]
+13:29:45  data.aws_iam_policy_document.presigned-url-crr-s3-policy[0]: Read complete after 0s [id=281761858]
+13:29:45  aws_s3_access_point.s3_access_point: Refreshing state... [id=364685145795:bef-storage-364685145795-ap]
+13:29:45  aws_s3_bucket_notification.enable-eventbridge-notification: Refreshing state... [id=bef-storage-364685145795]
+13:29:45  module.bef-storage-s3.aws_s3_bucket.replicated_bucket[0]: Refreshing state... [id=bef-storage-364685145795-copy]
+13:29:45  module.presigned-url-vpc.data.aws_iam_policy_document.endpoint_interface_policy["secretsmanager"]: Reading...
+13:29:45  module.presigned-url-vpc.data.aws_iam_policy_document.endpoint_interface_policy["secretsmanager"]: Read complete after 0s [id=431242839]
+13:29:45  module.presigned-url-vpc.data.aws_iam_policy_document.endpoint_gateway_policy["s3"]: Reading...
+13:29:45  module.presigned-url-vpc.data.aws_iam_policy_document.endpoint_gateway_policy["s3"]: Read complete after 0s [id=4146900922]
+13:29:45  module.bef-presigned-url-kms[0].aws_kms_key.key: Refreshing state... [id=31092565-4bb3-4886-b734-b694fa6801d0]
+13:29:45  module.bef-presigned-url-crr-s3-kms[0].aws_kms_key.key: Refreshing state... [id=4aa7cc87-af39-4bd4-b4ca-e2dbc5a1c8de]
+13:29:45  aws_s3control_access_point_policy.s3_access_point_policy: Refreshing state... [id=364685145795:bef-storage-364685145795-ap]
+13:29:45  module.bef-presigned-url-kms[0].aws_kms_alias.key: Refreshing state... [id=alias/bef-presigned-url-kms]
+13:29:45  aws_secretsmanager_secret.intent_consumer: Refreshing state... [id=arn:aws:secretsmanager:us-east-1:364685145795:secret:intentapi/intake_services_callback_consumer-pE2Yvv]
+13:29:45  module.presigned-url-vpc.aws_route53_resolver_query_log_config_association.query_log_config_association[0]: Refreshing state... [id=rqlca-98ba2108d380495f]
+13:29:45  module.presigned-url-vpc.aws_vpc_ipv4_cidr_block_association.secondaries_non_routable["100.127.0.0/16"]: Refreshing state... [id=vpc-cidr-assoc-09e0dfc8ed8d2b79a]
+13:29:45  module.presigned-url-vpc.aws_kms_key.flow_log_key: Refreshing state... [id=19924702-720d-4635-9778-ff5590af1f64]
+13:29:45  module.presigned-url-vpc.aws_security_group.interface_endpoints[0]: Refreshing state... [id=sg-042cc6f6327bb638e]
+13:29:45  module.presigned-url-vpc.aws_default_security_group.default: Refreshing state... [id=sg-092e53ff0dd336a15]
+13:29:45  module.presigned-url-vpc.data.aws_iam_policy_document.flow_log_key_resource_policy: Reading...
+13:29:45  module.presigned-url-vpc.data.aws_iam_policy_document.flow_log_key_resource_policy: Read complete after 0s [id=261065444]
+13:29:45  module.presigned-url-vpc.aws_route53_zone_association.default_associations["Evernorthcloud"]: Refreshing state... [id=Z09861373L6XGPTENPZK7:vpc-032202ba219c2af5f:us-east-1]
+13:29:45  module.presigned-url-vpc.aws_route53_zone_association.default_associations["Cigna"]: Refreshing state... [id=Z0503924248Z5Y01NGHT0:vpc-032202ba219c2af5f:us-east-1]
+13:29:45  module.presigned-url-vpc.aws_default_route_table.default: Refreshing state... [id=rtb-044a8af4b591a3994]
+13:29:45  module.presigned-url-vpc.aws_vpc_dhcp_options_association.dhcp_association[0]: Refreshing state... [id=dopt-08a1edcd1ff7e1abd-vpc-032202ba219c2af5f]
+13:29:45  module.presigned-url-vpc.module.subnets_routable["10.190.250.0/27"].data.aws_default_tags.provider_tags: Reading...
+13:29:45  module.presigned-url-vpc.module.subnets_routable["10.190.250.0/27"].data.aws_default_tags.provider_tags: Read complete after 0s [id=aws]
+13:29:45  module.presigned-url-vpc.module.subnets_routable["10.190.250.0/27"].data.aws_availability_zones.available_zones: Reading...
+13:29:45  module.presigned-url-vpc.aws_route53_zone_association.route53_as_a_service_associations["bef-frontend-ui-dev.aws.evernorthcloud.com"]: Refreshing state... [id=Z0593329306J91VLAME1S:vpc-032202ba219c2af5f:us-east-1]
+13:29:45  module.presigned-url-vpc.aws_route53_resolver_rule_association.rule_associations["AwsEvernorthcloudCom"]: Refreshing state... [id=rslvr-rrassoc-d90bf649bf6943ffb]
+13:29:45  module.presigned-url-vpc.aws_route53_resolver_rule_association.rule_associations["GlbcoreCom"]: Refreshing state... [id=rslvr-rrassoc-67eca7988d874c339]
+13:29:45  module.presigned-url-vpc.aws_route53_resolver_rule_association.rule_associations["HealthspringInside"]: Refreshing state... [id=rslvr-rrassoc-35c168dba4ed49dd8]
+13:29:45  module.presigned-url-vpc.module.subnets_routable["10.190.250.0/27"].data.aws_availability_zones.available_zones: Read complete after 0s [id=us-east-1]
+13:29:45  module.presigned-url-vpc.aws_route53_resolver_rule_association.rule_associations["PrivatelinkSnowflakecomputingCom"]: Refreshing state... [id=rslvr-rrassoc-38b167a3ce0b4db8b]
+13:29:45  module.presigned-url-vpc.aws_route53_resolver_rule_association.rule_associations["SilverCom"]: Refreshing state... [id=rslvr-rrassoc-415af8e1bcf24e8ba]
+13:29:45  module.presigned-url-vpc.aws_route53_resolver_rule_association.rule_associations["AccountsRootCorp"]: Refreshing state... [id=rslvr-rrassoc-a5c487fda79048df8]
+13:29:45  module.presigned-url-vpc.aws_route53_resolver_rule_association.rule_associations["MedcoCom"]: Refreshing state... [id=rslvr-rrassoc-28003d9b76d24566b]
+13:29:45  module.presigned-url-vpc.aws_route53_resolver_rule_association.rule_associations["ExpressScriptsIo"]: Refreshing state... [id=rslvr-rrassoc-5890d19cd98847d18]
+13:29:45  module.presigned-url-vpc.aws_route53_resolver_rule_association.rule_associations["UsEast1ConfluentCloud"]: Refreshing state... [id=rslvr-rrassoc-c4e9b8e3dab14d03b]
+13:29:46  module.presigned-url-vpc.aws_route53_resolver_rule_association.rule_associations["PrivatelinkSnowflakecomputingComRegionless"]: Refreshing state... [id=rslvr-rrassoc-11d0832d08ae47678]
+13:29:46  module.presigned-url-vpc.aws_route53_resolver_rule_association.rule_associations["ExpressScriptsCom"]: Refreshing state... [id=rslvr-rrassoc-8e73b02a1c3f4706b]
+13:29:46  module.presigned-url-vpc.aws_route53_resolver_rule_association.rule_associations["OpenshiftEvernorthcloudCom"]: Refreshing state... [id=rslvr-rrassoc-2f881bf6cd744d89a]
+13:29:46  module.presigned-url-vpc.aws_route53_resolver_rule_association.rule_associations["OpenshiftCignacloudCom"]: Refreshing state... [id=rslvr-rrassoc-fd7b77ed057f4e2fa]
+13:29:46  module.presigned-url-vpc.aws_route53_resolver_rule_association.rule_associations["AwsCignacloudCom"]: Refreshing state... [id=rslvr-rrassoc-3a9c8ba79fe3479f8]
+13:29:46  module.presigned-url-vpc.aws_route53_resolver_rule_association.rule_associations["GlobalcoreCom"]: Refreshing state... [id=rslvr-rrassoc-e2710a0b3cd94219b]
+13:29:46  module.presigned-url-vpc.aws_route53_resolver_rule_association.rule_associations["CignatestCom"]: Refreshing state... [id=rslvr-rrassoc-ec38d31b3054433ad]
+13:29:46  module.presigned-url-vpc.aws_route53_resolver_rule_association.rule_associations["GlobalcoredevCom"]: Refreshing state... [id=rslvr-rrassoc-993cbdaa77a14d84a]
+13:29:46  module.presigned-url-vpc.aws_route53_resolver_rule_association.rule_associations["GlbcoredevCom"]: Refreshing state... [id=rslvr-rrassoc-105105cc31e34c4fb]
+13:29:46  module.presigned-url-vpc.aws_route53_resolver_rule_association.rule_associations["CignaCom"]: Refreshing state... [id=rslvr-rrassoc-4e932b946d8f4c00b]
+13:29:46  module.presigned-url-vpc.aws_route53_resolver_rule_association.rule_associations["CignaEnvoy"]: Refreshing state... [id=rslvr-rrassoc-3c73216eb786493d8]
+13:29:46  aws_secretsmanager_secret_version.intent_consumer_version: Refreshing state... [id=arn:aws:secretsmanager:us-east-1:364685145795:secret:intentapi/intake_services_callback_consumer-pE2Yvv|terraform-20250211165927521500000001]
+13:29:46  module.bef-storage-s3.aws_cloudwatch_metric_alarm.s3_alarm_5xx[0]: Refreshing state... [id=bef-storage-364685145795-500-errors]
+13:29:46  module.bef-storage-s3.aws_s3_bucket_policy.s3_bucket_policy: Refreshing state... [id=bef-storage-364685145795]
+13:29:46  module.bef-storage-s3.aws_s3_bucket_ownership_controls.s3_bucket_ownership: Refreshing state... [id=bef-storage-364685145795]
+13:29:46  module.bef-storage-s3.aws_s3_bucket_metric.s3_bucket_metric: Refreshing state... [id=bef-storage-364685145795:EntireBucket]
+13:29:46  module.bef-storage-s3.aws_s3_bucket_cors_configuration.bucket_cors_configuration_this[0]: Refreshing state... [id=bef-storage-364685145795]
+13:29:46  module.bef-storage-s3.aws_s3_bucket_versioning.s3_bucket_versioning_this: Refreshing state... [id=bef-storage-364685145795]
+13:29:46  module.presigned-url-vpc.aws_kms_alias.flow_log_key_alias: Refreshing state... [id=alias/presigned-url-flow-logs-key]
+13:29:46  module.bef-storage-s3.aws_s3_bucket_server_side_encryption_configuration.server_side_encryption_configuration_this: Refreshing state... [id=bef-storage-364685145795]
+13:29:46  module.presigned-url-vpc.data.aws_iam_policy_document.flow_log_key_role_policy: Reading...
+13:29:46  module.bef-storage-s3.aws_cloudwatch_metric_alarm.s3_alarm_4xx[0]: Refreshing state... [id=bef-storage-364685145795-400-errors]
+13:29:46  module.presigned-url-vpc.data.aws_iam_policy_document.flow_log_key_role_policy: Read complete after 0s [id=1284316875]
+13:29:46  module.presigned-url-vpc.module.subnets_routable["10.190.250.0/27"].terraform_data.availability_zone_validation: Refreshing state... [id=f3b7018c-5121-887c-3f40-d15e5d882a1b]
+13:29:46  module.bef-presigned-url-crr-s3-kms[0].aws_kms_alias.key: Refreshing state... [id=alias/bef-presigned-url-crr-s3-kms]
+13:29:46  module.presigned-url-vpc.module.subnets_non_routable["100.127.0.0/16"].data.aws_availability_zones.available_zones: Reading...
+13:29:46  module.presigned-url-vpc.module.subnets_routable["10.190.250.0/27"].terraform_data.tag_validation: Refreshing state... [id=cba2b58d-384d-cbc4-9d87-a90810ca7fc7]
+13:29:46  module.presigned-url-vpc.module.subnets_non_routable["100.127.0.0/16"].data.aws_default_tags.provider_tags: Reading...
+13:29:46  module.presigned-url-vpc.module.subnets_non_routable["100.127.0.0/16"].data.aws_default_tags.provider_tags: Read complete after 0s [id=aws]
+13:29:46  module.presigned-url-vpc.aws_iam_role.flow_logs_role: Refreshing state... [id=golden-vpc-flow-logs-vpc-032202ba219c2af5f]
+13:29:46  data.aws_iam_policy_document.source_crr_s3_replication_policy[0]: Reading...
+13:29:46  data.aws_iam_policy_document.source_crr_s3_replication_policy[0]: Read complete after 0s [id=4222547344]
+13:29:46  data.aws_iam_policy_document.crr_s3_replication_policy[0]: Reading...
+13:29:46  module.presigned-url-vpc.aws_kms_key_policy.flow_log_key_policy: Refreshing state... [id=19924702-720d-4635-9778-ff5590af1f64]
+13:29:46  data.aws_iam_policy_document.crr_s3_replication_policy[0]: Read complete after 0s [id=3426910545]
+13:29:46  module.callback-lambda.aws_cloudwatch_log_group.log_group: Refreshing state... [id=/aws/lambda/bef-intent-upload-callback]
+13:29:46  module.presigned-url-vpc.module.subnets_non_routable["100.127.0.0/16"].data.aws_availability_zones.available_zones: Read complete after 0s [id=us-east-1]
+13:29:46  module.bef-storage-s3.aws_s3_bucket_public_access_block.public_access_block: Refreshing state... [id=bef-storage-364685145795]
+13:29:46  aws_iam_policy.source_crr_s3_replication_iam_policy[0]: Refreshing state... [id=arn:aws:iam::364685145795:policy/bef_s3_source_crr_replication_iam_policy_dev]
+13:29:46  aws_iam_policy.crr_s3_replication_iam_policy[0]: Refreshing state... [id=arn:aws:iam::364685145795:policy/bef_s3_crr_replication_iam_policy_dev]
+13:29:46  module.callback-lambda.aws_cloudwatch_metric_alarm.warn_error_rate[0]: Refreshing state... [id=bef-intent-upload-callback-WARN-Lambda-Errors]
+13:29:46  module.callback-lambda.aws_cloudwatch_metric_alarm.info_throttles[0]: Refreshing state... [id=bef-intent-upload-callback-INFO-Lambda-Throttles]
+13:29:46  module.callback-lambda.aws_cloudwatch_metric_alarm.warn_throttles[0]: Refreshing state... [id=bef-intent-upload-callback-WARN-Lambda-Throttles]
+13:29:46  module.callback-lambda.aws_cloudwatch_metric_alarm.critical_throttles[0]: Refreshing state... [id=bef-intent-upload-callback-CRITICAL-Lambda-Throttles]
+13:29:46  module.callback-lambda.aws_cloudwatch_metric_alarm.critical_error_rate[0]: Refreshing state... [id=bef-intent-upload-callback-CRITICAL-Lambda-Errors]
+13:29:46  module.callback-lambda.aws_cloudwatch_metric_alarm.info_error_rate[0]: Refreshing state... [id=bef-intent-upload-callback-INFO-Lambda-Errors]
+13:29:46  module.presigned-url-vpc.module.subnets_non_routable["100.127.0.0/16"].terraform_data.availability_zone_validation: Refreshing state... [id=10cf1dc8-7968-99ab-2ada-61ab4ca5086b]
+13:29:46  module.presigned-url-vpc.module.subnets_non_routable["100.127.0.0/16"].terraform_data.tag_validation: Refreshing state... [id=bbf26a78-91e3-5b8f-aa83-457bc0755305]
+13:29:46  aws_iam_role_policy_attachment.crr_s3_replication_iam_policy_attachment[0]: Refreshing state... [id=bef_s3_crr_replication_dev-20250319165339503300000001]
+13:29:46  aws_iam_role_policy_attachment.source_crr_s3_replication_iam_policy_attachment[0]: Refreshing state... [id=bef_s3_source_crr_replication_dev-20250319165339542800000002]
+13:29:46  module.presigned-url-vpc.aws_cloudwatch_log_group.flow_log_group: Refreshing state... [id=presigned-url-golden-vpc-flow-log-vpc-032202ba219c2af5f20240815150738549600000001]
+13:29:46  module.presigned-url-vpc.module.subnets_routable["10.190.250.0/27"].aws_subnet.subnets[0]: Refreshing state... [id=subnet-0f1e081dc4dd61f86]
+13:29:46  module.presigned-url-vpc.module.subnets_routable["10.190.250.0/27"].aws_subnet.subnets[1]: Refreshing state... [id=subnet-0c93345bced9818c0]
+13:29:46  module.presigned-url-vpc.module.subnets_non_routable["100.127.0.0/16"].aws_subnet.subnets[0]: Refreshing state... [id=subnet-0bbdaf0833f599fe5]
+13:29:46  module.presigned-url-vpc.module.subnets_non_routable["100.127.0.0/16"].aws_subnet.subnets[1]: Refreshing state... [id=subnet-041086eb9105b4aab]
+13:29:46  module.presigned-url-vpc.terraform_data.nat_gateway_validation: Refreshing state... [id=c1fdc0c4-716f-28a3-fe3c-31fa45166b00]
+13:29:47  module.presigned-url-vpc.aws_flow_log.flow_log: Refreshing state... [id=fl-076ea20a986ac584f]
+13:29:47  module.presigned-url-vpc.aws_cloudwatch_log_subscription_filter.splunk: Refreshing state... [id=cwlsf-1171907921]
+13:29:47  module.presigned-url-vpc.aws_ec2_transit_gateway_vpc_attachment.tgw_attachment[0]: Refreshing state... [id=tgw-attach-0ee9c238daea0f920]
+13:29:47  module.presigned-url-vpc.aws_default_network_acl.default: Refreshing state... [id=acl-0b6810d3bb0785e5d]
+13:29:47  module.presigned-url-vpc.aws_vpc_endpoint.gateways["s3"]: Refreshing state... [id=vpce-0c5bc6d8a737a4f60]
+13:29:47  module.bef-storage-s3.aws_s3_bucket_ownership_controls.s3_bucket_ownership_replicated[0]: Refreshing state... [id=bef-storage-364685145795-copy]
+13:29:47  module.bef-storage-s3.aws_s3_bucket_policy.crr_bucket_policy[0]: Refreshing state... [id=bef-storage-364685145795-copy]
+13:29:47  module.bef-storage-s3.aws_s3_bucket_versioning.s3_bucket_versioning_replicated_bucket[0]: Refreshing state... [id=bef-storage-364685145795-copy]
+13:29:47  module.bef-storage-s3.aws_s3_bucket_server_side_encryption_configuration.server_side_encryption_configuration_replicated_bucket[0]: Refreshing state... [id=bef-storage-364685145795-copy]
+13:29:47  module.bef-storage-s3.aws_s3_bucket_metric.crr_bucket_metric[0]: Refreshing state... [id=bef-storage-364685145795-copy:EntireBucket]
+13:29:47  module.bef-storage-s3.aws_s3_bucket_lifecycle_configuration.s3_bucket_lifecycle_replicated_bucket[0]: Refreshing state... [id=bef-storage-364685145795-copy]
+13:29:47  module.bef-storage-s3.aws_s3_bucket_public_access_block.crr_public_access_block[0]: Refreshing state... [id=bef-storage-364685145795-copy]
+13:29:47  module.presigned-url-vpc.aws_vpc_endpoint_policy.gateway_policies["s3"]: Refreshing state... [id=vpce-0c5bc6d8a737a4f60]
+13:29:47  module.presigned-url-vpc.aws_vpc_endpoint.interfaces_routable["secretsmanager"]: Refreshing state... [id=vpce-0779fc9f3e93b45ac]
+13:29:47  aws_security_group.presigned-url-sg: Refreshing state... [id=sg-03c2a1bf76bc9d509]
+13:29:47  module.bef-storage-s3.aws_s3_bucket_replication_configuration.replication_configuration_this[0]: Refreshing state... [id=bef-storage-364685145795]
+13:29:48  module.presigned-url-lambda.aws_lambda_function.lambda: Refreshing state... [id=bef-presigned-url]
+13:29:48  module.callback-lambda.aws_lambda_function.lambda: Refreshing state... [id=bef-intent-upload-callback]
+13:29:48  aws_cloudwatch_event_target.callback-lambda-target: Refreshing state... [id=bef_storage_file_creation_notification-terraform-20250206195015036400000002]
+13:29:48  aws_lambda_permission.eventbridge-rule-execution-permission: Refreshing state... [id=AllowExecutionFromCloudWatch]
+13:29:48  aws_cloudwatch_log_subscription_filter.callback-subscription: Refreshing state... [id=cwlsf-758705008]
+13:29:48  aws_cloudwatch_log_subscription_filter.example: Refreshing state... [id=cwlsf-2303122405]
+13:29:48  aws_lambda_permission.authinator_permission: Refreshing state... [id=GATEWAY]
+13:29:48  module.presigned-url-vpc.aws_vpc_endpoint_policy.interface_policies["secretsmanager"]: Refreshing state... [id=vpce-0779fc9f3e93b45ac]
+13:29:48  aws_s3_bucket_replication_configuration.crr_bucket_replication_configuration[0]: Refreshing state... [id=bef-storage-364685145795-copy]
+13:29:49  
+13:29:49  No changes. Your infrastructure matches the configuration.
+13:29:49  
+13:29:49  Terraform has compared your real infrastructure against your configuration
+13:29:49  and found no differences, so no changes are needed.
+13:29:54  
+13:29:54  Warning: Reference to undefined provider
+13:29:54  
+13:29:54    on bef-presigned-url-kms.tf line 15, in module "bef-presigned-url-crr-s3-kms":
+13:29:54    15:     aws = aws.crr
+13:29:54  
+13:29:54  There is no explicit declaration for local provider name "aws" in
+13:29:54  module.bef-presigned-url-crr-s3-kms, so Terraform is assuming you mean to
+13:29:54  pass a configuration for "hashicorp/aws".
+13:29:54  
+13:29:54  If you also control the child module, add a required_providers entry named
+13:29:54  "aws" with the source address "hashicorp/aws".
+13:29:54  
+13:29:54  Warning: Argument is deprecated
+13:29:54  
+13:29:54    with module.presigned-url-vpc.aws_iam_role.flow_logs_role,
+13:29:54    on .terraform/modules/presigned-url-vpc/iam.tf line 1, in resource "aws_iam_role" "flow_logs_role":
+13:29:54     1: resource "aws_iam_role" "flow_logs_role" {
+13:29:54  
+13:29:54  inline_policy is deprecated. Use the aws_iam_role_policy resource instead. If
+13:29:54  Terraform should exclusively manage all inline policy associations (the
+13:29:54  current behavior of this argument), use the aws_iam_role_policies_exclusive
+13:29:54  resource as well.
+13:29:54  
+13:29:54  (and 2 more similar warnings elsewhere)
+13:29:54  
+13:29:54  Apply complete! Resources: 0 added, 0 changed, 0 destroyed.
+13:29:54  
+13:29:54  terraform apply successful
+13:29:54  
+13:29:54  WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+13:29:54  
+13:29:54  Package: cnp-util-core
+13:29:54  Version: 1.0.2-dev-ov2
+13:29:54  Status: install ok installed
+13:29:54  Priority: optional
+13:29:54  Maintainer: Evernorth Software Engineering Excellence
+13:29:54  Installed-Size: unknown
+13:29:54  Depends: jq
+13:29:54  Download-Size: unknown
+13:29:54  APT-Manual-Installed: no
+13:29:54  APT-Sources: /var/lib/dpkg/status
+13:29:54  Description: Scripts and utilities for use with your cnp modules
+13:29:54  
+[Pipeline] fileExists
+[Pipeline] readFile
+[Pipeline] echo
+13:29:54  {
+13:29:54  "commandResult":"SUCCESS",
+13:29:54  "commandOutput": {
+13:29:54  }
+13:29:54  }
+13:29:54  
+[Pipeline] sh
+13:29:55  + rm cnp-deploy-terraform-aws-results.json
+[Pipeline] echo
+13:29:55  ---> END MODULE (DEPLOY:cnp-deploy-terraform-aws)
+[Pipeline] }
+[Pipeline] // dir
+[Pipeline] echo
+13:29:55  Phase caching is disabled, not stashing files.
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // configFileProvider
+[Pipeline] }
+[Pipeline] // withCredentials
+[Pipeline] }
+[Pipeline] // container
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // container
+[Pipeline] echo
+13:29:55  <--- END PHASE 'Module'
+[Pipeline] }
+13:29:55  
+[Pipeline] // ansiColor
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] ansiColor
+[Pipeline] {
+13:29:55  
+[Pipeline] echo
+13:29:55  ---> START PHASE 'Linting'
+[Pipeline] echo
+13:29:55  Switching to container ''
+[Pipeline] container
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Linting)
+[Pipeline] withCredentials
+[Pipeline] {
+[Pipeline] configFileProvider
+13:29:55  provisioning config files...
+[Pipeline] {
+[Pipeline] dir
+13:29:55  Running in /home/jenkins/agent/workspace/bef-intentapi_feature-PBBEF-1571
+[Pipeline] {
+[Pipeline] echo
+13:29:55  Phase caching is disabled, not stashing files.
+[Pipeline] parallel
+[Pipeline] { (Branch: approvalrequest)
+[Pipeline] echo
+13:29:55  Switching to container 'jnlp'
+[Pipeline] container
+[Pipeline] {
+[Pipeline] parallel
+[Pipeline] { (Branch: sendEmail)
+[Pipeline] { (Branch: sendMattermost)
+[Pipeline] { (Branch: sendTeams)
+[Pipeline] { (Branch: sendWebex)
+[Pipeline] }
+[Pipeline] }
+[Pipeline] }
+[Pipeline] }
+[Pipeline] // parallel
+[Pipeline] echo
+13:29:55  Give input to Jenkins request
+[Pipeline] echo
+13:29:55  Submitter: accounts\C8P8ZF,accounts\P57026, accounts\EI5194, accounts\C8Q9M3, accounts\C8G2NZ
+[Pipeline] timeout
+13:29:55  Timeout set to expire in 2 hr 0 min
+[Pipeline] {
+[Pipeline] input
+13:29:55  Do you want to execute terraform apply to DEV ?
+13:29:55  Proceed or Abort
+13:30:19  Approved by accounts\C8P8ZF
+[Pipeline] }
+[Pipeline] // timeout
+[Pipeline] }
+[Pipeline] // container
+[Pipeline] }
+[Pipeline] // parallel
+[Pipeline] echo
+13:30:19  Phase caching is disabled, not stashing files.
+[Pipeline] }
+[Pipeline] // dir
+[Pipeline] }
+[Pipeline] // configFileProvider
+[Pipeline] }
+[Pipeline] // withCredentials
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // container
+[Pipeline] echo
+13:30:19  <--- END PHASE 'Linting'
+[Pipeline] }
+13:30:19  
+[Pipeline] // ansiColor
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] ansiColor
+[Pipeline] {
+13:30:19  
+[Pipeline] echo
+13:30:19  ---> START PHASE 'Module'
+[Pipeline] echo
+13:30:19  Switching to container 'cnp-docker-terraformv100-dev-ov2'
+[Pipeline] container
+[Pipeline] {
+[Pipeline] echo
+13:30:19  Credential : [@string(credentialsId=DAWS-HS-UPSILONFRIES,variable=CNP_DEPLOY_TERRAFORM_AWS_MODULE_TOKEN), @string(credentialsId=DAWS-HS-UPSILONFRIES,variable=CNP_DEPLOY_TERRAFORM_AWS_TOKEN)]
+[Pipeline] echo
+13:30:19  Credential : [@usernamePassword(credentialsId=81fbd2fe-c892-472c-9a20-6a327b2960d3,passwordVariable=CNP_DEPLOY_TERRAFORM_AWS_MODULE_PASSWORD,usernameVariable=CNP_DEPLOY_TERRAFORM_AWS_MODULE_USER), @usernamePassword(credentialsId=81fbd2fe-c892-472c-9a20-6a327b2960d3,passwordVariable=CNP_DEPLOY_TERRAFORM_AWS_CRED,usernameVariable=CNP_DEPLOY_TERRAFORM_AWS_USER)]
+[Pipeline] echo
+13:30:19  Credential : [@usernamePassword(credentialsId=INTAKE-CONSUMER-DEV,passwordVariable=TF_VAR_intent_consumer_secret,usernameVariable=TF_VAR_intent_consumer_key), @usernamePassword(credentialsId=INTAKE-CONSUMER-DEV,passwordVariable=TF_VAR_intent_consumer_secret,usernameVariable=TF_VAR_intent_consumer_key)]
+[Pipeline] echo
+13:30:19  Jira Scanning - DISABLED
+[Pipeline] echo
+13:30:19  CNP_XLR_TEMPLATE_URL is configured to https://xlrelease.express-scripts.com/api/v1/templates/Applications/templates/Folder2a9c42e13b784e8fbb57c559852b807c/Release47c3527db6944b918488c5c90166c4b0/start
+[Pipeline] echo
+13:30:19  setting CNP_CALLBACK_JOB to https://orchestrator24.orchestrator-v2.sys.cigna.com/job/orchestrators-folders/job/pbbef/job/Production/job/DevOps/job/EPF/job/XLRCallbackHandler/
+[Pipeline] echo
+13:30:19  setting CNP_CANDIDATE_JOB to orchestrators-folders/job/pbbef/job/Production/job/DevOps/job/EPF/job/CandidateDeployer
+[Pipeline] stage
+[Pipeline] { (terraform: apply dev-candidate)
+[Pipeline] echo
+13:30:19  Switching to container 'cnp-docker-terraformv100-dev-ov2'
+[Pipeline] container
+[Pipeline] {
+[Pipeline] withCredentials
+13:30:19  Masking supported pattern matches of $TF_VAR_intent_consumer_key or $TF_VAR_intent_consumer_secret or $CNP_DEPLOY_TERRAFORM_AWS_MODULE_TOKEN or $CNP_DEPLOY_TERRAFORM_AWS_TOKEN or $CNP_DEPLOY_TERRAFORM_AWS_MODULE_USER or $CNP_DEPLOY_TERRAFORM_AWS_MODULE_PASSWORD or $CNP_DEPLOY_TERRAFORM_AWS_USER or $CNP_DEPLOY_TERRAFORM_AWS_CRED
+[Pipeline] {
+[Pipeline] configFileProvider
+13:30:19  provisioning config files...
+[Pipeline] {
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] echo
+13:30:19  Phase caching is disabled, not stashing files.
+[Pipeline] dir
+13:30:19  Running in /home/jenkins/agent/workspace/bef-intentapi_feature-PBBEF-1571
+[Pipeline] {
+[Pipeline] echo
+13:30:19  ---> START MODULE (DEPLOY:cnp-deploy-terraform-aws)
+[Pipeline] sh
+13:30:20  + cnp-deploy-terraform-aws.sh apply {"credentials":[{"id":"DAWS-HS-UPSILONFRIES","type":"string"},{"id":"81fbd2fe-c892-472c-9a20-6a327b2960d3"},{"id":"INTAKE-CONSUMER-DEV","usernameVariable":"TF_VAR_intent_consumer_key","passwordVariable":"TF_VAR_intent_consumer_secret"}],"configDir":"envs/dev-candidate","env":"dev-candidate","awsAccountId":"364685145795","awsUsername":"DAWS-HS-UPSILONFRIES","awsRoleName":"DEPLOYER","tfVersion":"1.4.6","tfDir":"","Release_JenkinsMaster":"orchestrator24.orchestrator-v2.sys.cigna.com","Release_BuildUri":"https://orchestrator24.orchestrator-v2.sys.cigna.com/job/orchestrators-folders/job/pbbef/job/Non-Production/job/TERRAFORMS/job/aws-terraform-hs-bef-intentapi/job/feature-PBBEF-1571/40/","Release_rollbackDeploymentPackagePath":"","branchName":"feature-PBBEF-1571","repoUrl":"https://git.express-scripts.com/ExpressScripts/aws-terraform-hs-bef-intentapi.git","commitId":"e8f295edb28327578b05f1f3b1ec976e6dbe0252"}
+13:30:20  
+13:30:20  WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+13:30:20  
+13:30:20  Package: cnp-deploy-terraform-aws
+13:30:20  Version: 0.3.4
+13:30:20  Status: install ok installed
+13:30:20  Priority: optional
+13:30:20  Maintainer: Evernorth Software Engineering Excellence
+13:30:20  Installed-Size: unknown
+13:30:20  Depends: cnp-util-core, cnp-login-aws
+13:30:20  Download-Size: unknown
+13:30:20  APT-Manual-Installed: yes
+13:30:20  APT-Sources: /var/lib/dpkg/status
+13:30:20  Description: This has terraform scripts for AWS deployment.
+13:30:20  
+13:30:20  Setting variable repoUrl with value 'https://git.express-scripts.com/ExpressScripts/aws-terraform-hs-bef-intentapi.git'
+13:30:20  Setting variable configDir with value 'envs/dev-candidate'
+13:30:20  Setting variable awsAccountId with value '364685145795'
+13:30:20  Setting variable awsRoleName with value 'DEPLOYER'
+13:30:20  Setting variable awsUsername with value 'DAWS-HS-UPSILONFRIES'
+13:30:20  Setting variable tfVersion with value '1.4.6'
+13:30:20  Missing tfDir and defaulting to repository root
+13:30:20  awsUsername: DAWS-HS-UPSILONFRIES
+13:30:20  loginParams: {"awsAccountId":"364685145795","awsRoleName":"DEPLOYER","awsUsername":"DAWS-HS-UPSILONFRIES"}
+13:30:20  
+13:30:20  WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+13:30:20  
+13:30:20  Package: cnp-login-aws
+13:30:20  Version: 1.0.2-dev-ov2
+13:30:20  Status: install ok installed
+13:30:20  Priority: optional
+13:30:20  Maintainer: Evernorth Software Engineering Excellence
+13:30:20  Installed-Size: unknown
+13:30:20  Depends: python3, python3-pip, apt-transport-https, unzip, curl, cnp-util-core
+13:30:20  Download-Size: unknown
+13:30:20  APT-Manual-Installed: no
+13:30:20  APT-Sources: /var/lib/dpkg/status
+13:30:20  Description: This module logs into AWS using saml2aws.
+13:30:20  
+13:30:20  Setting variable awsAccountId with value '364685145795'
+13:30:20  Setting variable awsRoleName with value 'DEPLOYER'
+13:30:20  Setting variable awsUsername with value 'DAWS-HS-UPSILONFRIES'
+13:30:20  awsAccountId: 364685145795
+13:30:20  awsRoleName: DEPLOYER
+13:30:20  awsUsername: DAWS-HS-UPSILONFRIES
+13:30:20  CNP_AWS_IDP_PROVIDER is configured to Okta.
+13:30:20  For your accounts to work with Okta, DAWS-HS-UPSILONFRIES should be configured with the following
+13:30:20    1. givenName=DAWS-HS-UPSILONFRIES,
+13:30:20    2. sn=DAWS-HS-UPSILONFRIES,
+13:30:20    3. mail=DAWS-HS-UPSILONFRIES@express-scripts.com,
+13:30:20    4. employeeNumber
+13:30:20  
+13:30:20  Logging into AWS...
+13:30:20  Using IDP Account default to access Okta https://cigna.okta.com/home/cigna_awsaccountfederation_1/0oa73k6r3qgarO3uY4x7/aln73kc6ziVIaLcRj4x7
+13:30:20  Authenticating as accounts\DAWS-HS-UPSILONFRIES ...
+13:30:22  Selected role: arn:aws:iam::364685145795:role/DEPLOYER
+13:30:22  Requesting AWS credentials using SAML assertion
+13:30:22  Logged in as: arn:aws:sts::364685145795:assumed-role/DEPLOYER/421131-S
+13:30:22  
+13:30:22  Your new access key pair has been stored in the AWS configuration
+13:30:22  Note that it will expire at 2025-03-19 18:30:22 +0000 UTC
+13:30:22  
+13:30:22  saml2aws login successful
+13:30:22  
+13:30:22  WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+13:30:22  
+13:30:22  Package: cnp-util-core
+13:30:22  Version: 1.0.2-dev-ov2
+13:30:22  Status: install ok installed
+13:30:22  Priority: optional
+13:30:22  Maintainer: Evernorth Software Engineering Excellence
+13:30:22  Installed-Size: unknown
+13:30:22  Depends: jq
+13:30:22  Download-Size: unknown
+13:30:22  APT-Manual-Installed: no
+13:30:22  APT-Sources: /var/lib/dpkg/status
+13:30:22  Description: Scripts and utilities for use with your cnp modules
+13:30:22  
+13:30:22  
+13:30:22  cnp-login-aws.sh saml2aws successful
+13:30:22  Setup git config & install Terraform...
+13:30:22  core.repositoryformatversion=0
+13:30:22  core.filemode=true
+13:30:22  core.bare=false
+13:30:22  core.logallrefupdates=true
+13:30:22  core.hookspath=/dev/null
+13:30:22  remote.origin.url=https://git.express-scripts.com/ExpressScripts/aws-terraform-hs-bef-intentapi.git
+13:30:22  remote.origin.fetch=+refs/heads/feature-PBBEF-1571:refs/remotes/origin/feature-PBBEF-1571
+13:30:22  url.https://****:****@git.express-scripts.com/.insteadof=git@git.express-scripts.com:
+13:30:22  url.https://****:****@git.express-scripts.com.insteadof=https://git.express-scripts.com
+13:30:22  http.sslverify=false
+13:30:22  Terraform v1.4.6 is already installed
+13:30:22  Switching default version to v1.4.6
+13:30:22  Default version (when not overridden by .terraform-version or TFENV_TERRAFORM_VERSION) is now: 1.4.6
+13:30:22  Initializing Terraform...
+13:30:22  - Terraform Working Directory: /home/jenkins/agent/workspace/bef-intentapi_feature-PBBEF-1571
+13:30:22  - backend config: envs/dev-candidate/backend.config
+13:30:23  
+13:30:23  Initializing the backend...
+13:30:28  
+13:30:28  Successfully configured the backend "s3"! Terraform will automatically
+13:30:28  use this backend unless the backend configuration changes.
+13:30:33  Initializing modules...
+13:30:33  
+13:30:33  Initializing provider plugins...
+13:30:33  - terraform.io/builtin/terraform is built in to Terraform
+13:30:33  - Reusing previous version of hashicorp/aws from the dependency lock file
+13:30:33  - Reusing previous version of hashicorp/archive from the dependency lock file
+13:30:38  - Using previously-installed hashicorp/aws v5.91.0
+13:30:38  - Using previously-installed hashicorp/archive v2.7.0
+13:30:38  
+13:30:38  ╷
+13:30:38  │ Warning: Reference to undefined provider
+13:30:38  │ 
+13:30:38  │   on bef-presigned-url-kms.tf line 15, in module "bef-presigned-url-crr-s3-kms":
+13:30:38  │   15:     aws = aws.crr
+13:30:38  │ 
+13:30:38  │ There is no explicit declaration for local provider name "aws" in
+13:30:38  │ module.bef-presigned-url-crr-s3-kms, so Terraform is assuming you mean to
+13:30:38  │ pass a configuration for "hashicorp/aws".
+13:30:38  │ 
+13:30:38  │ If you also control the child module, add a required_providers entry named
+13:30:38  │ "aws" with the source address "hashicorp/aws".
+13:30:38  ╵
+13:30:38  
+13:30:38  Terraform has been successfully initialized!
+13:30:38  
+13:30:38  You may now begin working with Terraform. Try running "terraform plan" to see
+13:30:38  any changes that are required for your infrastructure. All Terraform commands
+13:30:38  should now work.
+13:30:38  
+13:30:38  If you ever set or change modules or backend configuration for Terraform,
+13:30:38  rerun this command to reinitialize your working directory. If you forget, other
+13:30:38  commands will detect it and remind you to do so if necessary.
+13:30:38  
+13:30:38  terraform init successful
+13:30:38  - Using Var File: envs/dev-candidate/dev-candidate.tfvars
+13:30:38  
+13:30:38  Planning...
+13:30:38  - Terraform Working Directory: /home/jenkins/agent/workspace/bef-intentapi_feature-PBBEF-1571
+13:30:38  - Terraform Config Directory: envs/dev-candidate
+13:30:38  terraform plan -no-color -input=false -var-file=envs/dev-candidate/dev-candidate.tfvars  
+13:31:05  data.archive_file.callback-lambda-code: Reading...
+13:31:05  data.archive_file.presigned-url-code: Reading...
+13:31:05  data.archive_file.presigned-url-code: Read complete after 1s [id=4e1b3bbeea6e0c8e7281964da11adc6e7d50cc6e]
+13:31:05  data.archive_file.callback-lambda-code: Read complete after 1s [id=30798eb40a637f755ba50c35e416f9203bf1a416]
+13:31:13  module.presigned-url-vpc.data.aws_ssm_parameter.org_centralized_logging_arn: Reading...
+13:31:13  module.presigned-url-vpc.data.aws_vpc_endpoint_service.gateways["s3"]: Reading...
+13:31:13  data.aws_iam_role.bef_lambda_role: Reading...
+13:31:13  data.aws_iam_policy_document.presigned-url-s3-endpoint-policy: Reading...
+13:31:13  module.presigned-url-vpc.data.aws_ec2_managed_prefix_list.prefix_list_health_services: Reading...
+13:31:13  module.presigned-url-vpc.data.aws_iam_account_alias.current: Reading...
+13:31:13  module.presigned-url-vpc.data.aws_caller_identity.current: Reading...
+13:31:13  data.aws_iam_policy_document.presigned-url-s3-endpoint-policy: Read complete after 0s [id=2750445730]
+13:31:13  module.presigned-url-vpc.data.aws_vpc_endpoint_service.interfaces["secretsmanager"]: Reading...
+13:31:13  module.presigned-url-vpc.data.aws_ssm_parameter.route53_default_zone_ids["Evernorthcloud"]: Reading...
+13:31:13  module.presigned-url-vpc.data.aws_caller_identity.current: Read complete after 0s [id=364685145795]
+13:31:13  module.presigned-url-vpc.data.aws_ssm_parameter.route53_default_zone_ids["Cigna"]: Reading...
+13:31:13  data.aws_region.current_region: Reading...
+13:31:13  data.aws_region.current_region: Read complete after 0s [id=us-west-1]
+13:31:13  module.presigned-url-vpc.data.aws_ssm_parameter.org_centralized_logging_role: Reading...
+13:31:13  module.presigned-url-vpc.data.aws_iam_account_alias.current: Read complete after 0s [id=hs-upsilon-fries-dev]
+13:31:13  data.aws_iam_role.bef_lambda_callback_role: Reading...
+13:31:13  module.presigned-url-vpc.data.aws_region.current: Reading...
+13:31:13  module.presigned-url-vpc.data.aws_region.current: Read complete after 0s [id=us-west-1]
+13:31:13  module.presigned-url-vpc.data.aws_ssm_parameter.transit_gateway_id: Reading...
+13:31:13  data.aws_iam_role.bef_lambda_role: Read complete after 0s [id=BEFStorageSolution]
+13:31:13  data.aws_iam_role.bef_lambda_callback_role: Read complete after 0s [id=BEFStorageSolutionLambdaCallback]
+13:31:13  module.presigned-url-vpc.data.aws_ssm_parameters_by_path.route53_as_a_service_zones_by_path: Reading...
+13:31:13  module.presigned-url-vpc.data.aws_availability_zones.available_zones: Reading...
+13:31:13  module.presigned-url-vpc.data.aws_ssm_parameter.org_centralized_logging_arn: Read complete after 0s [id=/Enterprise/OrgCentralLoggingDestinationArn]
+13:31:13  data.aws_ssm_parameter.org_logging_arn: Reading...
+13:31:13  module.presigned-url-vpc.data.aws_ssm_parameter.route53_default_zone_ids["Cigna"]: Read complete after 0s [id=/Enterprise/PrivateHostedZoneId]
+13:31:13  module.bef-storage-s3.data.aws_iam_account_alias.current: Reading...
+13:31:13  module.presigned-url-vpc.data.aws_ssm_parameter.route53_default_zone_ids["Evernorthcloud"]: Read complete after 0s [id=/Enterprise/EvernorthcloudPrivateHostedZoneId]
+13:31:13  data.aws_caller_identity.current: Reading...
+13:31:13  module.presigned-url-vpc.data.aws_ssm_parameter.org_centralized_logging_role: Read complete after 0s [id=/Enterprise/OrgCentralLoggingRole]
+13:31:13  data.aws_ssm_parameter.org_logging_role: Reading...
+13:31:13  module.presigned-url-vpc.data.aws_default_tags.provider_tags: Reading...
+13:31:13  module.presigned-url-vpc.data.aws_default_tags.provider_tags: Read complete after 0s [id=aws]
+13:31:13  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["CignatestCom"]: Reading...
+13:31:13  module.bef-storage-s3.data.aws_iam_account_alias.current: Read complete after 0s [id=hs-upsilon-fries-dev]
+13:31:13  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["GlbcoreCom"]: Reading...
+13:31:13  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["AwsEvernorthcloudCom"]: Reading...
+13:31:13  module.presigned-url-vpc.data.aws_ssm_parameters_by_path.route53_as_a_service_zones_by_path: Read complete after 0s [id=/HermesManaged/Route53AsAService/PrivateHostedZoneId/]
+13:31:13  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["PrivatelinkSnowflakecomputingComRegionless"]: Reading...
+13:31:13  data.aws_caller_identity.current: Read complete after 0s [id=364685145795]
+13:31:13  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["UsEast1ConfluentCloud"]: Reading...
+13:31:13  data.aws_ssm_parameter.org_logging_arn: Read complete after 0s [id=/Enterprise/OrgCentralLoggingDestinationArn]
+13:31:13  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["HealthspringInside"]: Reading...
+13:31:13  data.aws_ssm_parameter.org_logging_role: Read complete after 0s [id=/Enterprise/OrgCentralLoggingRole]
+13:31:13  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["GlobalcoreCom"]: Reading...
+13:31:13  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["ExpressScriptsIo"]: Reading...
+13:31:13  module.presigned-url-vpc.data.aws_vpc_endpoint_service.interfaces["secretsmanager"]: Read complete after 1s [id=1192454675]
+13:31:13  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["GlobalcoredevCom"]: Reading...
+13:31:13  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["OpenshiftEvernorthcloudCom"]: Reading...
+13:31:13  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["AwsCignacloudCom"]: Reading...
+13:31:13  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["OpenshiftCignacloudCom"]: Reading...
+13:31:13  module.presigned-url-vpc.data.aws_availability_zones.available_zones: Read complete after 1s [id=us-west-1]
+13:31:13  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["CignaEnvoy"]: Reading...
+13:31:13  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["MedcoCom"]: Reading...
+13:31:13  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["ExpressScriptsCom"]: Reading...
+13:31:13  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["PrivatelinkSnowflakecomputingCom"]: Reading...
+13:31:13  module.presigned-url-vpc.data.aws_vpc_endpoint_service.gateways["s3"]: Read complete after 1s [id=232243903]
+13:31:13  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["AccountsRootCorp"]: Reading...
+13:31:13  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["CignaCom"]: Reading...
+13:31:13  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["SilverCom"]: Reading...
+13:31:13  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_query_log_config_id: Reading...
+13:31:13  module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["GlbcoredevCom"]: Reading...
+13:31:13  module.presigned-url-vpc.data.aws_iam_policy_document.centralized_logging_role_policy: Reading...
+13:31:13  module.presigned-url-vpc.data.aws_iam_policy_document.centralized_logging_role_policy: Read complete after 0s [id=746002065]
+13:31:13  module.presigned-url-vpc.data.aws_iam_policy_document.endpoint_gateway_policy_s3: Reading...
+13:31:13  module.presigned-url-vpc.data.aws_iam_policy_document.endpoint_gateway_policy_s3: Read complete after 0s [id=4034136508]
+13:31:13  module.presigned-url-vpc.data.aws_iam_policy_document.endpoint_interface_policy["secretsmanager"]: Reading...
+13:31:13  module.presigned-url-vpc.data.aws_iam_policy_document.endpoint_gateway_policy["s3"]: Reading...
+13:31:13  module.presigned-url-vpc.data.aws_iam_policy_document.endpoint_interface_policy["secretsmanager"]: Read complete after 0s [id=431242839]
+13:31:13  module.presigned-url-vpc.data.aws_iam_policy_document.endpoint_gateway_policy["s3"]: Read complete after 0s [id=1003532734]
+13:31:13  
+13:31:13  Terraform used the selected providers to generate the following execution
+13:31:13  plan. Resource actions are indicated with the following symbols:
+13:31:13    + create
+13:31:13  
+13:31:13  Terraform planned the following actions, but then encountered a problem:
+13:31:13  
+13:31:13    # aws_cloudwatch_event_rule.bef-file-create-rule will be created
+13:31:13    + resource "aws_cloudwatch_event_rule" "bef-file-create-rule" {
+13:31:13        + arn            = (known after apply)
+13:31:13        + event_bus_name = "default"
+13:31:13        + event_pattern  = jsonencode(
+13:31:13              {
+13:31:13                + detail      = {
+13:31:13                    + bucket = {
+13:31:13                        + name = [
+13:31:13                            + "bef-storage-candidates-364685145795-copy",
+13:31:13                          ]
+13:31:13                      }
+13:31:13                  }
+13:31:13                + detail-type = [
+13:31:13                    + "Object Created",
+13:31:13                  ]
+13:31:13                + source      = [
+13:31:13                    + "aws.s3",
+13:31:13                  ]
+13:31:13              }
+13:31:13          )
+13:31:13        + force_destroy  = false
+13:31:13        + id             = (known after apply)
+13:31:13        + name           = "bef_storage_file_creation_notification"
+13:31:13        + name_prefix    = (known after apply)
+13:31:13        + tags_all       = (known after apply)
+13:31:13      }
+13:31:13  
+13:31:13    # aws_lambda_layer_version.bef-lambda-layer-requests will be created
+13:31:13    + resource "aws_lambda_layer_version" "bef-lambda-layer-requests" {
+13:31:13        + arn                         = (known after apply)
+13:31:13        + code_sha256                 = (known after apply)
+13:31:13        + compatible_architectures    = [
+13:31:13            + "arm64",
+13:31:13            + "x86_64",
+13:31:13          ]
+13:31:13        + compatible_runtimes         = [
+13:31:13            + "python3.11",
+13:31:13            + "python3.12",
+13:31:13          ]
+13:31:13        + created_date                = (known after apply)
+13:31:13        + description                 = "Lambda Python 3.11 and Python 3.12 layer for requests and requests_aws4auth"
+13:31:13        + filename                    = "./layer-packages/python_layer_requests.zip"
+13:31:13        + id                          = (known after apply)
+13:31:13        + layer_arn                   = (known after apply)
+13:31:13        + layer_name                  = "bef-presigned-url-request-layer"
+13:31:13        + signing_job_arn             = (known after apply)
+13:31:13        + signing_profile_version_arn = (known after apply)
+13:31:13        + skip_destroy                = false
+13:31:13        + source_code_hash            = "wpthUmEbPrn+1qY4+yt3yW+jGD/T9yqpDfPvP4UCCIU="
+13:31:13        + source_code_size            = (known after apply)
+13:31:13        + version                     = (known after apply)
+13:31:13      }
+13:31:13  
+13:31:13    # aws_s3_access_point.s3_access_point will be created
+13:31:13    + resource "aws_s3_access_point" "s3_access_point" {
+13:31:13        + account_id               = (known after apply)
+13:31:13        + alias                    = (known after apply)
+13:31:13        + arn                      = (known after apply)
+13:31:13        + bucket                   = "bef-storage-candidates-364685145795-copy"
+13:31:13        + bucket_account_id        = (known after apply)
+13:31:13        + domain_name              = (known after apply)
+13:31:13        + endpoints                = (known after apply)
+13:31:13        + has_public_access_policy = (known after apply)
+13:31:13        + id                       = (known after apply)
+13:31:13        + name                     = "bef-storage-candidates-364685145795-copy-ap"
+13:31:13        + network_origin           = (known after apply)
+13:31:13        + policy                   = (known after apply)
+13:31:13  
+13:31:13        + public_access_block_configuration {
+13:31:13            + block_public_acls       = true
+13:31:13            + block_public_policy     = true
+13:31:13            + ignore_public_acls      = true
+13:31:13            + restrict_public_buckets = true
+13:31:13          }
+13:31:13      }
+13:31:13  
+13:31:13    # aws_s3_bucket_notification.enable-eventbridge-notification will be created
+13:31:13    + resource "aws_s3_bucket_notification" "enable-eventbridge-notification" {
+13:31:13        + bucket      = "bef-storage-candidates-364685145795-copy"
+13:31:13        + eventbridge = true
+13:31:13        + id          = (known after apply)
+13:31:13      }
+13:31:13  
+13:31:13    # aws_s3control_access_point_policy.s3_access_point_policy will be created
+13:31:13    + resource "aws_s3control_access_point_policy" "s3_access_point_policy" {
+13:31:13        + access_point_arn         = (known after apply)
+13:31:13        + has_public_access_policy = (known after apply)
+13:31:13        + id                       = (known after apply)
+13:31:13        + policy                   = (known after apply)
+13:31:13      }
+13:31:13  
+13:31:13    # module.presigned-url-lambda.aws_cloudwatch_metric_alarm.critical_error_rate[0] will be created
+13:31:13    + resource "aws_cloudwatch_metric_alarm" "critical_error_rate" {
+13:31:13        + actions_enabled                       = true
+13:31:13        + alarm_actions                         = [
+13:31:13            + "arn:aws:sns:us-east-1:929468956630:cloudwatch-alarm-funnel",
+13:31:13          ]
+13:31:13        + alarm_description                     = "dev-candidates|CRITICAL|bef-File-Storage-candidates|Lambda Error Rate > 20%"
+13:31:13        + alarm_name                            = "bef-presigned-url-candidates-CRITICAL-Lambda-Errors"
+13:31:13        + arn                                   = (known after apply)
+13:31:13        + comparison_operator                   = "GreaterThanOrEqualToThreshold"
+13:31:13        + evaluate_low_sample_count_percentiles = (known after apply)
+13:31:13        + evaluation_periods                    = 3
+13:31:13        + id                                    = (known after apply)
+13:31:13        + ok_actions                            = [
+13:31:13            + "arn:aws:sns:us-east-1:929468956630:cloudwatch-alarm-funnel",
+13:31:13          ]
+13:31:13        + tags_all                              = (known after apply)
+13:31:13        + threshold                             = 20
+13:31:13        + treat_missing_data                    = "notBreaching"
+13:31:13  
+13:31:13        + metric_query {
+13:31:13            + id          = "errors"
+13:31:13            + return_data = false
+13:31:13  
+13:31:13            + metric {
+13:31:13                + dimensions  = {
+13:31:13                    + "FunctionName" = "bef-presigned-url-candidates"
+13:31:13                  }
+13:31:13                + metric_name = "Errors"
+13:31:13                + namespace   = "AWS/Lambda"
+13:31:13                + period      = 60
+13:31:13                + stat        = "Sum"
+13:31:13                + unit        = "Count"
+13:31:13              }
+13:31:13          }
+13:31:13        + metric_query {
+13:31:13            + id          = "invocations"
+13:31:13            + return_data = false
+13:31:13  
+13:31:13            + metric {
+13:31:13                + dimensions  = {
+13:31:13                    + "FunctionName" = "bef-presigned-url-candidates"
+13:31:13                  }
+13:31:13                + metric_name = "Invocations"
+13:31:13                + namespace   = "AWS/Lambda"
+13:31:13                + period      = 60
+13:31:13                + stat        = "Sum"
+13:31:13                + unit        = "Count"
+13:31:13              }
+13:31:13          }
+13:31:13        + metric_query {
+13:31:13            + expression  = "(errors/invocations)*100"
+13:31:13            + id          = "errorrate"
+13:31:13            + label       = "Error Rate"
+13:31:13            + return_data = true
+13:31:13          }
+13:31:13      }
+13:31:13  
+13:31:13    # module.presigned-url-lambda.aws_cloudwatch_metric_alarm.critical_throttles[0] will be created
+13:31:13    + resource "aws_cloudwatch_metric_alarm" "critical_throttles" {
+13:31:13        + actions_enabled                       = true
+13:31:13        + alarm_actions                         = [
+13:31:13            + "arn:aws:sns:us-east-1:929468956630:cloudwatch-alarm-funnel",
+13:31:13          ]
+13:31:13        + alarm_description                     = "dev-candidates|CRITICAL|bef-File-Storage-candidates|Lambda Throttles > 30"
+13:31:13        + alarm_name                            = "bef-presigned-url-candidates-CRITICAL-Lambda-Throttles"
+13:31:13        + arn                                   = (known after apply)
+13:31:13        + comparison_operator                   = "GreaterThanOrEqualToThreshold"
+13:31:13        + dimensions                            = {
+13:31:13            + "FunctionName" = "bef-presigned-url-candidates"
+13:31:13          }
+13:31:13        + evaluate_low_sample_count_percentiles = (known after apply)
+13:31:13        + evaluation_periods                    = 3
+13:31:13        + id                                    = (known after apply)
+13:31:13        + metric_name                           = "Throttles"
+13:31:13        + namespace                             = "AWS/Lambda"
+13:31:13        + ok_actions                            = [
+13:31:13            + "arn:aws:sns:us-east-1:929468956630:cloudwatch-alarm-funnel",
+13:31:13          ]
+13:31:13        + period                                = 60
+13:31:13        + statistic                             = "Sum"
+13:31:13        + tags_all                              = (known after apply)
+13:31:13        + threshold                             = 30
+13:31:13        + treat_missing_data                    = "notBreaching"
+13:31:13      }
+13:31:13  
+13:31:13    # module.presigned-url-lambda.aws_cloudwatch_metric_alarm.info_error_rate[0] will be created
+13:31:13    + resource "aws_cloudwatch_metric_alarm" "info_error_rate" {
+13:31:13        + actions_enabled                       = true
+13:31:13        + alarm_actions                         = [
+13:31:13            + "arn:aws:sns:us-east-1:929468956630:cloudwatch-alarm-funnel",
+13:31:13          ]
+13:31:13        + alarm_description                     = "dev-candidates|INFO|bef-File-Storage-candidates|Lambda Error Rate > 10%"
+13:31:13        + alarm_name                            = "bef-presigned-url-candidates-INFO-Lambda-Errors"
+13:31:13        + arn                                   = (known after apply)
+13:31:13        + comparison_operator                   = "GreaterThanOrEqualToThreshold"
+13:31:13        + evaluate_low_sample_count_percentiles = (known after apply)
+13:31:13        + evaluation_periods                    = 3
+13:31:13        + id                                    = (known after apply)
+13:31:13        + ok_actions                            = [
+13:31:13            + "arn:aws:sns:us-east-1:929468956630:cloudwatch-alarm-funnel",
+13:31:13          ]
+13:31:13        + tags_all                              = (known after apply)
+13:31:13        + threshold                             = 10
+13:31:13        + treat_missing_data                    = "notBreaching"
+13:31:13  
+13:31:13        + metric_query {
+13:31:13            + id          = "errors"
+13:31:13            + return_data = false
+13:31:13  
+13:31:13            + metric {
+13:31:13                + dimensions  = {
+13:31:13                    + "FunctionName" = "bef-presigned-url-candidates"
+13:31:13                  }
+13:31:13                + metric_name = "Errors"
+13:31:13                + namespace   = "AWS/Lambda"
+13:31:13                + period      = 60
+13:31:13                + stat        = "Sum"
+13:31:13                + unit        = "Count"
+13:31:13              }
+13:31:13          }
+13:31:13        + metric_query {
+13:31:13            + id          = "invocations"
+13:31:13            + return_data = false
+13:31:13  
+13:31:13            + metric {
+13:31:13                + dimensions  = {
+13:31:13                    + "FunctionName" = "bef-presigned-url-candidates"
+13:31:13                  }
+13:31:13                + metric_name = "Invocations"
+13:31:13                + namespace   = "AWS/Lambda"
+13:31:13                + period      = 60
+13:31:13                + stat        = "Sum"
+13:31:13                + unit        = "Count"
+13:31:13              }
+13:31:13          }
+13:31:13        + metric_query {
+13:31:13            + expression  = "(errors/invocations)*100"
+13:31:13            + id          = "errorrate"
+13:31:13            + label       = "Error Rate"
+13:31:13            + return_data = true
+13:31:13          }
+13:31:13      }
+13:31:13  
+13:31:13    # module.presigned-url-lambda.aws_cloudwatch_metric_alarm.info_throttles[0] will be created
+13:31:13    + resource "aws_cloudwatch_metric_alarm" "info_throttles" {
+13:31:13        + actions_enabled                       = true
+13:31:13        + alarm_actions                         = [
+13:31:13            + "arn:aws:sns:us-east-1:929468956630:cloudwatch-alarm-funnel",
+13:31:13          ]
+13:31:13        + alarm_description                     = "dev-candidates|INFO|bef-File-Storage-candidates|Lambda Throttles > 10"
+13:31:13        + alarm_name                            = "bef-presigned-url-candidates-INFO-Lambda-Throttles"
+13:31:13        + arn                                   = (known after apply)
+13:31:13        + comparison_operator                   = "GreaterThanOrEqualToThreshold"
+13:31:13        + dimensions                            = {
+13:31:13            + "FunctionName" = "bef-presigned-url-candidates"
+13:31:13          }
+13:31:13        + evaluate_low_sample_count_percentiles = (known after apply)
+13:31:13        + evaluation_periods                    = 3
+13:31:13        + id                                    = (known after apply)
+13:31:13        + metric_name                           = "Throttles"
+13:31:13        + namespace                             = "AWS/Lambda"
+13:31:13        + ok_actions                            = [
+13:31:13            + "arn:aws:sns:us-east-1:929468956630:cloudwatch-alarm-funnel",
+13:31:13          ]
+13:31:13        + period                                = 60
+13:31:13        + statistic                             = "Sum"
+13:31:13        + tags_all                              = (known after apply)
+13:31:13        + threshold                             = 10
+13:31:13        + treat_missing_data                    = "notBreaching"
+13:31:13      }
+13:31:13  
+13:31:13    # module.presigned-url-lambda.aws_cloudwatch_metric_alarm.warn_error_rate[0] will be created
+13:31:13    + resource "aws_cloudwatch_metric_alarm" "warn_error_rate" {
+13:31:13        + actions_enabled                       = true
+13:31:13        + alarm_actions                         = [
+13:31:13            + "arn:aws:sns:us-east-1:929468956630:cloudwatch-alarm-funnel",
+13:31:13          ]
+13:31:13        + alarm_description                     = "dev-candidates|WARN|bef-File-Storage-candidates|Lambda Error Rate > 15%"
+13:31:13        + alarm_name                            = "bef-presigned-url-candidates-WARN-Lambda-Errors"
+13:31:13        + arn                                   = (known after apply)
+13:31:13        + comparison_operator                   = "GreaterThanOrEqualToThreshold"
+13:31:13        + evaluate_low_sample_count_percentiles = (known after apply)
+13:31:13        + evaluation_periods                    = 3
+13:31:13        + id                                    = (known after apply)
+13:31:13        + ok_actions                            = [
+13:31:13            + "arn:aws:sns:us-east-1:929468956630:cloudwatch-alarm-funnel",
+13:31:13          ]
+13:31:13        + tags_all                              = (known after apply)
+13:31:13        + threshold                             = 15
+13:31:13        + treat_missing_data                    = "notBreaching"
+13:31:13  
+13:31:13        + metric_query {
+13:31:13            + id          = "errors"
+13:31:13            + return_data = false
+13:31:13  
+13:31:13            + metric {
+13:31:13                + dimensions  = {
+13:31:13                    + "FunctionName" = "bef-presigned-url-candidates"
+13:31:13                  }
+13:31:13                + metric_name = "Errors"
+13:31:13                + namespace   = "AWS/Lambda"
+13:31:13                + period      = 60
+13:31:13                + stat        = "Sum"
+13:31:13                + unit        = "Count"
+13:31:13              }
+13:31:13          }
+13:31:13        + metric_query {
+13:31:13            + id          = "invocations"
+13:31:13            + return_data = false
+13:31:13  
+13:31:13            + metric {
+13:31:13                + dimensions  = {
+13:31:13                    + "FunctionName" = "bef-presigned-url-candidates"
+13:31:13                  }
+13:31:13                + metric_name = "Invocations"
+13:31:13                + namespace   = "AWS/Lambda"
+13:31:13                + period      = 60
+13:31:13                + stat        = "Sum"
+13:31:13                + unit        = "Count"
+13:31:13              }
+13:31:13          }
+13:31:13        + metric_query {
+13:31:13            + expression  = "(errors/invocations)*100"
+13:31:13            + id          = "errorrate"
+13:31:13            + label       = "Error Rate"
+13:31:13            + return_data = true
+13:31:13          }
+13:31:13      }
+13:31:13  
+13:31:13    # module.presigned-url-lambda.aws_cloudwatch_metric_alarm.warn_throttles[0] will be created
+13:31:13    + resource "aws_cloudwatch_metric_alarm" "warn_throttles" {
+13:31:13        + actions_enabled                       = true
+13:31:13        + alarm_actions                         = [
+13:31:13            + "arn:aws:sns:us-east-1:929468956630:cloudwatch-alarm-funnel",
+13:31:13          ]
+13:31:13        + alarm_description                     = "dev-candidates|WARN|bef-File-Storage-candidates|Lambda Throttles > 20"
+13:31:13        + alarm_name                            = "bef-presigned-url-candidates-WARN-Lambda-Throttles"
+13:31:13        + arn                                   = (known after apply)
+13:31:13        + comparison_operator                   = "GreaterThanOrEqualToThreshold"
+13:31:13        + dimensions                            = {
+13:31:13            + "FunctionName" = "bef-presigned-url-candidates"
+13:31:13          }
+13:31:13        + evaluate_low_sample_count_percentiles = (known after apply)
+13:31:13        + evaluation_periods                    = 3
+13:31:13        + id                                    = (known after apply)
+13:31:13        + metric_name                           = "Throttles"
+13:31:13        + namespace                             = "AWS/Lambda"
+13:31:13        + ok_actions                            = [
+13:31:13            + "arn:aws:sns:us-east-1:929468956630:cloudwatch-alarm-funnel",
+13:31:13          ]
+13:31:13        + period                                = 60
+13:31:13        + statistic                             = "Sum"
+13:31:13        + tags_all                              = (known after apply)
+13:31:13        + threshold                             = 20
+13:31:13        + treat_missing_data                    = "notBreaching"
+13:31:13      }
+13:31:13  
+13:31:13    # module.presigned-url-vpc.terraform_data.endpoint_validation will be created
+13:31:13    + resource "terraform_data" "endpoint_validation" {
+13:31:13        + id = (known after apply)
+13:31:13      }
+13:31:13  
+13:31:13    # module.presigned-url-vpc.terraform_data.environment_validation will be created
+13:31:13    + resource "terraform_data" "environment_validation" {
+13:31:13        + id = (known after apply)
+13:31:13      }
+13:31:13  
+13:31:13    # module.presigned-url-vpc.terraform_data.subnet_validation will be created
+13:31:13    + resource "terraform_data" "subnet_validation" {
+13:31:13        + id = (known after apply)
+13:31:13      }
+13:31:13  
+13:31:13  Plan: 14 to add, 0 to change, 0 to destroy.
+13:31:13  
+13:31:13  Warning: Reference to undefined provider
+13:31:13  
+13:31:13    on bef-presigned-url-kms.tf line 15, in module "bef-presigned-url-crr-s3-kms":
+13:31:13    15:     aws = aws.crr
+13:31:13  
+13:31:13  There is no explicit declaration for local provider name "aws" in
+13:31:13  module.bef-presigned-url-crr-s3-kms, so Terraform is assuming you mean to
+13:31:13  pass a configuration for "hashicorp/aws".
+13:31:13  
+13:31:13  If you also control the child module, add a required_providers entry named
+13:31:13  "aws" with the source address "hashicorp/aws".
+13:31:13  
+13:31:13  Warning: Argument is deprecated
+13:31:13  
+13:31:13    with module.presigned-url-vpc.aws_iam_role.flow_logs_role,
+13:31:13    on .terraform/modules/presigned-url-vpc/iam.tf line 3, in resource "aws_iam_role" "flow_logs_role":
+13:31:13     3:   managed_policy_arns = ["arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy"]
+13:31:13  
+13:31:13  managed_policy_arns is deprecated. Use the aws_iam_role_policy_attachment
+13:31:13  resource instead. If Terraform should exclusively manage all managed policy
+13:31:13  attachments (the current behavior of this argument), use the
+13:31:13  aws_iam_role_policy_attachments_exclusive resource as well.
+13:31:13  
+13:31:13  Error: invalid value for key_id (must be a KMS Key ID)
+13:31:13  
+13:31:13    with data.aws_kms_key.crr_bef_kms_key[0],
+13:31:13    on _datasource.tf line 47, in data "aws_kms_key" "crr_bef_kms_key":
+13:31:13    47:   key_id = "alias/${var.presigned-url-crr-s3-kms-name}"
+13:31:13  
+13:31:13  
+13:31:13  Error: "key_id" (alias/) is an invalid ARN: arn: invalid prefix
+13:31:13  
+13:31:13    with data.aws_kms_key.crr_bef_kms_key[0],
+13:31:13    on _datasource.tf line 47, in data "aws_kms_key" "crr_bef_kms_key":
+13:31:13    47:   key_id = "alias/${var.presigned-url-crr-s3-kms-name}"
+13:31:13  
+13:31:13  
+13:31:13  Error: invalid value for key_id (must be a KMS Key Alias)
+13:31:13  
+13:31:13    with data.aws_kms_key.crr_bef_kms_key[0],
+13:31:13    on _datasource.tf line 47, in data "aws_kms_key" "crr_bef_kms_key":
+13:31:13    47:   key_id = "alias/${var.presigned-url-crr-s3-kms-name}"
+13:31:13  
+13:31:13  
+13:31:13  Error: "key_id" (alias/) is an invalid ARN: arn: invalid prefix
+13:31:13  
+13:31:13    with data.aws_kms_key.crr_bef_kms_key[0],
+13:31:13    on _datasource.tf line 47, in data "aws_kms_key" "crr_bef_kms_key":
+13:31:13    47:   key_id = "alias/${var.presigned-url-crr-s3-kms-name}"
+13:31:13  
+13:31:13  
+13:31:13  Error: Invalid index
+13:31:13  
+13:31:13    on bef-presigned-url-s3.tf line 9, in module "bef-storage-s3":
+13:31:13     9:   bucket_policy      = data.aws_iam_policy_document.presigned-url-s3-policy[0].json
+13:31:13      ├────────────────
+13:31:13      │ data.aws_iam_policy_document.presigned-url-s3-policy is empty tuple
+13:31:13  
+13:31:13  The given key does not identify an element in this collection value: the
+13:31:13  collection has no elements.
+13:31:13  
+13:31:13  Error: Invalid value for input variable
+13:31:13  
+13:31:13    on envs/dev-candidate/dev-candidate.tfvars line 14:
+13:31:13    14: required_common_tags = {
+13:31:13    15:   AssetOwner       = "BEF_DEVELOPMENT@express-scripts.com" #Set this to the email address of the owner of this AWS account
+13:31:13    16:   CostCenter       = "60031096"                            #Set to cost center for this project
+13:31:13    17:   SecurityReviewID = "NOT APPLICABLE"                         #Set this to the RITM - Number in ServiceNow for the TSE request. Can be set to notAssigned when the solution is in the dev stage
+13:31:13    18:   ServiceNowBA     = "BA14783"                         #Business Application Number of a Configuration Item in ServiceNow. Can be set to notAssigned when the solution is in the dev stage
+13:31:13    19:   ServiceNowAS     = "AS050854"                           #Application Service Number within ServiceNow. Can be set to notAssigned when the solution is in the dev stage
+13:31:13    20: }
+13:31:13  
+13:31:13  The given value is not suitable for var.required_common_tags declared at
+13:31:13  _bef-presigned-url-variables.tf:231,1-32: attribute "P2P" is required.
+13:31:13  
+13:31:13  Error: no matching EC2 Managed Prefix List found
+13:31:13  
+13:31:13    with module.presigned-url-vpc.data.aws_ec2_managed_prefix_list.prefix_list_health_services,
+13:31:13    on .terraform/modules/presigned-url-vpc/_data_sources.tf line 17, in data "aws_ec2_managed_prefix_list" "prefix_list_health_services":
+13:31:13    17: data "aws_ec2_managed_prefix_list" "prefix_list_health_services" {
+13:31:13  
+13:31:13  
+13:31:13  Error: reading SSM Parameter (/Enterprise/Route53QueryLoggingConfigId): couldn't find resource
+13:31:13  
+13:31:13    with module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_query_log_config_id,
+13:31:13    on .terraform/modules/presigned-url-vpc/_data_sources.tf line 196, in data "aws_ssm_parameter" "route53_resolver_query_log_config_id":
+13:31:13   196: data "aws_ssm_parameter" "route53_resolver_query_log_config_id" {
+13:31:13  
+13:31:13  
+13:31:13  Error: reading SSM Parameter (/Enterprise/Route53ResolverRuleIdPrivatelinkSnowflakecomputingCom): couldn't find resource
+13:31:13  
+13:31:13    with module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["PrivatelinkSnowflakecomputingCom"],
+13:31:13    on .terraform/modules/presigned-url-vpc/_data_sources.tf line 200, in data "aws_ssm_parameter" "route53_resolver_rule_ids":
+13:31:13   200: data "aws_ssm_parameter" "route53_resolver_rule_ids" {
+13:31:13  
+13:31:13  
+13:31:13  Error: reading SSM Parameter (/Enterprise/Route53ResolverRuleIdAccountsRootCorp): couldn't find resource
+13:31:13  
+13:31:13    with module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["AccountsRootCorp"],
+13:31:13    on .terraform/modules/presigned-url-vpc/_data_sources.tf line 200, in data "aws_ssm_parameter" "route53_resolver_rule_ids":
+13:31:13   200: data "aws_ssm_parameter" "route53_resolver_rule_ids" {
+13:31:13  
+13:31:13  
+13:31:13  Error: reading SSM Parameter (/Enterprise/Route53ResolverRuleIdGlbcoredevCom): couldn't find resource
+13:31:13  
+13:31:13    with module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["GlbcoredevCom"],
+13:31:13    on .terraform/modules/presigned-url-vpc/_data_sources.tf line 200, in data "aws_ssm_parameter" "route53_resolver_rule_ids":
+13:31:13   200: data "aws_ssm_parameter" "route53_resolver_rule_ids" {
+13:31:13  
+13:31:13  
+13:31:13  Error: reading SSM Parameter (/Enterprise/Route53ResolverRuleIdAwsEvernorthcloudCom): couldn't find resource
+13:31:13  
+13:31:13    with module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["AwsEvernorthcloudCom"],
+13:31:13    on .terraform/modules/presigned-url-vpc/_data_sources.tf line 200, in data "aws_ssm_parameter" "route53_resolver_rule_ids":
+13:31:13   200: data "aws_ssm_parameter" "route53_resolver_rule_ids" {
+13:31:13  
+13:31:13  
+13:31:13  Error: reading SSM Parameter (/Enterprise/Route53ResolverRuleIdPrivatelinkSnowflakecomputingComRegionless): couldn't find resource
+13:31:13  
+13:31:13    with module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["PrivatelinkSnowflakecomputingComRegionless"],
+13:31:13    on .terraform/modules/presigned-url-vpc/_data_sources.tf line 200, in data "aws_ssm_parameter" "route53_resolver_rule_ids":
+13:31:13   200: data "aws_ssm_parameter" "route53_resolver_rule_ids" {
+13:31:13  
+13:31:13  
+13:31:13  Error: reading SSM Parameter (/Enterprise/Route53ResolverRuleIdAwsCignacloudCom): couldn't find resource
+13:31:13  
+13:31:13    with module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["AwsCignacloudCom"],
+13:31:13    on .terraform/modules/presigned-url-vpc/_data_sources.tf line 200, in data "aws_ssm_parameter" "route53_resolver_rule_ids":
+13:31:13   200: data "aws_ssm_parameter" "route53_resolver_rule_ids" {
+13:31:13  
+13:31:13  
+13:31:13  Error: reading SSM Parameter (/Enterprise/Route53ResolverRuleIdExpressScriptsCom): couldn't find resource
+13:31:13  
+13:31:13    with module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["ExpressScriptsCom"],
+13:31:13    on .terraform/modules/presigned-url-vpc/_data_sources.tf line 200, in data "aws_ssm_parameter" "route53_resolver_rule_ids":
+13:31:13   200: data "aws_ssm_parameter" "route53_resolver_rule_ids" {
+13:31:13  
+13:31:13  
+13:31:13  Error: reading SSM Parameter (/Enterprise/Route53ResolverRuleIdGlobalcoredevCom): couldn't find resource
+13:31:13  
+13:31:13    with module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["GlobalcoredevCom"],
+13:31:13    on .terraform/modules/presigned-url-vpc/_data_sources.tf line 200, in data "aws_ssm_parameter" "route53_resolver_rule_ids":
+13:31:13   200: data "aws_ssm_parameter" "route53_resolver_rule_ids" {
+13:31:13  
+13:31:13  
+13:31:13  Error: reading SSM Parameter (/Enterprise/Route53ResolverRuleIdOpenshiftCignacloudCom): couldn't find resource
+13:31:13  
+13:31:13    with module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["OpenshiftCignacloudCom"],
+13:31:13    on .terraform/modules/presigned-url-vpc/_data_sources.tf line 200, in data "aws_ssm_parameter" "route53_resolver_rule_ids":
+13:31:13   200: data "aws_ssm_parameter" "route53_resolver_rule_ids" {
+13:31:13  
+13:31:13  
+13:31:13  Error: reading SSM Parameter (/Enterprise/Route53ResolverRuleIdMedcoCom): couldn't find resource
+13:31:13  
+13:31:13    with module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["MedcoCom"],
+13:31:13    on .terraform/modules/presigned-url-vpc/_data_sources.tf line 200, in data "aws_ssm_parameter" "route53_resolver_rule_ids":
+13:31:13   200: data "aws_ssm_parameter" "route53_resolver_rule_ids" {
+13:31:13  
+13:31:13  
+13:31:13  Error: reading SSM Parameter (/Enterprise/Route53ResolverRuleIdSilverCom): couldn't find resource
+13:31:13  
+13:31:13    with module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["SilverCom"],
+13:31:13    on .terraform/modules/presigned-url-vpc/_data_sources.tf line 200, in data "aws_ssm_parameter" "route53_resolver_rule_ids":
+13:31:13   200: data "aws_ssm_parameter" "route53_resolver_rule_ids" {
+13:31:13  
+13:31:13  
+13:31:13  Error: reading SSM Parameter (/Enterprise/Route53ResolverRuleIdCignaCom): couldn't find resource
+13:31:13  
+13:31:13    with module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["CignaCom"],
+13:31:13    on .terraform/modules/presigned-url-vpc/_data_sources.tf line 200, in data "aws_ssm_parameter" "route53_resolver_rule_ids":
+13:31:13   200: data "aws_ssm_parameter" "route53_resolver_rule_ids" {
+13:31:13  
+13:31:13  
+13:31:13  Error: reading SSM Parameter (/Enterprise/Route53ResolverRuleIdCignatestCom): couldn't find resource
+13:31:13  
+13:31:13    with module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["CignatestCom"],
+13:31:13    on .terraform/modules/presigned-url-vpc/_data_sources.tf line 200, in data "aws_ssm_parameter" "route53_resolver_rule_ids":
+13:31:13   200: data "aws_ssm_parameter" "route53_resolver_rule_ids" {
+13:31:13  
+13:31:13  
+13:31:13  Error: reading SSM Parameter (/Enterprise/Route53ResolverRuleIdHealthspringInside): couldn't find resource
+13:31:13  
+13:31:13    with module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["HealthspringInside"],
+13:31:13    on .terraform/modules/presigned-url-vpc/_data_sources.tf line 200, in data "aws_ssm_parameter" "route53_resolver_rule_ids":
+13:31:13   200: data "aws_ssm_parameter" "route53_resolver_rule_ids" {
+13:31:13  
+13:31:13  
+13:31:13  Error: reading SSM Parameter (/Enterprise/Route53ResolverRuleIdExpressScriptsIo): couldn't find resource
+13:31:13  
+13:31:13    with module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["ExpressScriptsIo"],
+13:31:13    on .terraform/modules/presigned-url-vpc/_data_sources.tf line 200, in data "aws_ssm_parameter" "route53_resolver_rule_ids":
+13:31:13   200: data "aws_ssm_parameter" "route53_resolver_rule_ids" {
+13:31:13  
+13:31:13  
+13:31:13  Error: reading SSM Parameter (/Enterprise/Route53ResolverRuleIdCignaEnvoy): couldn't find resource
+13:31:13  
+13:31:13    with module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["CignaEnvoy"],
+13:31:13    on .terraform/modules/presigned-url-vpc/_data_sources.tf line 200, in data "aws_ssm_parameter" "route53_resolver_rule_ids":
+13:31:13   200: data "aws_ssm_parameter" "route53_resolver_rule_ids" {
+13:31:13  
+13:31:13  
+13:31:13  Error: reading SSM Parameter (/Enterprise/Route53ResolverRuleIdGlbcoreCom): couldn't find resource
+13:31:13  
+13:31:13    with module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["GlbcoreCom"],
+13:31:13    on .terraform/modules/presigned-url-vpc/_data_sources.tf line 200, in data "aws_ssm_parameter" "route53_resolver_rule_ids":
+13:31:13   200: data "aws_ssm_parameter" "route53_resolver_rule_ids" {
+13:31:13  
+13:31:13  
+13:31:13  Error: reading SSM Parameter (/Enterprise/Route53ResolverRuleIdUsEast1ConfluentCloud): couldn't find resource
+13:31:13  
+13:31:13    with module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["UsEast1ConfluentCloud"],
+13:31:13    on .terraform/modules/presigned-url-vpc/_data_sources.tf line 200, in data "aws_ssm_parameter" "route53_resolver_rule_ids":
+13:31:13   200: data "aws_ssm_parameter" "route53_resolver_rule_ids" {
+13:31:13  
+13:31:13  
+13:31:13  Error: reading SSM Parameter (/Enterprise/Route53ResolverRuleIdGlobalcoreCom): couldn't find resource
+13:31:13  
+13:31:13    with module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["GlobalcoreCom"],
+13:31:13    on .terraform/modules/presigned-url-vpc/_data_sources.tf line 200, in data "aws_ssm_parameter" "route53_resolver_rule_ids":
+13:31:13   200: data "aws_ssm_parameter" "route53_resolver_rule_ids" {
+13:31:13  
+13:31:13  
+13:31:13  Error: reading SSM Parameter (/Enterprise/Route53ResolverRuleIdOpenshiftEvernorthcloudCom): couldn't find resource
+13:31:13  
+13:31:13    with module.presigned-url-vpc.data.aws_ssm_parameter.route53_resolver_rule_ids["OpenshiftEvernorthcloudCom"],
+13:31:13    on .terraform/modules/presigned-url-vpc/_data_sources.tf line 200, in data "aws_ssm_parameter" "route53_resolver_rule_ids":
+13:31:13   200: data "aws_ssm_parameter" "route53_resolver_rule_ids" {
+13:31:13  
+13:31:13  
+13:31:13  Error: reading SSM Parameter (/Enterprise/TgwId): couldn't find resource
+13:31:13  
+13:31:13    with module.presigned-url-vpc.data.aws_ssm_parameter.transit_gateway_id,
+13:31:13    on .terraform/modules/presigned-url-vpc/_data_sources.tf line 226, in data "aws_ssm_parameter" "transit_gateway_id":
+13:31:13   226: data "aws_ssm_parameter" "transit_gateway_id" {
+13:31:13  
+13:31:13  
+13:31:13  Error: Resource precondition failed
+13:31:13  
+13:31:13    on .terraform/modules/presigned-url-vpc/_validation.tf line 12, in resource "terraform_data" "availability_zone_validation":
+13:31:13    12:       condition     = try(alltrue([for az in var.availability_zones : contains(data.aws_availability_zones.available_zones.names, az)]), true)
+13:31:13      ├────────────────
+13:31:13      │ data.aws_availability_zones.available_zones.names is list of string with 2 elements
+13:31:13      │ var.availability_zones is list of string with 3 elements
+13:31:13  
+13:31:13  An invalid availability zone name was provided in the availabilty_zones
+13:31:13  variable. Valid values are:
+13:31:13  ["us-west-1a","us-west-1b"]
+13:31:13          
+13:31:13  You provided:
+13:31:13  ["us-west-1a","us-west-1b","us-west-1c"]
+13:31:14  
+13:31:14  terraform plan failed
+13:31:14  moduleName: cnp-deploy-terraform-aws Errors: terraform plan failed
+13:31:14  
+13:31:14  WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+13:31:14  
+13:31:14  Package: cnp-util-core
+13:31:14  Version: 1.0.2-dev-ov2
+13:31:14  Status: install ok installed
+13:31:14  Priority: optional
+13:31:14  Maintainer: Evernorth Software Engineering Excellence
+13:31:14  Installed-Size: unknown
+13:31:14  Depends: jq
+13:31:14  Download-Size: unknown
+13:31:14  APT-Manual-Installed: no
+13:31:14  APT-Sources: /var/lib/dpkg/status
+13:31:14  Description: Scripts and utilities for use with your cnp modules
+13:31:14  
+[Pipeline] }
+[Pipeline] // dir
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // configFileProvider
+[Pipeline] }
+[Pipeline] // withCredentials
+[Pipeline] }
+[Pipeline] // container
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // container
+[Pipeline] }
+13:31:14  
+[Pipeline] // ansiColor
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] echo
+13:31:14  --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+13:31:14  |                                                                               Compliance                                                                               |
+13:31:14  --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+13:31:14  --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+13:31:14  |             Article              |                                            Statement                                             |              Status              |
+13:31:14  --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+13:31:14  --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+13:31:14  |         CICD          |                              Pipeline does not implement a Deployment phase... Continuing                              |        SUCCESS        |
+13:31:14  --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+13:31:14  --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+13:31:14  |                                                                                                                                                                        |
+13:31:14  --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+13:31:14  --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+13:31:14  |                                                                                Pipeline                                                                                |
+13:31:14  --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+13:31:14  --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+13:31:14  |                         Phase                         |                         State                         |                      Environment                       |
+13:31:14  --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+13:31:14  --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+13:31:14  |               Module(common: null dev)                |                        Success                        |                          dev                           |
+13:31:14  --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+13:31:14  |              Linting([approvalrequest])               |                        Success                        |                       Undefined                        |
+13:31:14  --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+13:31:14  |             Module(terraform: apply dev)              |                        Success                        |                          dev                           |
+13:31:14  --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+13:31:14  |              Linting([approvalrequest])               |                        Success                        |                       Undefined                        |
+13:31:14  --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+13:31:14  |        Module(terraform: apply dev-candidate)         |                        Failure                        |                     dev-candidate                      |
+13:31:14  --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+13:31:14  --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+13:31:14  |                                                                                                                                                                        |
+13:31:14  --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+13:31:14  --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+13:31:14  |                                                                      script returned exit code 1                                                                       |
+13:31:14  --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+13:31:14  --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+13:31:14  |                                      Please see https://github.sys.cigna.com/cigna/enterprise-pipeline-framework for phase types.                                      |
+13:31:14  --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+13:31:14  
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // dir
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] }
+[Pipeline] // podTemplate
+[Pipeline] }
+[Pipeline] // timestamps
+[Pipeline] echo
+Using GitHubSCM provider for name: EPF, state: failure, phase: Status Check, as: null
+[Pipeline] withCredentials
+Masking supported pattern matches of $EPF_GITHUB_ACCESS_TOKEN
+[Pipeline] {
+[Pipeline] echo
+Posting Commit Status...
+[Pipeline] httpRequest
+[Pipeline] }
+[Pipeline] // withCredentials
+[Pipeline] echo
+Also:   org.jenkinsci.plugins.workflow.actions.ErrorAction$ErrorId: 664d2f36-e9ce-4ae5-bb42-017215888145
+hudson.AbortException: script returned exit code 1
+	at PluginClassLoader for workflow-durable-task-step//org.jenkinsci.plugins.workflow.steps.durable_task.DurableTaskStep$Execution.handleExit(DurableTaskStep.java:668)
+	at PluginClassLoader for workflow-durable-task-step//org.jenkinsci.plugins.workflow.steps.durable_task.DurableTaskStep$Execution.check(DurableTaskStep.java:614)
+	at PluginClassLoader for workflow-durable-task-step//org.jenkinsci.plugins.workflow.steps.durable_task.DurableTaskStep$Execution.run(DurableTaskStep.java:555)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+
+[Pipeline] echo
+{"scm":{"repo":"https://git.express-scripts.com/ExpressScripts/aws-terraform-hs-bef-intentapi.git","gitCommit":"e8f295edb28327578b05f1f3b1ec976e6dbe0252"},"orchestrator":{"jobName":"orchestrators-folders/pbbef/Non-Production/TERRAFORMS/aws-terraform-hs-bef-intentapi/feature-PBBEF-1571","buildNumber":"40","branchName":"feature-PBBEF-1571","node":null,"timeInPipeline":"5 min 5 sec and counting"},"epf":{"stage":"End of Build","message":"Build Failed","userProvidedConfig":{"githubConnectionName":"github","githubCredentialsId":"GIT_TOKEN","commitStatusName":"","cloudName":"pbbef-openshift-devops1","adjudicatorEnvironment":"prod","phaseCache":false,"resourceStrategy":"","checkmarxEnabled":true,"sonarEnabled":true,"resourceScaleFactor":4,"stashIncludePattern":"","stashExcludePattern":""}}}
+[Pipeline] echo
+To view more detailed logs, set FeatureFlags.debug to true
+[Pipeline] parallel
+[Pipeline] { (Branch: sendEmail)
+[Pipeline] { (Branch: sendMattermost)
+[Pipeline] { (Branch: sendTeams)
+[Pipeline] { (Branch: sendWebex)
+[Pipeline] }
+[Pipeline] }
+[Pipeline] }
+[Pipeline] }
+[Pipeline] // parallel
+[Pipeline] echo
+Follow the below link to see resource metrics for this pipeline:
+https://o-grafana.apps.devops-1-prod.openshift.cignacloud.com/d/xnyVI_3Mk/namespace-container-metrics?orgId=1&refresh=10s&from=1742405169724&to=1742405474780&var-namespace=pbbef-openshift-devops1 
+[Pipeline] error
+[Pipeline] }
+[Pipeline] // sendSplunkConsoleLog
+[Pipeline] End of Pipeline
+ERROR: script returned exit code 1
+
+GitHub has been notified of this commit’s build result
+
+Finished: FAILURE
