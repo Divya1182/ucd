@@ -1,0 +1,27 @@
+spring:
+  cloud:
+    config:
+      enabled: true
+      name: ${spring.application.name}
+      fail-fast: false
+    bus:
+      enabled: false
+    polling:
+      enabled: true
+  application:
+    name: pharmacy-benefits-build-service
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.amqp.RabbitAutoConfiguration
+  main:
+    allow-bean-definition-overriding: true
+
+health:
+  config:
+    enabled: true
+com:
+  esrx:
+    config:
+      bus:
+        enabled: false
+#resttemplate:
+#  enabled: true

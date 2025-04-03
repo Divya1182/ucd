@@ -1,0 +1,63 @@
+---
+default-properties: &default-properties
+  stack: cflinuxfs3
+  buildpack: java_buildpack_2022-1
+  path: ./jars/pharmacy-benefits-build-service-0.0.1-SNAPSHOT.jar
+  instances: 1
+  memory: 1GB
+env-properties: &env-properties
+  spring.profiles.active: service,cloud
+  logging.config: "classpath:properties/common/log4j2.properties"
+  JBP_CONFIG_OPEN_JDK_JRE: "{ jre: { version: 11.+ }}"
+  JBP_CONFIG_SPRING_AUTO_RECONFIGURATION: '{ enabled: false }'
+
+applications:
+  - name: pbb-frontendservice-benefits-dev-1-candidate
+    <<: *default-properties
+    env:
+      <<: *env-properties
+      spring.application.name: pbb-frontendservice-benefits-dev-1
+      spring.cloud.config.uri: "https://config-server-dev.express-scripts.com/config"
+      spring.cloud.config.profile: pharmacy-benefits-build,postgres-config
+    services:
+      - pbb-config
+
+  - name: pbb-frontendservice-benefits-qa-1-candidate
+    <<: *default-properties
+    env:
+      <<: *env-properties
+      spring.application.name: pbb-frontendservice-benefits-qa-1
+      spring.cloud.config.uri: "https://config-server-qa.express-scripts.com/config"
+      spring.cloud.config.profile: pharmacy-benefits-build
+    services:
+      - pbb-config
+
+  - name: pbb-frontendservice-benefits-uat-1-candidate
+    <<: *default-properties
+    env:
+      <<: *env-properties
+      spring.application.name: pbb-frontendservice-benefits-uat-1
+      spring.cloud.config.uri: "https://config-server-uat.express-scripts.com/config"
+      spring.cloud.config.profile: pharmacy-benefits-build
+    services:
+      - pbb-config
+
+#  - name: pbb-frontendservice-benefits-prod-1-candidate
+#    <<: *default-properties
+#    env:
+#      <<: *env-properties
+#      spring.application.name: pbb-frontendservice-benefits-prod-1
+#      spring.cloud.config.uri: "https://config-server.express-scripts.com/config"
+#      spring.cloud.config.profile: pharmacy-benefits-build
+#    services:
+#      - pbb-config
+
+#  - name: pbb-frontendservice-benefits-dr-1-candidate
+#    <<: *default-properties
+#    env:
+#      <<: *env-properties
+#      spring.application.name: pbb-frontendservice-benefits-dr-1
+#      spring.cloud.config.uri: "https://config-server-dr.express-scripts.com/config"
+#      spring.cloud.config.profile: pharmacy-benefits-build
+#    services:
+#      - pbb-config

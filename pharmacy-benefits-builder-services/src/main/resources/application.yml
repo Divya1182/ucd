@@ -1,0 +1,22 @@
+spring:
+  jmx:
+    enabled: true
+    default_domain: Kafdrop
+  jackson:
+    deserialization:
+      fail_on_unknown_properties: false
+      read_unknown_enum_values_as_null: true
+  mvc:
+    servlet:
+      path: /
+
+management:
+  endpoints:
+    loggers:
+      enabled: true
+    web:
+      base-path: /management
+      exposure:
+        include: loggers,health,info,env,heapdump,refresh
+    health:
+      show-details: always

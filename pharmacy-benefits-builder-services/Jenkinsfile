@@ -1,0 +1,116 @@
+@Library('ESI_Build')
+
+def pcfOrganization = 'BenefitEventFlow'
+def pcfApplicationName = 'pbb-frontendservice-benefits'
+def jiraProject = 'PBPBB'
+
+def pcfProps = [dev:[:],qa:[:],uat:[:]]
+
+//dev configurations
+pcfProps.dev.organization= pcfOrganization
+pcfProps.dev.space='development'
+pcfProps.dev.appName = pcfApplicationName + '-dev-1'
+pcfProps.dev.appNameTemp = pcfApplicationName + '-dev-1-candidate'
+pcfProps.dev.route = pcfApplicationName + '-dev-1'
+pcfProps.dev.routeTemp = pcfApplicationName + '-dev-1-candidate'
+pcfProps.dev.removeCandidateInstances =  false
+pcfProps.dev.requireApprovalOnActivate = false
+pcfProps.dev.requireApprovalOnDeploy= false
+pcfProps.dev.shouldBindToAutoscale = false
+pcfProps.dev.endpoint = 'https://api.sys.ch3pcf04.express-scripts.com'
+pcfProps.dev.credentials = 'CH3PCF04 - Jenkins Space Developer'
+pcfProps.dev.domain = 'apps.CH3PCF04.express-scripts.com'
+
+//qa configurations
+pcfProps.qa.organization=pcfOrganization
+pcfProps.qa.space='QA'
+pcfProps.qa.appName = pcfApplicationName + '-qa-1'
+pcfProps.qa.appNameTemp = pcfApplicationName + '-qa-1-candidate'
+pcfProps.qa.route = pcfApplicationName + '-qa-1'
+pcfProps.qa.routeTemp = pcfApplicationName + '-qa-1-candidate'
+pcfProps.qa.removeCandidateInstances = 'true'
+pcfProps.qa.requireApprovalOnActivate = true
+pcfProps.qa.requireApprovalOnDeploy=true
+pcfProps.qa.shouldBindToAutoscale = false
+pcfProps.qa.endpoint = 'https://api.sys.ch3pcf01.express-scripts.com'
+pcfProps.qa.credentials = 'CH3PCF01 - Jenkins Space Developer'
+pcfProps.qa.domain = 'apps.CH3PCF01.express-scripts.com'
+
+//uat configurations
+pcfProps.uat.organization=pcfOrganization
+pcfProps.uat.space='UAT'
+pcfProps.uat.appName = pcfApplicationName + '-uat-1'
+pcfProps.uat.appNameTemp = pcfApplicationName + '-uat-1-candidate'
+pcfProps.uat.route = pcfApplicationName + '-uat-1'
+pcfProps.uat.routeTemp = pcfApplicationName + '-uat-1-candidate'
+pcfProps.uat.removeCandidateInstances = 'true'
+pcfProps.uat.requireApprovalOnActivate = true
+pcfProps.uat.requireApprovalOnDeploy=true
+pcfProps.uat.shouldBindToAutoscale = false
+pcfProps.uat.endpoint = 'https://api.sys.ch3pcf01.express-scripts.com'
+pcfProps.uat.credentials = 'CH3PCF01 - Jenkins Space Developer'
+pcfProps.uat.domain = 'apps.CH3PCF01.express-scripts.com'
+
+//prod configurations
+// pcfProps.prod.organization=pcfOrganization
+// pcfProps.prod.space = 'Production'
+// pcfProps.prod.appName = pcfApplicationName + '-prod-1'
+// pcfProps.prod.appNameTemp = pcfApplicationName + '-prod-1-candidate'
+// pcfProps.prod.route = pcfApplicationName + '-prod-1'
+// pcfProps.prod.routeTemp = pcfApplicationName + '-prod-1-candidate'
+// pcfProps.prod.requireApprovalOnDeploy = true
+// pcfProps.prod.requireApprovalOnActivate = true
+// pcfProps.prod.removeCandidateInstances = true
+// pcfProps.prod.shouldBindToAutoscale=false
+// pcfProps.prod.endpoint = 'https://api.sys.ps2pcf02.express-scripts.com'
+// pcfProps.prod.credentials = 'PS2PCF02 - Jenkins Space Developer'
+// pcfProps.prod.domain = 'apps.ps2pcf02.express-scripts.com'
+
+//dr configurations
+// pcfProps.dr.organization=pcfOrganization
+// pcfProps.dr.space = 'Production'
+// pcfProps.dr.appName = pcfApplicationName + '-dr-1'
+// pcfProps.dr.appNameTemp = pcfApplicationName + '-dr-1-candidate'
+// pcfProps.dr.route = pcfApplicationName + '-dr-1'
+// pcfProps.dr.routeTemp = pcfApplicationName + '-dr-1-candidate'
+// pcfProps.dr.requireApprovalOnDeploy = true
+// pcfProps.dr.requireApprovalOnActivate = true
+// pcfProps.dr.removeCandidateInstances = true
+// pcfProps.dr.shouldBindToAutoscale=false
+// pcfProps.dr.endpoint = 'https://api.sys.ch3pcf03.express-scripts.com'
+// pcfProps.dr.credentials = 'CH3PCF03 - Jenkins Space Developer'
+// pcfProps.dr.domain = 'apps.CH3PCF03.express-scripts.com'
+
+
+def podLabel = 'digital_jdkbuild11_pod'
+podTemplate(label: podLabel, inheritFrom: 'maven_pcf_pod', nodeSelector: 'beta.kubernetes.io/os=linux', containers: [
+  containerTemplate(
+    name: 'jdkbuild11',
+    image: 'docker-dev.artifactory.express-scripts.com/devops/buildcbcjdk11:stable-release',
+    alwaysPullImage: true,
+    ttyEnabled: true,
+    command: '/bin/sh -c cat'
+    ),
+])
+{
+esiBuildFlow {
+  nodeName = podLabel
+  buildContainer = 'jdkbuild11'
+  buildType = "SpringPcf"
+  buildGoals = "clean install -U"
+  buildTargetFile = 'pom.xml'
+  pomDirectory = "."
+  pcfAppStartUpDRDeployEnabled = false
+  pcfProperties = pcfProps
+  applicationName = pcfApplicationName
+  organization = pcfOrganization
+  jiraProject = jiraProject
+  newRelicProperties=newRelicProps
+  primaryContactName = 'Rahul Ranjan'
+  primaryContactNumber = '9739051914'
+  secondaryContactName = 'Rahul Ranjan'
+  secondaryContactNumber = '9739051914'
+  buildDependencies = 'No'
+  buildDeploymentOrder = 1
+ }
+}

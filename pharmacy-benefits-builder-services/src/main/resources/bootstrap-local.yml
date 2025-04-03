@@ -1,0 +1,45 @@
+com:
+  esrx:
+    config:
+      bus:
+        enabled: false
+      polling:
+        enabled: true
+management:
+  endpoints:
+    loggers:
+      enabled: true
+    web:
+      base-path: /management
+      exposure:
+        include: loggers,health,info,env,heapdump,refresh
+    health:
+      show-details: always
+spring:
+  mvc:
+    servlet:
+      path: /
+  application:
+    name: pharmacy-benefits-build-service
+    version: 0.0.1
+  main:
+    allow-bean-definition-overriding: true
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.amqp.RabbitAutoConfiguration
+  cloud:
+    config:
+      profile: pharmacy-benefits-build,postgres-config
+      name: ${spring.application.name}
+      failFast: false
+      enabled: true
+      uri: https://config-server-dev.express-scripts.com/config
+  profiles:
+    active: local
+#resttemplate:
+#  enabled: true
+
+#dev config key
+config:
+  key:
+    pharmacy-benefits-build.1: TrAXRo/isEfoFWWowWpzus+1iT7tLGRXEzGqjcU+SWc=
+    postgres-config.1: Wz+Zz/9hUsQ05sjPHnIgQ31f+rUAhVkQwaJ8yl/bh3s=
