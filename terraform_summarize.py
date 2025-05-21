@@ -127,7 +127,7 @@ def main():
         return 1
     
     if not run_command(
-        ["terraform", "init", f"-backend-config={backend_config}"],
+        ["terraform", "init", f"-backend-config={backend_config}", "-reconfigure"],
         "Terraform Init"
     ):
         return 1
