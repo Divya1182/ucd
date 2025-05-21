@@ -139,7 +139,7 @@ def main():
         return 1
     
     success, tf_summarize_output = capture_tf_summarize_output(
-        ["terragrunt", "show", "-json", plan_file],
+        ["terraform", "show", "-json", plan_file],
         ["tf-summarize"],
         "Plan Summary"
     )
