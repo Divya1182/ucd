@@ -16,6 +16,7 @@ import datetime
 import tempfile
 import boto3
 from botocore.exceptions import ClientError
+import re
 
 # S3 bucket details
 # S3_BUCKET_NAME will be constructed dynamically from account ID
@@ -27,25 +28,19 @@ def get_timestamp():
 def read_account_id_from_tfvars(tfvars_file):
     """Read tf-account-id from the tfvars file"""
     try:
-        with open(tfvars_file, 'r') as f:
-            for line in f:
-                line = line.strip()
-                # Skip comments and empty lines
-                if line.startswith('#') or not line:
-                    continue
-                
-                # Look for tf-account-id variable
-                if line.startswith('tf-account-id'):
-                    # Handle both formats: tf-account-id = "value" or tf-account-id="value"
-                    parts = line.split('=', 1)
-                    if len(parts) == 2:
-                        value = parts[1].strip()
-                        # Remove quotes if present
-                        value = value.strip('"\'')
-                        return value
+        with open(tfvars_file, 'r', encoding='utf-8') as f:
+            content = f.read()
+            
+        # Use regex to find tf-account-id with flexible whitespace and quote handling
+        pattern = r'tf-account-id\s*=\s*["\']?([^"\'#\s]+)["\']?'
+        match = re.search(pattern, content, re.IGNORECASE)
+        
+        if match:
+            return match.group(1).strip()
         
         print("ERROR: tf-account-id not found in tfvars file")
         return None
+        
     except Exception as e:
         print(f"ERROR: Failed to read account ID from tfvars file: {e}")
         return None
