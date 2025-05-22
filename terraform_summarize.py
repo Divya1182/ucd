@@ -29,14 +29,21 @@ def read_account_id_from_tfvars(tfvars_file):
     """Read tf-account-id from the tfvars file"""
     try:
         with open(tfvars_file, 'r', encoding='utf-8') as f:
-            content = f.read()
-            
-        # Use regex to find tf-account-id with flexible whitespace and quote handling
-        pattern = r'tf-account-id\s*=\s*["\']?([^"\'#\s]+)["\']?'
-        match = re.search(pattern, content, re.IGNORECASE)
-        
-        if match:
-            return match.group(1).strip()
+            for line in f:
+                line = line.strip()
+                if line.lower().startswith('tf-account-id') and '=' in line:
+                    # Split on = and get the value part
+                    value = line.split('=', 1)[1].strip()
+                    # Remove inline comments
+                    value = value.split('#')[0].strip()
+                    # Remove quotes manually
+                    if value.startswith('"') and value.endswith('"'):
+                        value = value[1:-1]
+                    elif value.startswith("'") and value.endswith("'"):
+                        value = value[1:-1]
+                    
+                    if value:
+                        return value
         
         print("ERROR: tf-account-id not found in tfvars file")
         return None
