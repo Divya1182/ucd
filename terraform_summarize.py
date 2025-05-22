@@ -4,7 +4,7 @@ Terraform Execution Script
 This script:
 1. Runs terraform init and plan commands
 2. Runs terragrunt show -json | tf-summarize
-3. Captures the tf-summarize output and uploads to S3
+3. Captures only the tf-summarize output and uploads to S3
 Usage: python terraform_summarize.py <env_name>
 """
 
@@ -17,13 +17,40 @@ import tempfile
 import boto3
 from botocore.exceptions import ClientError
 
-S3_BUCKET_NAME = "bef-report-364685145795"
+# S3 bucket details
+# S3_BUCKET_NAME will be constructed dynamically from account ID
 
 def get_timestamp():
     """Get current timestamp in format YYYYMMDD-HHMMSS"""
     return datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
 
-def upload_to_s3(file_content, file_name, environment):
+def read_account_id_from_tfvars(tfvars_file):
+    """Read tf-account-id from the tfvars file"""
+    try:
+        with open(tfvars_file, 'r') as f:
+            for line in f:
+                line = line.strip()
+                # Skip comments and empty lines
+                if line.startswith('#') or not line:
+                    continue
+                
+                # Look for tf-account-id variable
+                if line.startswith('tf-account-id'):
+                    # Handle both formats: tf-account-id = "value" or tf-account-id="value"
+                    parts = line.split('=', 1)
+                    if len(parts) == 2:
+                        value = parts[1].strip()
+                        # Remove quotes if present
+                        value = value.strip('"\'')
+                        return value
+        
+        print("ERROR: tf-account-id not found in tfvars file")
+        return None
+    except Exception as e:
+        print(f"ERROR: Failed to read account ID from tfvars file: {e}")
+        return None
+
+def upload_to_s3(file_content, file_name, environment, bucket_name):
     """Upload the specified content to S3"""
     try:
         s3_client = boto3.client('s3')
@@ -32,15 +59,15 @@ def upload_to_s3(file_content, file_name, environment):
         object_key = f"envs-report/{environment}/{file_name}"
         
         print(f"\n=== Uploading tf-summarize output to S3 ===")
-        print(f"Bucket: {S3_BUCKET_NAME}")
+        print(f"Bucket: {bucket_name}")
         print(f"Path: {object_key}")
         
         s3_client.put_object(
-            Bucket=S3_BUCKET_NAME,
+            Bucket=bucket_name,
             Key=object_key,
             Body=file_content
         )
-        print(f"Successfully uploaded to s3://{S3_BUCKET_NAME}/{object_key}")
+        print(f"Successfully uploaded to s3://{bucket_name}/{object_key}")
         return True
     except ClientError as e:
         print(f"ERROR: Failed to upload to S3: {e}")
@@ -79,8 +106,10 @@ def capture_tf_summarize_output(cmd1, cmd2, description):
             text=True
         )
         
+        # Close stdout of process1
         process1.stdout.close()
         
+        # Capture the output from tf-summarize
         stdout_data, stderr_data = process2.communicate()
         
         # Display the tf-summarize output to console
@@ -100,6 +129,7 @@ def capture_tf_summarize_output(cmd1, cmd2, description):
         return False, None
 
 def main():
+    # Parse command line arguments
     parser = argparse.ArgumentParser(description="Run Terraform commands with environment configuration")
     parser.add_argument("environment", help="Environment name (e.g., dev, test, prod)")
     args = parser.parse_args()
@@ -107,10 +137,12 @@ def main():
     environment = args.environment
     timestamp = get_timestamp()
     
+    # Set paths based on environment
     backend_config = os.path.join("envs", environment, "backend.config")
     tfvars_file = os.path.join("envs", environment, f"{environment}.tfvars")
     plan_file = f"terraform_{environment}.plan"
     
+    # Define report filename with timestamp
     report_filename = f"terraform_{environment}_summary_{timestamp}.txt"
     
     print(f"Starting Terraform operations for environment: {environment}")
@@ -118,6 +150,7 @@ def main():
     print(f"Variables file: {tfvars_file}")
     print(f"Plan file: {plan_file}")
     
+    # Check if required files exist
     if not os.path.isfile(backend_config):
         print(f"ERROR: Backend config file not found: {backend_config}")
         return 1
@@ -126,12 +159,22 @@ def main():
         print(f"ERROR: Terraform vars file not found: {tfvars_file}")
         return 1
     
+    # Read account ID from tfvars file to construct bucket name
+    account_id = read_account_id_from_tfvars(tfvars_file)
+    if not account_id:
+        return 1
+    
+    bucket_name = f"bef-report-{account_id}"
+    print(f"Using S3 bucket: {bucket_name}")
+    
+    # Run terraform init with backend config
     if not run_command(
-        ["terraform", "init", f"-backend-config={backend_config}", "-reconfigure"],
+        ["terraform", "init", f"-backend-config={backend_config}"],
         "Terraform Init"
     ):
         return 1
     
+    # Run terraform plan with var file and save to plan file
     if not run_command(
         ["terraform", "plan", f"-var-file={tfvars_file}", f"-out={plan_file}"],
         "Terraform Plan"
@@ -147,6 +190,7 @@ def main():
     if not success or tf_summarize_output is None:
         return 1
     
+    # Add header to the output file
     header = f"Terraform Summary Report\n"
     header += f"Environment: {environment}\n"
     header += f"Date: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n"
@@ -154,13 +198,15 @@ def main():
     
     full_report_content = header + tf_summarize_output
     
+    # Save tf-summarize output to a local file
     with open(report_filename, 'w') as f:
         f.write(full_report_content)
     
     print(f"\nTerraform summary saved to {report_filename}")
     
+    # Try to upload to S3
     try:
-        upload_success = upload_to_s3(full_report_content, report_filename, environment)
+        upload_success = upload_to_s3(full_report_content, report_filename, environment, bucket_name)
         if not upload_success:
             print("WARNING: Failed to upload summary to S3, but Terraform operations were successful.")
     except ImportError:
