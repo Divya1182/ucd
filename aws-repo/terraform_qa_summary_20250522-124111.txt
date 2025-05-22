@@ -1,0 +1,14 @@
+Terraform Summary Report
+Environment: qa
+Date: 2025-05-22 12:41:29
+==================================================
+
++----------+-----------------------------------------------------------+
+|  CHANGE  |                         RESOURCE                          |
++----------+-----------------------------------------------------------+
+| update   | module.general-callback-lambda.aws_lambda_function.lambda |
++          +-----------------------------------------------------------+
+|          | module.presigned-url-lambda.aws_lambda_function.lambda    |
++----------+-----------------------------------------------------------+
+| recreate | aws_secretsmanager_secret_version.intent_consumer_version |
++----------+-----------------------------------------------------------+
