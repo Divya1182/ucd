@@ -130,6 +130,36 @@ def capture_tf_summarize_output(cmd1, cmd2, description):
         print(f"ERROR: Failed to execute commands: {e}")
         return False, None
 
+def capture_terraform_plan_output(plan_file):
+    """Capture human-readable terraform plan output"""
+    print(f"\n=== Capturing Terraform Plan Details ===")
+    command = ["terraform", "show", plan_file]
+    print(f"Running: {' '.join(command)}")
+    
+    try:
+        result = subprocess.run(
+            command, 
+            capture_output=True, 
+            text=True, 
+            check=True
+        )
+        
+        if result.stdout:
+            print("Successfully captured terraform plan output")
+            return True, result.stdout
+        else:
+            print("WARNING: No plan output captured")
+            return True, "No plan changes detected"
+            
+    except subprocess.CalledProcessError as e:
+        print(f"ERROR: Failed to capture plan output with exit code {e.returncode}")
+        if e.stderr:
+            print(f"Error details: {e.stderr}")
+        return False, None
+    except Exception as e:
+        print(f"ERROR: Failed to execute terraform show command: {e}")
+        return False, None
+
 def main():
     # Parse command line arguments
     parser = argparse.ArgumentParser(description="Run Terraform commands with environment configuration")
@@ -166,7 +196,11 @@ def main():
     if not account_id:
         return 1
     
-    bucket_name = f"bef-report-{account_id}"
+    if environment =='prod':
+        bucket_name = f"cigna-tf-state-{account_id}"
+    else:
+        bucket_name = f"bef-report-{account_id}"
+
     print(f"Using S3 bucket: {bucket_name}")
     
     # Run terraform init with backend config
@@ -183,6 +217,7 @@ def main():
     ):
         return 1
     
+    # Capture tf-summarize output
     success, tf_summarize_output = capture_tf_summarize_output(
         ["terraform", "show", "-json", plan_file],
         ["tf-summarize"],
@@ -192,19 +227,37 @@ def main():
     if not success or tf_summarize_output is None:
         return 1
     
+    # Capture detailed terraform plan output
+    plan_success, plan_details = capture_terraform_plan_output(plan_file)
+    
+    if not plan_success or plan_details is None:
+        print("WARNING: Failed to capture plan details, continuing with summary only")
+        plan_details = "Failed to capture detailed plan output"
+    
     # Add header to the output file
     header = f"Terraform Summary Report\n"
     header += f"Environment: {environment}\n"
     header += f"Date: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n"
-    header += f"{'=' * 50}\n\n"
+    header += f"{'=' * 80}\n\n"
+
+    # Add tf-summarize section
+    summary_section = f"TERRAFORM PLAN SUMMARY\n"
+    summary_section += f"{'=' * 80}\n\n"
+    summary_section += tf_summarize_output + "\n\n"
+
+    # Add detailed plan section
+    plan_summary = f"DETAILED TERRAFORM PLAN\n"
+    plan_summary += f"{'=' * 80}\n\n"
+    plan_summary += plan_details + "\n"
     
-    full_report_content = header + tf_summarize_output
+    # Combine all sections
+    full_report_content = header + summary_section + plan_summary
     
-    # Save tf-summarize output to a local file
+    # Save complete report to a local file
     with open(report_filename, 'w') as f:
         f.write(full_report_content)
     
-    print(f"\nTerraform summary saved to {report_filename}")
+    print(f"\nComplete Terraform report saved to {report_filename}")
     
     # Try to upload to S3
     try:
