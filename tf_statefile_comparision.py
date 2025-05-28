@@ -1,6 +1,8 @@
+#!/usr/bin/env python3
 """
 Terraform State File Comparator
 Compares the latest and previous versions of Terraform state files stored in S3
+Generates a detailed report of resource changes in a table format
 """
 
 import json
@@ -10,6 +12,7 @@ import sys
 from datetime import datetime
 from typing import Dict, List
 from tabulate import tabulate
+import textwrap
 
 
 class TerraformStateComparator:
@@ -79,6 +82,9 @@ class TerraformStateComparator:
         resources = {}
         for resource in state_data.get('resources', []):
             base_key = f"{resource.get('type', 'unknown')}.{resource.get('name', 'unknown')}"
+            module = resource.get('module', '')
+            if module:
+                base_key = f"{module}.{base_key}"
             
             for i, instance in enumerate(resource.get('instances', [])):
                 key = base_key
@@ -91,6 +97,8 @@ class TerraformStateComparator:
                 resources[key] = {
                     'type': resource.get('type', 'unknown'),
                     'name': resource.get('name', 'unknown'),
+                    'module': module,
+                    'address': key,
                     'attributes': instance.get('attributes', {})
                 }
         return resources
@@ -102,31 +110,41 @@ class TerraformStateComparator:
         
         for attr in priority:
             if attr in attrs and attrs[attr]:
-                key_attrs.append(f"{attr}={str(attrs[attr])[:30]}")
-                if len(key_attrs) >= 2:
+                value = str(attrs[attr])
+                key_attrs.append(f"{attr}={value}")
+                if len(key_attrs) >= 3:
                     break
         
         if not key_attrs:
-            for k, v in list(attrs.items())[:2]:
+            for k, v in list(attrs.items())[:3]:
                 if v and k not in ['tags', 'tags_all']:
-                    key_attrs.append(f"{k}={str(v)[:30]}")
+                    key_attrs.append(f"{k}={str(v)}")
         
         return "; ".join(key_attrs) or "N/A"
 
-    def find_changes(self, current: Dict, previous: Dict) -> List[str]:
-        """Find attribute changes."""
+    def format_value(self, value) -> str:
+        """Format attribute values for display."""
+        if isinstance(value, (dict, list)):
+            return json.dumps(value, indent=None, sort_keys=True)
+        return str(value)
+
+    def get_detailed_changes(self, current_attrs: Dict, previous_attrs: Dict) -> str:
+        """Generate detailed changes with old and new values."""
         changes = []
-        for k, v in current.items():
-            if k not in previous:
-                changes.append(f"+{k}")
-            elif v != previous[k]:
-                changes.append(f"~{k}")
+        for key in set(current_attrs) | set(previous_attrs):
+            if key not in previous_attrs:
+                changes.append(f"+{key}: {self.format_value(current_attrs[key])}")
+            elif key not in current_attrs:
+                changes.append(f"-{key}: {self.format_value(previous_attrs[key])}")
+            elif current_attrs[key] != previous_attrs[key]:
+                old_val = self.format_value(previous_attrs[key])
+                new_val = self.format_value(current_attrs[key])
+                changes.append(f"~{key}: {old_val} -> {new_val}")
         
-        for k in previous:
-            if k not in current:
-                changes.append(f"-{k}")
+        if not changes:
+            return "No attribute changes"
         
-        return changes
+        return "; ".join(changes)
 
     def compare_resources(self, current: Dict, previous: Dict):
         """Compare resources and generate report."""
@@ -134,34 +152,49 @@ class TerraformStateComparator:
         for key in set(current.keys()) - set(previous.keys()):
             r = current[key]
             self.report_data.append({
-                'Action': 'CREATED', 'Type': r['type'], 'Name': r['name'],
+                'Action': 'CREATED',
+                'Address': r['address'],
+                'Type': r['type'],
+                'Name': r['name'],
                 'Key Attributes': self.get_key_attributes(r['attributes']),
                 'Details': f"New {r['type']} created"
             })
         
-        # Destroyed  
+        # Destroyed
         for key in set(previous.keys()) - set(current.keys()):
             r = previous[key]
             self.report_data.append({
-                'Action': 'DESTROYED', 'Type': r['type'], 'Name': r['name'],
+                'Action': 'DESTROYED',
+                'Address': r['address'],
+                'Type': r['type'],
+                'Name': r['name'],
                 'Key Attributes': self.get_key_attributes(r['attributes']),
                 'Details': f"{r['type']} removed"
             })
         
         # Updated
         for key in set(current.keys()) & set(previous.keys()):
-            changes = self.find_changes(current[key]['attributes'], previous[key]['attributes'])
-            if changes:
+            current_attrs = current[key]['attributes']
+            previous_attrs = previous[key]['attributes']
+            if current_attrs != previous_attrs:
                 r = current[key]
-                details = f"Modified: {', '.join(changes[:3])}"
-                if len(changes) > 3:
-                    details += f" and {len(changes) - 3} more"
-                
                 self.report_data.append({
-                    'Action': 'UPDATED', 'Type': r['type'], 'Name': r['name'],
+                    'Action': 'UPDATED',
+                    'Address': r['address'],
+                    'Type': r['type'],
+                    'Name': r['name'],
                     'Key Attributes': self.get_key_attributes(r['attributes']),
-                    'Details': details
+                    'Details': self.get_detailed_changes(current_attrs, previous_attrs)
                 })
+
+    def wrap_text(self, text: str, width: int) -> str:
+        """Wrap text for console display while preserving newlines."""
+        lines = text.split('; ')
+        wrapped_lines = []
+        for line in lines:
+            wrapped = textwrap.fill(line, width=width, break_long_words=False, replace_whitespace=False)
+            wrapped_lines.append(wrapped)
+        return '\n'.join(wrapped_lines)
 
     def generate_report(self) -> str:
         """Generate report."""
@@ -193,13 +226,24 @@ class TerraformStateComparator:
         report.extend(["", "DETAILED CHANGES:"])
         
         # Table
-        table_data = [[item['Action'], item['Type'], item['Name'], 
-                      item['Key Attributes'][:40], item['Details'][:50]] 
-                     for item in self.report_data]
+        table_data = [
+            [
+                item['Action'],
+                self.wrap_text(item['Address'], 40),
+                item['Type'],
+                item['Name'],
+                self.wrap_text(item['Key Attributes'], 60),
+                self.wrap_text(item['Details'], 100)
+            ] 
+            for item in self.report_data
+        ]
         
-        report.append(tabulate(table_data, 
-                              headers=['Action', 'Type', 'Name', 'Key Attributes', 'Details'],
-                              tablefmt='grid'))
+        report.append(tabulate(
+            table_data,
+            headers=['Action', 'Address', 'Type', 'Name', 'Key Attributes', 'Details'],
+            tablefmt='pipe',
+            maxcolwidths=[None, 40, None, None, 60, 100]
+        ))
         
         return "\n".join(report)
 
