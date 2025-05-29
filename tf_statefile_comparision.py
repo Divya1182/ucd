@@ -114,13 +114,14 @@ class TerraformStateComparator:
                     'name': resource_name,
                     'module': module,
                     'address': key,
-                    'attributes': attributes
+                    'attributes': attributes,
+                    'arn': attributes.get('arn', 'N/A')
                 }
         return resources
 
     def get_key_attributes(self, attrs: Dict) -> str:
-        """Get key identifying attributes specific to the resource."""
-        priority = ['id', 'arn', 'name', 'bucket', 'function_name', 'instance_id', 'role_name', 'topic_name']
+        """Get key identifying attributes for CREATED/DESTROYED resources."""
+        priority = ['id', 'name', 'bucket', 'function_name', 'instance_id', 'role_name', 'topic_name']
         key_attrs = []
         
         for attr in priority:
@@ -132,10 +133,31 @@ class TerraformStateComparator:
         
         if not key_attrs:
             for k, v in list(attrs.items())[:3]:
-                if v and k not in ['tags', 'tags_all']:
+                if v and k not in ['tags', 'tags_all', 'arn']:
                     key_attrs.append(f"{k}={str(v)}")
         
         return "; ".join(key_attrs) or "N/A"
+
+    def get_changes(self, current_attrs: Dict, previous_attrs: Dict) -> str:
+        """Get changed attributes for UPDATED resources."""
+        changes = []
+        for key in set(current_attrs) | set(previous_attrs):
+            if key not in previous_attrs:
+                changes.append(f"+{key}: {self.format_value(current_attrs[key])}")
+            elif key not in current_attrs:
+                changes.append(f"-{key}: {self.format_value(previous_attrs[key])}")
+            elif current_attrs[key] != previous_attrs[key]:
+                old_val = self.format_value(previous_attrs[key])
+                new_val = self.format_value(current_attrs[key])
+                changes.append(f"~{key}: {old_val} -> {new_val}")
+        
+        return "; ".join(changes) or "No attribute changes"
+
+    def format_value(self, value) -> str:
+        """Format attribute values for display."""
+        if isinstance(value, (dict, list)):
+            return json.dumps(value, indent=None, sort_keys=True)
+        return str(value)
 
     def wrap_text(self, text: str, width: int) -> str:
         """Wrap text for console display while preserving newlines."""
@@ -158,7 +180,8 @@ class TerraformStateComparator:
                 'Address': r['address'],
                 'Type': r['type'],
                 'Name': r['name'],
-                'Key Attributes': self.get_key_attributes(r['attributes'])
+                'ARN': r['arn'],
+                'Changes': self.get_key_attributes(r['attributes'])
             })
         
         # Destroyed
@@ -169,7 +192,8 @@ class TerraformStateComparator:
                 'Address': r['address'],
                 'Type': r['type'],
                 'Name': r['name'],
-                'Key Attributes': self.get_key_attributes(r['attributes'])
+                'ARN': r['arn'],
+                'Changes': self.get_key_attributes(r['attributes'])
             })
         
         # Updated
@@ -181,7 +205,8 @@ class TerraformStateComparator:
                     'Address': r['address'],
                     'Type': r['type'],
                     'Name': r['name'],
-                    'Key Attributes': self.get_key_attributes(r['attributes'])
+                    'ARN': r['arn'],
+                    'Changes': self.get_changes(r['attributes'], previous[key]['attributes'])
                 })
 
     def generate_report(self) -> str:
@@ -220,16 +245,17 @@ class TerraformStateComparator:
                 self.wrap_text(item['Address'], 50),
                 item['Type'],
                 self.wrap_text(item['Name'], 30),
-                self.wrap_text(item['Key Attributes'], 70)
+                self.wrap_text(item['ARN'], 60),
+                self.wrap_text(item['Changes'], 80)
             ] 
             for item in self.report_data
         ]
         
         report.append(tabulate(
             table_data,
-            headers=['Action', 'Address', 'Type', 'Name', 'Key Attributes'],
+            headers=['Action', 'Address', 'Type', 'Name', 'ARN', 'Changes'],
             tablefmt='pipe',
-            maxcolwidths=[None, 50, None, 30, 70]
+            maxcolwidths=[None, 50, None, 30, 60, 80]
         ))
         
         return "\n".join(report)
