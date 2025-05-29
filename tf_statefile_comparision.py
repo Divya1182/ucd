@@ -28,7 +28,7 @@ class TerraformStateComparator:
             with open(f"envs/{self.environment}/backend.config", 'r') as f:
                 for line in f:
                     line = line.strip()
-                    if '=' in line and not line.startswith('#'):
+                    if '=' in line and not line.startswith('#shebang
                         key, value = line.split('=', 1)
                         self.backend_config[key.strip()] = value.strip().strip('"\'')
             
@@ -94,18 +94,22 @@ class TerraformStateComparator:
                     else:
                         key += f'[{i}]'
                 
+                attributes = instance.get('attributes', {})
+                # Use the 'name' attribute from AWS resource attributes, fallback to Terraform name
+                resource_name = attributes.get('name', resource.get('name', 'unknown'))
+                
                 resources[key] = {
                     'type': resource.get('type', 'unknown'),
-                    'name': resource.get('name', 'unknown'),
+                    'name': resource_name,
                     'module': module,
                     'address': key,
-                    'attributes': instance.get('attributes', {})
+                    'attributes': attributes
                 }
         return resources
 
     def get_key_attributes(self, attrs: Dict) -> str:
-        """Get key identifying attributes."""
-        priority = ['id', 'arn', 'name', 'bucket', 'function_name', 'instance_id']
+        """Get key identifying attributes specific to the resource."""
+        priority = ['id', 'arn', 'name', 'bucket', 'function_name', 'instance_id', 'role_name', 'topic_name']
         key_attrs = []
         
         for attr in priority:
@@ -122,29 +126,14 @@ class TerraformStateComparator:
         
         return "; ".join(key_attrs) or "N/A"
 
-    def format_value(self, value) -> str:
-        """Format attribute values for display."""
-        if isinstance(value, (dict, list)):
-            return json.dumps(value, indent=None, sort_keys=True)
-        return str(value)
-
-    def get_detailed_changes(self, current_attrs: Dict, previous_attrs: Dict) -> str:
-        """Generate detailed changes with old and new values."""
-        changes = []
-        for key in set(current_attrs) | set(previous_attrs):
-            if key not in previous_attrs:
-                changes.append(f"+{key}: {self.format_value(current_attrs[key])}")
-            elif key not in current_attrs:
-                changes.append(f"-{key}: {self.format_value(previous_attrs[key])}")
-            elif current_attrs[key] != previous_attrs[key]:
-                old_val = self.format_value(previous_attrs[key])
-                new_val = self.format_value(current_attrs[key])
-                changes.append(f"~{key}: {old_val} -> {new_val}")
-        
-        if not changes:
-            return "No attribute changes"
-        
-        return "; ".join(changes)
+    def wrap_text(self, text: str, width: int) -> str:
+        """Wrap text for console display while preserving newlines."""
+        lines = text.split('; ')
+        wrapped_lines = []
+        for line in lines:
+            wrapped = textwrap.fill(line, width=width, break_long_words=False, replace_whitespace=False)
+            wrapped_lines.append(wrapped)
+        return '\n'.join(wrapped_lines)
 
     def compare_resources(self, current: Dict, previous: Dict):
         """Compare resources and generate report."""
@@ -156,8 +145,7 @@ class TerraformStateComparator:
                 'Address': r['address'],
                 'Type': r['type'],
                 'Name': r['name'],
-                'Key Attributes': self.get_key_attributes(r['attributes']),
-                'Details': f"New {r['type']} created"
+                'Key Attributes': self.get_key_attributes(r['attributes'])
             })
         
         # Destroyed
@@ -168,33 +156,20 @@ class TerraformStateComparator:
                 'Address': r['address'],
                 'Type': r['type'],
                 'Name': r['name'],
-                'Key Attributes': self.get_key_attributes(r['attributes']),
-                'Details': f"{r['type']} removed"
+                'Key Attributes': self.get_key_attributes(r['attributes'])
             })
         
         # Updated
         for key in set(current.keys()) & set(previous.keys()):
-            current_attrs = current[key]['attributes']
-            previous_attrs = previous[key]['attributes']
-            if current_attrs != previous_attrs:
+            if current[key]['attributes'] != previous[key]['attributes']:
                 r = current[key]
                 self.report_data.append({
                     'Action': 'UPDATED',
                     'Address': r['address'],
                     'Type': r['type'],
                     'Name': r['name'],
-                    'Key Attributes': self.get_key_attributes(r['attributes']),
-                    'Details': self.get_detailed_changes(current_attrs, previous_attrs)
+                    'Key Attributes': self.get_key_attributes(r['attributes'])
                 })
-
-    def wrap_text(self, text: str, width: int) -> str:
-        """Wrap text for console display while preserving newlines."""
-        lines = text.split('; ')
-        wrapped_lines = []
-        for line in lines:
-            wrapped = textwrap.fill(line, width=width, break_long_words=False, replace_whitespace=False)
-            wrapped_lines.append(wrapped)
-        return '\n'.join(wrapped_lines)
 
     def generate_report(self) -> str:
         """Generate report."""
@@ -229,20 +204,19 @@ class TerraformStateComparator:
         table_data = [
             [
                 item['Action'],
-                self.wrap_text(item['Address'], 40),
+                self.wrap_text(item['Address'], 50),
                 item['Type'],
-                item['Name'],
-                self.wrap_text(item['Key Attributes'], 60),
-                self.wrap_text(item['Details'], 100)
+                self.wrap_text(item['Name'], 30),
+                self.wrap_text(item['Key Attributes'], 70)
             ] 
             for item in self.report_data
         ]
         
         report.append(tabulate(
             table_data,
-            headers=['Action', 'Address', 'Type', 'Name', 'Key Attributes', 'Details'],
+            headers=['Action', 'Address', 'Type', 'Name', 'Key Attributes'],
             tablefmt='pipe',
-            maxcolwidths=[None, 40, None, None, 60, 100]
+            maxcolwidths=[None, 50, None, 30, 70]
         ))
         
         return "\n".join(report)
