@@ -28,14 +28,17 @@ class TerraformStateComparator:
             with open(f"envs/{self.environment}/backend.config", 'r') as f:
                 for line in f:
                     line = line.strip()
-                    if '=' in line and not line.startswith('#shebang
+                    if line and not line.startswith('#'):
                         key, value = line.split('=', 1)
                         self.backend_config[key.strip()] = value.strip().strip('"\'')
             
             if not all(k in self.backend_config for k in ['bucket', 'key', 'region']):
-                print("Missing required configuration keys")
+                print("Missing required configuration keys in backend.config")
                 return False
             return True
+        except FileNotFoundError:
+            print(f"Configuration file envs/{self.environment}/backend.config not found")
+            return False
         except Exception as e:
             print(f"Error reading config: {e}")
             return False
@@ -72,7 +75,11 @@ class TerraformStateComparator:
                 params['VersionId'] = version_id
             
             response = self.s3_client.get_object(**params)
-            return json.loads(response['Body'].read().decode('utf-8'))
+            state_data = json.loads(response['Body'].read().decode('utf-8'))
+            if not state_data:
+                print("Downloaded state file is empty")
+                return {}
+            return state_data
         except Exception as e:
             print(f"Download error: {e}")
             return {}
@@ -80,6 +87,10 @@ class TerraformStateComparator:
     def extract_resources(self, state_data: Dict) -> Dict[str, Dict]:
         """Extract all resources from state."""
         resources = {}
+        if not state_data.get('resources'):
+            print("No resources found in state file")
+            return resources
+        
         for resource in state_data.get('resources', []):
             base_key = f"{resource.get('type', 'unknown')}.{resource.get('name', 'unknown')}"
             module = resource.get('module', '')
@@ -128,6 +139,8 @@ class TerraformStateComparator:
 
     def wrap_text(self, text: str, width: int) -> str:
         """Wrap text for console display while preserving newlines."""
+        if not text:
+            return ""
         lines = text.split('; ')
         wrapped_lines = []
         for line in lines:
@@ -228,18 +241,24 @@ class TerraformStateComparator:
         
         versions = self.get_state_versions()
         if len(versions) < 2:
-            print(f"Need 2+ versions, found: {len(versions)}")
+            print(f"Need at least 2 versions, found: {len(versions)}")
             sys.exit(1)
         
         current = self.download_state()
         previous = self.download_state(versions[1]['VersionId'])
         
         if not (current and previous):
-            print("Failed to download states")
+            print("Failed to download state files")
             sys.exit(1)
         
-        self.compare_resources(self.extract_resources(current), 
-                              self.extract_resources(previous))
+        current_resources = self.extract_resources(current)
+        previous_resources = self.extract_resources(previous)
+        
+        if not (current_resources or previous_resources):
+            print("No resources to compare")
+            sys.exit(1)
+        
+        self.compare_resources(current_resources, previous_resources)
         
         report = self.generate_report()
         print(report)
