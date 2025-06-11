@@ -53,3 +53,83 @@
         }
     }
 }
+
+{
+    "version": "0",
+    "id": "222a2124-b19f-7a25-fb35-f98ec807397a",
+    "detail-type": "AWS API Call via CloudTrail",
+    "source": "aws.s3",
+    "account": "364685145795",
+    "time": "2025-06-10T18:03:31Z",
+    "region": "us-east-1",
+    "resources": [],
+    "detail": {
+        "eventVersion": "1.11",
+        "userIdentity": {
+            "type": "AssumedRole",
+            "principalId": "AROAVJ2HNW3B2N5KBIFXG:40015752-S",
+            "arn": "arn:aws:sts::364685145795:assumed-role/DEPLOYER/40015752-S",
+            "accountId": "364685145795",
+            "accessKeyId": "ASIAVJ2HNW3BY2D7SRDR",
+            "sessionContext": {
+                "sessionIssuer": {
+                    "type": "Role",
+                    "principalId": "AROAVJ2HNW3B2N5KBIFXG",
+                    "arn": "arn:aws:iam::364685145795:role/DEPLOYER",
+                    "accountId": "364685145795",
+                    "userName": "DEPLOYER"
+                },
+                "attributes": {
+                    "creationDate": "2025-06-10T18:03:29Z",
+                    "mfaAuthenticated": "false"
+                }
+            }
+        },
+        "eventTime": "2025-06-10T18:03:31Z",
+        "eventSource": "s3.amazonaws.com",
+        "eventName": "DeleteObject",
+        "awsRegion": "us-east-1",
+        "sourceIPAddress": "170.48.43.20",
+        "userAgent": "[aws-cli/1.38.31 md/Botocore#1.37.31 ua/2.1 os/linux#5.14.0-427.65.1.el9_4.x86_64 md/arch#x86_64 lang/python#3.9.2 md/pyimpl#CPython cfg/retry-mode#legacy botocore/1.37.31]",
+        "requestParameters": {
+            "bucketName": "bef-ui-dev-candidate-primary-364685145795",
+            "Host": "bef-ui-dev-candidate-primary-364685145795.s3.amazonaws.com",
+            "key": "mdl.css"
+        },
+        "responseElements": {
+            "x-amz-delete-marker": "true",
+            "x-amz-version-id": "null"
+        },
+        "additionalEventData": {
+            "SignatureVersion": "SigV4",
+            "CipherSuite": "TLS_AES_128_GCM_SHA256",
+            "bytesTransferredIn": 0,
+            "AuthenticationMethod": "AuthHeader",
+            "x-amz-id-2": "AX82W13vydwTec6Z6hcZ5snjzWySDnzQoa0Yev/AT4FATAT/4sbPPiDR1v465ykoXiJ4zdNYXow=",
+            "bytesTransferredOut": 0
+        },
+        "requestID": "6ACSFB31961NWNW9",
+        "eventID": "ca4837e3-5abf-4f3c-9cb2-e93a37ad2cf5",
+        "readOnly": false,
+        "resources": [
+            {
+                "accountId": "364685145795",
+                "type": "AWS::S3::Bucket",
+                "ARN": "arn:aws:s3:::bef-ui-dev-candidate-primary-364685145795"
+            },
+            {
+                "type": "AWS::S3::Object",
+                "ARN": "arn:aws:s3:::bef-ui-dev-candidate-primary-364685145795/mdl.css"
+            }
+        ],
+        "eventType": "AwsApiCall",
+        "managementEvent": false,
+        "recipientAccountId": "364685145795",
+        "eventCategory": "Data",
+        "tlsDetails": {
+            "tlsVersion": "TLSv1.3",
+            "cipherSuite": "TLS_AES_128_GCM_SHA256",
+            "clientProvidedHostHeader": "bef-ui-dev-candidate-primary-364685145795.s3.amazonaws.com"
+        }
+    }
+}
