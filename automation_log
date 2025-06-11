@@ -1,0 +1,55 @@
+[INFO]	2025-06-10T17:14:13.971Z	f99ef756-5bbe-4474-919e-99cceb718ad0	Received event: {
+    "version": "0",
+    "id": "be313da0-a098-26b2-276f-46754150654f",
+    "detail-type": "AWS API Call via CloudTrail",
+    "source": "aws.ec2",
+    "account": "364685145795",
+    "time": "2025-06-10T17:14:10Z",
+    "region": "us-east-1",
+    "resources": [],
+    "detail": {
+        "eventVersion": "1.10",
+        "userIdentity": {
+            "type": "AssumedRole",
+            "principalId": "AROAVJ2HNW3BVR6SDPZRC:awslambda_579_20250610171410390",
+            "arn": "arn:aws:sts::364685145795:assumed-role/BEFHealthcheckSolution/awslambda_579_20250610171410390",
+            "accountId": "364685145795",
+            "accessKeyId": "ASIAVJ2HNW3B2FYIBMCM",
+            "sessionContext": {
+                "sessionIssuer": {
+                    "type": "Role",
+                    "principalId": "AROAVJ2HNW3BVR6SDPZRC",
+                    "arn": "arn:aws:iam::364685145795:role/Enterprise/BEFHealthcheckSolution",
+                    "accountId": "364685145795",
+                    "userName": "BEFHealthcheckSolution"
+                },
+                "attributes": {
+                    "creationDate": "2025-06-10T17:14:10Z",
+                    "mfaAuthenticated": "false"
+                }
+            }
+        },
+        "eventTime": "2025-06-10T17:14:10Z",
+        "eventSource": "ec2.amazonaws.com",
+        "eventName": "DeleteNetworkInterface",
+        "awsRegion": "us-east-1",
+        "sourceIPAddress": "3.93.22.131",
+        "userAgent": "aws-internal/3 aws-sdk-java/1.12.781 Linux/4.14.355-277.647.amzn2.x86_64 OpenJDK_64-Bit_Server_VM/17.0.14+8-LTS java/17.0.14 kotlin/1.6.21 vendor/Amazon.com_Inc. cfg/retry-mode/standard cfg/auth-source#unknown m/P",
+        "errorCode": "Client.DryRunOperation",
+        "errorMessage": "Request would have succeeded, but DryRun flag is set.",
+        "requestParameters": null,
+        "responseElements": null,
+        "requestID": "75f3b6bf-ee98-416d-8979-e9c8ca1967a4",
+        "eventID": "110720bc-7682-49fb-a914-ccd641814bf1",
+        "readOnly": false,
+        "eventType": "AwsApiCall",
+        "managementEvent": true,
+        "recipientAccountId": "364685145795",
+        "eventCategory": "Management",
+        "tlsDetails": {
+            "tlsVersion": "TLSv1.3",
+            "cipherSuite": "TLS_AES_128_GCM_SHA256",
+            "clientProvidedHostHeader": "ec2.us-east-1.amazonaws.com"
+        }
+    }
+}
