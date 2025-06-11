@@ -97,6 +97,14 @@ def get_user_name(user_identity):
     logger.info(f"Using direct user name: {user_name}")
     return user_name
 
+def is_console_deletion(cloudtrail_event):
+    """Check if the deletion was performed from AWS Console"""
+    # Check for sessionCredentialFromConsole field
+    is_console = cloudtrail_event.get('sessionCredentialFromConsole') == 'true'
+    logger.info(f"sessionCredentialFromConsole: {cloudtrail_event.get('sessionCredentialFromConsole')}")
+    logger.info(f"Is console deletion: {is_console}")
+    return is_console
+
 def lambda_handler(event, context):
     try:
         logger.info("=== Lambda function started ===")
@@ -111,6 +119,18 @@ def lambda_handler(event, context):
         
         event_name = cloudtrail_event.get('eventName', 'Unknown')
         logger.info(f"Event name: {event_name}")
+        
+        # Check if this is a console deletion
+        if not is_console_deletion(cloudtrail_event):
+            logger.info("Skipping notification - deletion not from console (automated deletion)")
+            return {
+                'statusCode': 200, 
+                'body': json.dumps({
+                    'message': 'Automated deletion skipped',
+                    'eventName': event_name,
+                    'reason': 'Not a console deletion'
+                })
+            }
         
         # Check for error conditions in the event
         error_code = cloudtrail_event.get('errorCode')
@@ -154,7 +174,7 @@ def lambda_handler(event, context):
         logger.info(f"Account ID: {account_id}")
         
         # Simple message with essential details only
-        message = f"""AWS Resource Deletion Alert
+        message = f"""AWS Resource Deletion Alert (Console Action)
 
 Resource: {resource_name}
 Service: {service}
@@ -162,7 +182,8 @@ Event: {event_name}
 User: {user_name}
 Region: {region}
 Time: {deletion_time}
-Account: {account_id}"""
+Account: {account_id}
+Source: AWS Console"""
 
         if error_code:
             message += f"\nError: {error_code} - {error_message}"
@@ -175,11 +196,11 @@ Account: {account_id}"""
             response = sns_client.publish(
                 TopicArn=SNS_TOPIC_ARN,
                 Message=message,
-                Subject=f"AWS Deletion: {service} - {resource_name}"
+                Subject=f"AWS Console Deletion: {service} - {resource_name}"
             )
             logger.info(f"SNS response: {response}")
             
-            logger.info(f"Deletion alert sent successfully: {event_name} - {resource_name} by {user_name}")
+            logger.info(f"Console deletion alert sent successfully: {event_name} - {resource_name} by {user_name}")
             
             return {
                 'statusCode': 200,
@@ -188,7 +209,8 @@ Account: {account_id}"""
                     'messageId': response.get('MessageId'),
                     'eventName': event_name,
                     'resourceName': resource_name,
-                    'user': user_name
+                    'user': user_name,
+                    'source': 'console'
                 })
             }
         except Exception as sns_error:
