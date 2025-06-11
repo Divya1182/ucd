@@ -1,0 +1,103 @@
+[INFO]	2025-06-11T15:18:40.746Z	3ae9f1ff-62db-47ab-b754-6568c2addc59	Received event: {
+    "version": "0",
+    "id": "5f2ee63f-56fc-e34b-2be1-58f4e6a96271",
+    "detail-type": "AWS API Call via CloudTrail",
+    "source": "aws.lambda",
+    "account": "364685145795",
+    "time": "2025-06-11T15:18:20Z",
+    "region": "us-east-1",
+    "resources": [],
+    "detail": {
+        "eventVersion": "1.11",
+        "userIdentity": {
+            "type": "AssumedRole",
+            "principalId": "AROAVJ2HNW3B4FDZEFXBN:1136271",
+            "arn": "arn:aws:sts::364685145795:assumed-role/ACCOUNTADMIN/1136271",
+            "accountId": "364685145795",
+            "accessKeyId": "ASIAVJ2HNW3B6ISKC2KE",
+            "sessionContext": {
+                "sessionIssuer": {
+                    "type": "Role",
+                    "principalId": "AROAVJ2HNW3B4FDZEFXBN",
+                    "arn": "arn:aws:iam::364685145795:role/ACCOUNTADMIN",
+                    "accountId": "364685145795",
+                    "userName": "ACCOUNTADMIN"
+                },
+                "attributes": {
+                    "creationDate": "2025-06-11T14:14:36Z",
+                    "mfaAuthenticated": "false"
+                }
+            }
+        },
+        "eventTime": "2025-06-11T15:18:20Z",
+        "eventSource": "lambda.amazonaws.com",
+        "eventName": "DeleteFunction20150331",
+        "awsRegion": "us-east-1",
+        "sourceIPAddress": "170.48.43.10",
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 Edg/137.0.0.0",
+        "requestParameters": {
+            "functionName": "TEST_LAMBDA"
+        },
+        "responseElements": null,
+        "requestID": "9b341833-5a62-4352-b48f-2cb53e52a6bb",
+        "eventID": "a29aed45-e0f1-4c1c-bc41-4b1c109a1916",
+        "readOnly": false,
+        "eventType": "AwsApiCall",
+        "managementEvent": true,
+        "recipientAccountId": "364685145795",
+        "eventCategory": "Management",
+        "tlsDetails": {
+            "tlsVersion": "TLSv1.3",
+            "cipherSuite": "TLS_AES_128_GCM_SHA256",
+            "clientProvidedHostHeader": "lambda.us-east-1.amazonaws.com"
+        },
+        "sessionCredentialFromConsole": "true"
+    }
+}
+
+[INFO]	2025-06-11T15:18:40.746Z	3ae9f1ff-62db-47ab-b754-6568c2addc59	CloudTrail event: {
+    "eventVersion": "1.11",
+    "userIdentity": {
+        "type": "AssumedRole",
+        "principalId": "AROAVJ2HNW3B4FDZEFXBN:1136271",
+        "arn": "arn:aws:sts::364685145795:assumed-role/ACCOUNTADMIN/1136271",
+        "accountId": "364685145795",
+        "accessKeyId": "ASIAVJ2HNW3B6ISKC2KE",
+        "sessionContext": {
+            "sessionIssuer": {
+                "type": "Role",
+                "principalId": "AROAVJ2HNW3B4FDZEFXBN",
+                "arn": "arn:aws:iam::364685145795:role/ACCOUNTADMIN",
+                "accountId": "364685145795",
+                "userName": "ACCOUNTADMIN"
+            },
+            "attributes": {
+                "creationDate": "2025-06-11T14:14:36Z",
+                "mfaAuthenticated": "false"
+            }
+        }
+    },
+    "eventTime": "2025-06-11T15:18:20Z",
+    "eventSource": "lambda.amazonaws.com",
+    "eventName": "DeleteFunction20150331",
+    "awsRegion": "us-east-1",
+    "sourceIPAddress": "170.48.43.10",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 Edg/137.0.0.0",
+    "requestParameters": {
+        "functionName": "TEST_LAMBDA"
+    },
+    "responseElements": null,
+    "requestID": "9b341833-5a62-4352-b48f-2cb53e52a6bb",
+    "eventID": "a29aed45-e0f1-4c1c-bc41-4b1c109a1916",
+    "readOnly": false,
+    "eventType": "AwsApiCall",
+    "managementEvent": true,
+    "recipientAccountId": "364685145795",
+    "eventCategory": "Management",
+    "tlsDetails": {
+        "tlsVersion": "TLSv1.3",
+        "cipherSuite": "TLS_AES_128_GCM_SHA256",
+        "clientProvidedHostHeader": "lambda.us-east-1.amazonaws.com"
+    },
+    "sessionCredentialFromConsole": "true"
+}
